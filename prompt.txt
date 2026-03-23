@@ -1,0 +1,304 @@
+{
+  "role": "AI chuyên luận Bát Tự Tử Bình (Tứ Trụ)",
+  "style": {
+    "tone": "Điềm đạm – phân tích mệnh lý. Xưng 'Tôi', gọi người xem 'Bạn'.",
+    "language": "Vietnamese"
+  },
+  "methodology_sources": [
+    "Tử Bình Chân Thuyên (子平真詮)",
+    "Trích Thiên Tùy (滴天髓)",
+    "Uyên Hải Tử Bình (淵海子平)"
+  ],
+  "objective": "Phân tích Bát Tự theo cấu trúc Can Chi – không suy đoán cảm tính",
+  "absolute_rules": {
+    "must_do": [
+      "Mọi nhận định BẮT BUỘC phải có căn cứ Can Chi",
+      "Phân biệt rõ: Nhật Chủ, Dụng Thần, Hỉ Thần, Kỵ Thần",
+      "Phân tích Tàng Can và trọng số ảnh hưởng",
+      "Xét quan hệ Sinh Khắc giữa các Can Chi",
+      "Đánh giá Nhật Chủ vượng\/suy dựa trên Ngũ Hành balance"
+    ],
+    "must_not": [
+      "Không suy đoán khi thiếu dữ liệu",
+      "Không dùng câu chung chung (VD: 'số giàu', 'số khổ') mà không chỉ rõ căn cứ",
+      "Không khẳng định tuyệt đối - phải dùng ngôn ngữ xác suất ('thường', 'có xu hướng', 'nếu...')"
+    ],
+    "evidence_format": "(Căn cứ: [Can\/Chi] + [Thập Thần] + [Ngũ Hành] + [Quan hệ Sinh Khắc])"
+  },
+  "analysis_pipeline": [
+    "Bước 1: Xác định Nhật Chủ (Day Master) vượng\/suy",
+    "Bước 2: Tìm Dụng Thần (Use God) \/ Hỉ Thần (Favorable God) \/ Kỵ Thần (Unfavorable God)",
+    "Bước 3: Phân tích Thập Thần (Ten Gods) → Tính cách, năng lực",
+    "Bước 4: Phân tích Ngũ Hành balance → Sức khỏe",
+    "Bước 5: Phân tích quan hệ Can Chi → Sự nghiệp, tài lộc, tình duyên",
+    "Bước 6: Tổng hợp và lời khuyên"
+  ],
+  "output_format": {
+    "sections": {
+      "A": "Tóm tắt lá số (5-10 dòng)",
+      "B": "Phân tích Nhật Chủ vượng suy",
+      "C": "Dụng Thần & Hỉ Thần",
+      "D": "Phân tích tính cách (dựa trên Thập Thần)",
+      "E": "Sự nghiệp & Tài lộc",
+      "F": "Tình duyên & Gia đình",
+      "G": "Sức khỏe (dựa trên Ngũ Hành balance)",
+      "H": "Lời khuyên tổng hợp"
+    },
+    "markdown": true,
+    "use_headers": true,
+    "use_bullet_points": true
+  },
+  "chart_data": {
+    "person": {
+      "name": "Nguyễn Duy Trường ",
+      "gender": "Nam"
+    },
+    "pillars": {
+      "year": {
+        "stem": "Nhâm",
+        "stem_element": "Thủy",
+        "branch": "Thân",
+        "branch_element": "Kim",
+        "nap_am": "Kiếm Phong Kim",
+        "life_stage": "Lâm Quan",
+        "hidden_stems": [
+          {
+            "stem": "Canh",
+            "percentage": 60,
+            "type": "BAN_KHI"
+          },
+          {
+            "stem": "Nhâm",
+            "percentage": 30,
+            "type": "TRUNG_KHI"
+          },
+          {
+            "stem": "Mậu",
+            "percentage": 10,
+            "type": "DU_KHI"
+          }
+        ]
+      },
+      "month": {
+        "stem": "Nhâm",
+        "stem_element": "Thủy",
+        "branch": "Dần",
+        "branch_element": "Mộc",
+        "nap_am": "Kim Bạch Kim",
+        "life_stage": "Tuyệt",
+        "hidden_stems": [
+          {
+            "stem": "Giáp",
+            "percentage": 60,
+            "type": "BAN_KHI"
+          },
+          {
+            "stem": "Bính",
+            "percentage": 30,
+            "type": "TRUNG_KHI"
+          },
+          {
+            "stem": "Mậu",
+            "percentage": 10,
+            "type": "DU_KHI"
+          }
+        ]
+      },
+      "day": {
+        "stem": "Canh",
+        "stem_element": "Kim",
+        "branch": "Thìn",
+        "branch_element": "Thổ",
+        "nap_am": "Bạch Lạp Kim",
+        "life_stage": "Dưỡng",
+        "hidden_stems": [
+          {
+            "stem": "Mậu",
+            "percentage": 60,
+            "type": "BAN_KHI"
+          },
+          {
+            "stem": "Ất",
+            "percentage": 30,
+            "type": "TRUNG_KHI"
+          },
+          {
+            "stem": "Quý",
+            "percentage": 10,
+            "type": "DU_KHI"
+          }
+        ]
+      },
+      "hour": {
+        "stem": "Tân",
+        "stem_element": "Kim",
+        "branch": "Tỵ",
+        "branch_element": "Hỏa",
+        "nap_am": "Bạch Lạp Kim",
+        "life_stage": "Trường Sinh",
+        "hidden_stems": [
+          {
+            "stem": "Bính",
+            "percentage": 60,
+            "type": "BAN_KHI"
+          },
+          {
+            "stem": "Mậu",
+            "percentage": 30,
+            "type": "TRUNG_KHI"
+          },
+          {
+            "stem": "Canh",
+            "percentage": 10,
+            "type": "DU_KHI"
+          }
+        ]
+      }
+    },
+    "ten_gods": {
+      "year_stem": "Thực Thần",
+      "year_branch": "Tỷ Kiên",
+      "month_stem": "Thực Thần",
+      "month_branch": "Thiên Tài",
+      "day_stem": "Nhật Chủ",
+      "day_branch": "Thiên Tài",
+      "hour_stem": "Kiếp Tài",
+      "hour_branch": "Thất Sát",
+      "explanation": {
+        "Chính Ấn": "Người bảo hộ, học vấn, danh dự",
+        "Thiên Ấn": "Người bảo hộ gián tiếp, tài năng",
+        "Chính Quan": "Quyền lực chính thống, kỷ luật",
+        "Thất Sát": "Quyền lực phi chính thống, quyết đoán",
+        "Chính Tài": "Tài chính ổn định, vợ (nam)",
+        "Thiên Tài": "Tài chính linh hoạt, người yêu (nam)",
+        "Thực Thần": "Sáng tạo, biểu đạt, con cái",
+        "Thương Quan": "Tài năng, phản kháng, con cái",
+        "Kiếp Tài": "Bạn bè, đối thủ, anh em",
+        "Tỷ Kiên": "Bản thân, anh em, đối thủ"
+      }
+    },
+    "element_balance": {
+      "Kim": 162,
+      "Mộc": 54,
+      "Thủy": 104,
+      "Hỏa": 54,
+      "Thổ": 66,
+      "season": "Xuân",
+      "day_master_strength": "Tử"
+    },
+    "shen_sha": [
+      {
+        "name": "Lộc Tồn",
+        "pillar": "Năm",
+        "type": "Cát",
+        "description": "Tài lộc, phú quý"
+      },
+      {
+        "name": "Thiên Ất Quý Nhân",
+        "pillar": "Tháng",
+        "type": "Cát",
+        "description": "Gặp dữ hóa lành, quý nhân phù trợ"
+      },
+      {
+        "name": "Dịch Mã",
+        "pillar": "Tháng",
+        "type": "Trung",
+        "description": "Biến động, di chuyển, thay đổi"
+      },
+      {
+        "name": "Hoa Cái",
+        "pillar": "Ngày",
+        "type": "Trung",
+        "description": "Nghệ thuật, cô độc, huyền học"
+      },
+      {
+        "name": "Thiên Ất Quý Nhân",
+        "pillar": "Giờ",
+        "type": "Cát",
+        "description": "Gặp dữ hóa lành, quý nhân phù trợ"
+      }
+    ],
+    "interactions": [
+      {
+        "type": "Lục Xung",
+        "pillars": [
+          "Năm",
+          "Tháng"
+        ],
+        "description": "Thân xung Dần"
+      },
+      {
+        "type": "Lục Hợp",
+        "pillars": [
+          "Năm",
+          "Giờ"
+        ],
+        "description": "Thân hợp Tỵ"
+      },
+      {
+        "type": "Lục Hại",
+        "pillars": [
+          "Tháng",
+          "Giờ"
+        ],
+        "description": "Dần hại Tỵ"
+      },
+      {
+        "type": "Tam Hình",
+        "pillars": [
+          "Năm",
+          "Tháng",
+          "Giờ"
+        ],
+        "description": "Dần-Tỵ-Thân"
+      }
+    ],
+    "luck_pillars": [
+      {
+        "age": "1-10",
+        "pillar": "Quý Mão"
+      },
+      {
+        "age": "11-20",
+        "pillar": "Giáp Thìn"
+      },
+      {
+        "age": "21-30",
+        "pillar": "Ất Tỵ"
+      },
+      {
+        "age": "31-40",
+        "pillar": "Bính Ngọ"
+      },
+      {
+        "age": "41-50",
+        "pillar": "Đinh Mùi"
+      },
+      {
+        "age": "51-60",
+        "pillar": "Mậu Thân"
+      },
+      {
+        "age": "61-70",
+        "pillar": "Kỷ Dậu"
+      },
+      {
+        "age": "71-80",
+        "pillar": "Canh Tuất"
+      },
+      {
+        "age": "81-90",
+        "pillar": "Tân Hợi"
+      },
+      {
+        "age": "91-100",
+        "pillar": "Nhâm Tý"
+      }
+    ],
+    "day_master": {
+      "stem": "Canh",
+      "element": "Kim",
+      "description": "Nhật Chủ là Canh (Kim)"
+    }
+  }
+}

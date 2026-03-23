@@ -1,6 +1,6 @@
 # Plan: Clone Bát Tự Engine + AI Luận Giải
 Created: 2026-03-23T08:40:00+07:00
-Status: 🟡 In Progress
+Status: 🟡 In Progress (45%)
 
 ## Overview
 Clone thuật toán lập lá số Bát Tự (Tứ Trụ) từ app `TuViAndroid-BatTu` sang app Android mới `com.skul9x.battu`. App mới chuyên về:
@@ -31,9 +31,9 @@ Clone thuật toán lập lá số Bát Tự (Tứ Trụ) từ app `TuViAndroid-
 
 | Phase | Name | Status | Tasks | Est. |
 |-------|------|--------|-------|------|
-| 01 | Project Setup & Dependencies | ⬜ Pending | 8 | 2-3h |
-| 02 | Clone Core Bát Tự Logic | ⬜ Pending | 10 | 4-6h |
-| 03 | UI - Nhập liệu & Hiển thị | ⬜ Pending | 12 | 8-12h |
+| 01 | Project Setup & Dependencies | ✅ Done | 8 | 2-3h |
+| 02 | Clone Core Bát Tự Logic | ✅ Done | 10 | 4-6h |
+| 03 | UI - Nhập liệu & Hiển thị | 🟡 In Progress | 12 | 8-12h |
 | 04 | AI Integration (Gemini) | ⬜ Pending | 10 | 6-8h |
 | 05 | History & Polish | ⬜ Pending | 8 | 4-6h |
 

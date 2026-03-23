@@ -13,3 +13,21 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Android Studio
+*.apk
+*.ap_
+*.dex
+*.class
+bin/
+gen/
+# macOS
+.DS_Store
+# Room schemas (if any)
+schemas/
+# JUnit test results
+/app/build/test-results/
+/test-reports/
+# AI Studio image artifacts (if any)
+*.png.temp
+*.jpg.temp

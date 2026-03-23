@@ -1,0 +1,37 @@
+Phase 01: Setup completed and UI Phase Vibe Mockup designed
+[09:58] Phase 03: Theme & Navigation setup completed
+[11:00] START Phase 05 - History Implementation
+[11:05] DONE Task: Create Room Database (Entity, DAO, Database)
+[11:10] DONE Task: Integrate History into BatTuViewModel (Save/Load)
+[11:15] DONE Task: Create HistoryScreen UI & Setup NavigationBar
+[11:20] DONE Task: Implement Share Feature in ResultScreen
+[11:58] COMPLETED Phase 05 - History & Branding.
+- Room DB implemented and tested.
+- UI flow with shared ViewModel verified.
+- Build system migrated to Room 2.7.0-alpha11 + KSP to fix Metadata 2.2.0 issue.
+- App rebranded to 'Bát Tự AI' with new icon.
+- APK build successfully.
+[12:25] DONE Phase 01 Design - Created DESIGN-Phase01.md with:
+  - Bảng 60 Giáp Tý (Nạp Âm lookup table)
+  - Bảng 12 Địa Chi Tàng Can (với trọng số 60/30/10%)
+  - Logic tính Thập Thần từ Bản Khí
+  - 5 test cases chi tiết
+[2026-03-23 12:48:23] COMPLETED Phase 02 - Bazi Basic Logic. Added Life Stages (Yin-Yang direction), Season Strength, and Weighted Element Balance (+Nap Am bonus). Verified by unit tests.
+[12:55] DONE task: Update Models.kt with Phase 03 data structures
+[12:58] DONE task: Update BaZiConstants.kt with Shen Sha & Interactions tables
+[13:01] DONE task: Implement Shen Sha, Interactions, Luck Pillars in BaZiLogic.kt
+[13:01] END Phase 03 - Advanced Bazi Rules ✅
+[13:02] SAVE BRAIN: Session state saved to .brain/brain.json and handover.md created. Phase 03 is fully documented.
+[13:15] START Phase 04 - Prompt & Output Update
+[13:18] DONE task: Update PromptBuilder.kt with advanced JSON structure
+[13:20] DONE task: Add testImplementation("org.json:json") for unit testing
+[13:22] DONE test: PromptBuilderTest.kt passed ✅
+[13:22] END Phase 04 - Prompt & Output Update ✅
+[13:30] START Phase 05 - History & Migration Implementation
+[13:35] DONE task: Configure baZiJson with ignoreUnknownKeys=true in BatTuViewModel.kt
+[13:40] DONE task: Add default values to BaZiData & TenGods in Models.kt
+[13:45] DONE task: Implement MigrationTest.kt and verified legacy JSON support ✅
+[13:50] DONE task: Update PillarCard and ChartScreen with advanced UI sections
+[13:55] DONE task: Connect Save button to historyDao in ChartScreen.kt
+[14:00] END Phase 05 - History & Migration Implementation ✅
+[14:10] DONE: Phase 05 Migration & UI Upgrade completed.

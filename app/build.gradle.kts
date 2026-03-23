@@ -3,21 +3,17 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.serialization")
     id("org.jetbrains.kotlin.plugin.compose")
-    id("kotlin-kapt")
+    id("com.google.devtools.ksp")
 }
 
 android {
     namespace = "com.skul9x.battu"
-    compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
-    }
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.skul9x.battu"
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -49,10 +45,11 @@ android {
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity)
+    implementation("androidx.core:core-splashscreen:1.0.1")
     implementation(libs.material)
     
-    // Compose BOM + Core
-    val composeBom = platform("androidx.compose:compose-bom:2024.12.01")
+    // Compose BOM + Core (downgraded for compileSdk 34)
+    val composeBom = platform("androidx.compose:compose-bom:2024.02.00")
     implementation(composeBom)
     androidTestImplementation(composeBom)
     implementation("androidx.compose.material3:material3")
@@ -60,15 +57,15 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     debugImplementation("androidx.compose.ui:ui-tooling")
     
-    // Activity Compose
-    implementation("androidx.activity:activity-compose:1.9.3")
+    // Activity Compose (downgraded)
+    implementation("androidx.activity:activity-compose:1.8.2")
     
-    // ViewModel + Lifecycle
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
-    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")
+    // ViewModel + Lifecycle (downgraded)
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.7.0")
     
-    // Navigation Compose
-    implementation("androidx.navigation:navigation-compose:2.8.5")
+    // Navigation Compose (downgraded)
+    implementation("androidx.navigation:navigation-compose:2.7.7")
     
     // Kotlinx Serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
@@ -76,12 +73,17 @@ dependencies {
     // Gemini AI SDK
     implementation("com.google.ai.client.generativeai:generativeai:0.9.0")
     
+    // DataStore Preferences
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    
     // Room Database
-    implementation("androidx.room:room-runtime:2.6.1")
-    implementation("androidx.room:room-ktx:2.6.1")
-    kapt("androidx.room:room-compiler:2.6.1")
+    val roomVersion = "2.7.0-alpha11"
+    implementation("androidx.room:room-runtime:$roomVersion")
+    implementation("androidx.room:room-ktx:$roomVersion")
+    ksp("androidx.room:room-compiler:$roomVersion")
 
     testImplementation(libs.junit)
+    testImplementation("org.json:json:20240303")
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")

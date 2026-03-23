@@ -1,71 +1,74 @@
 # 🧧 Bát Tự AI (BatTu) - Hệ Thống Luận Giải Mệnh Lý Chuyên Sâu
 
-![Version](https://img.shields.io/badge/version-2.1.0-blue)
-![Platform](https://img.shields.io/badge/platform-Android-green)
-![Kotlin](https://img.shields.io/badge/kotlin-2.0.20-purple)
+![Phiên bản](https://img.shields.io/badge/version-2.2.0-blue)
+![Nền tảng](https://img.shields.io/badge/platform-Android-green)
+![Ngôn ngữ](https://img.shields.io/badge/kotlin-2.0.20-purple)
 
-**Bát Tự AI** là ứng dụng Android hiện đại được thiết kế để tính toán và luận giải lá số Bát Tự (Tứ Trụ) với độ chính xác tuyệt đối. Ứng dụng kết hợp giữa kinh nghiệm Mệnh lý học cổ truyền (Tử Bình Chân Thuyên, Trích Thiên Tùy) và sức mạnh trí tuệ nhân tạo (Google Gemini) để cung cấp những bản luận giải chuyên sâu về vận mệnh, tính cách và sự nghiệp.
+**Bát Tự AI** là một ứng dụng Android hiện đại được thiết kế để tính toán và luận giải lá số Bát Tự (Tứ Trụ) với độ chính xác cao nhất. Ứng dụng kết hợp tinh hoa Mệnh Lý học cổ truyền (Tử Bình Chân Thuyên, Trích Thiên Tùy) với sức mạnh của trí tuệ nhân tạo (Google Gemini) để mang đến những bản luận giải chuyên sâu về vận mệnh, tính cách và sự nghiệp.
 
 ---
 
-## ✨ Tính Năng Nổi Bật (Precision Engine v2.1)
+## ✨ Tính Năng Nổi Bật (Precision Engine v2.2)
 
-### 🧩 Engine Tính Toán Độ Chính Xác Cao
-- **Lập Lá Số Tứ Trụ:** Tính toán chính xác Can Chi của Năm, Tháng, Ngày, Giờ (Midpoint traditional hour-based calculation).
-- **Thập Thần & Tàng Can chuyên sâu:** Phân tích trọng số Tàng Can (60% - 30% - 10%) và Ten Gods chính xác cho cả 8 vị trí.
-- **Vòng Trường Sinh (12 Life Stages):** Áp dụng đầy đủ quy tắc Âm nghịch - Dương thuận cho 10 Thiên Can trên tất cả các trụ.
-- **Thần Sát (Shen Sha):** Phân tích hệ thống Thần Sát đa tầng (Thiên Ất Quý Nhân, Văn Xương, Lộc Tồn, Kình Dương, v.v.) dựa trên cả Năm và Ngày sinh.
-- **Tuần Không (Void Branches):** Tính toán chính xác Niên Không và Nhật Không (Void of Day/Year).
-- **Thập Thần Tàng Can chuyên sâu:** Thập Thần được tính cho toàn bộ các Tàng Can (Bản khí, Trung khí, Dư khí).
-- **Tương Tác Địa Chi Động:** Nhận diện đầy đủ Lục Hợp, Lục Xung, Lục Hại, Tam Hợp, **Bán Tam Hợp**, **Củng Hợp** và **Phục Ngâm**.
-- **Đại Vận (Luck Pillars) Tiết Khí:** Tính mốc khởi vận chính xác đến từng ngày và tháng lẻ dựa trên khoảng cách tới Tiết khí (quy tắc 3 ngày = 1 năm).
+### 🧩 Bộ Máy Tính Toán Chính Xác
+*   **Lập Lá Số Tứ Trụ:** Xác định chính xác Can Chi của Năm, Tháng, Ngày, Giờ (Dựa trên Tiết Khí thực tế).
+*   **Thập Thần & Tàng Can Chuyên Sâu:** Phân tích trọng số Tàng Can (60% - 30% - 10%) và Ten Gods chính xác cho cả 8 vị trí.
+*   **Vòng Trường Sinh (12 Trạng Thái):** Áp dụng quy tắc Âm nghịch - Dương thuận cho 10 Thiên Can trên tất cả các trụ.
+*   **Hệ Thống Thần Sát Đa Tầng:** Phân tích Văn Xương, Kiếp Sát, Thập Ác Đại Bại, Đào Hoa, Thiên Y, Hồng Loan, Thiên Hỉ... dựa trên cả Trụ Năm và Trụ Ngày.
+*   **Tuần Không (Không Vong):** Tính toán chính xác Niên Không và Nhật Không.
+*   **Trụ Phụ (Auxiliary Pillars):** Tích hợp **Thai Nguyên** và **Mệnh Cung** giúp bổ trợ luận đoán tiền vận và hậu vận.
+*   **Tương Tác Địa Chi Động:** Nhận diện đầy đủ Lục Hợp, Lục Xung, Lục Hại, Tam Hợp, **Bán Tam Hợp**, **Củng Hợp** và **Phục Ngâm**.
+*   **Đại Vận & Lưu Niên:** Tính mốc khởi vận chính xác (3 ngày = 1 năm) và dự báo chi tiết **Lưu Niên (Hành năm)** cho 10 năm hiện tại.
 
 ### 🤖 Trí Tuệ Nhân Tạo (Gemini AI)
-- Luận giải lá số dựa trên cấu trúc JSON đa tầng.
-- Tự động xoay vòng (rotation) API Key và hỗ trợ model fallback.
-- Phân tích đa chiều: Nhật Chủ, Dụng Thần, Hỉ Thần, Kỵ Thần thông qua 3 tầng logic (Căn bản, Biến hóa, Thời gian).
+*   Luận giải lá số dựa trên cấu trúc dữ liệu JSON đa tầng.
+*   Tự động xoay vòng API Key và hỗ trợ chuyển đổi model linh hoạt.
+*   Phân tích đa chiều về Nhật Chủ, Dụng Thần, Hỉ Thần thông qua 3 tầng logic: Căn Bản, Biến Hóa và Thời Gian.
 
 ### 📱 Tiện Ích Người Dùng
-- Lưu trữ lịch sử lá số ngoại tuyến (Offline History) với Room Database.
-- Chia sẻ kết quả luận giải thông qua Android Intent.
-- Giao diện Modern Android (Material 3 + Jetpack Compose) hỗ trợ Dark Mode.
+*   Lưu trữ lịch sử lá số ngoại tuyến (Offline) bằng Room Database.
+*   Chia sẻ kết quả luận giải thông qua Android Intent.
+*   Giao diện Modern Android (Material 3 + Jetpack Compose) hỗ trợ Chế độ tối (Dark Mode).
 
 ---
 
-## 🏗️ Cấu Trúc Dự Án
+## 🏗️ Cấu Trúc Thư Mục
 
 ```text
 com.skul9x.battu/
-├── core/                    # Engine tính toán cốt lõi (BaZiLogic, LunarConverter)
-├── data/                    # Models dữ liệu và Local Storage (Room, DataStore)
-├── ai/                      # Tích hợp Gemini API và PromptBuilder
-├── ui/                      # Giao diện Jetpack Compose (Screens, Components, Theme)
-│   ├── screens/             # Input, Chart, Result, Settings, History
-│   └── components/          # PillarCard, ElementBalanceChart, MarkdownText
-└── assets/                  # Dữ liệu Tiết khí (Solar Terms) từ 1900 - 2049
+├── core/                    # Bộ máy tính toán cốt lõi (BaZiLogic, LunarConverter)
+├── data/                    # Định nghĩa dữ liệu và Lưu trữ (Room, DataStore)
+├── ai/                      # Tích hợp Gemini API và Trình xây dựng Prompt
+├── ui/                      # Giao diện người dùng Jetpack Compose
+│   ├── screens/             # Màn hình: Nhập liệu, Lá số, Kết quả, Cài đặt, Lịch sử
+│   └── components/          # Thành phần: Trụ số, Biểu đồ ngũ hành, Hiển thị Markdown
+└── assets/                  # Dữ liệu Tiết khí (Solar Terms) từ năm 1900 - 2049
 ```
 
 ---
 
 ## 🛠️ Hướng Dẫn Cài Đặt
 
-1. **Clone Repository:**
-   ```bash
-   git clone https://github.com/skul9x/battu.git
-   ```
-2. **Mở dự án:**
-   Mở thư mục bằng **Android Studio (Ladybug hoặc mới hơn)**.
-3. **Cấu hình API Key:**
-   - Vào màn hình **Cài đặt** trong App.
-   - Thêm API Key Google Gemini (lấy từ AI Studio).
-4. **Build & Run:**
-   Build dự án với Gradle 8.x + JDK 17.
+1.  **Clone mã nguồn:**
+    ```bash
+    git clone https://github.com/skul9x/battu.git
+    ```
+2.  **Mở dự án:**
+    Sử dụng **Android Studio (Ladybug hoặc mới hơn)**.
+3.  **Cấu hình API Key:**
+    - Truy cập màn hình **Cài đặt** trong ứng dụng.
+    - Thêm API Key của Google Gemini (Lấy từ Google AI Studio).
+4.  **Xây dựng và Chạy:**
+    Build dự án với Gradle 8.x và JDK 21 (Đã cấu hình trong `gradle.properties`).
 
 ---
 
-## 📝 Yêu Cầu Hệ Thống
-- Android 7.0 (API 24) trở lên.
-- Kết nối internet (để sử dụng tính năng luận giải AI).
+## 📖 Cách Sử Dụng
+
+1.  Tại màn hình chính, nhập **Họ tên, Ngày tháng năm sinh (Dương lịch)** và **Giờ sinh**.
+2.  Nhấn nút **Xem Lá Số** để hệ thống tính toán Tứ Trụ, Thần Sát và Đại Vận.
+3.  Nhấn nút **Luận Giải AI** để gửi dữ liệu cho AI Gemini và nhận bản bình giải chuyên sâu.
+4.  Bạn có thể lưu lá số vào lịch sử hoặc chia sẻ cho bạn bè.
 
 ---
 

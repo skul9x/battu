@@ -4,6 +4,34 @@ Tất cả thay đổi quan trọng của dự án BatTu được ghi lại ở 
 
 ---
 
+## [2026-03-23] - Advanced Bazi Features (Phase 05-07) ✅
+- **Phase 07 COMPLETE:** Kiểm thử & Xác minh tổng thể (Testing & Verification).
+- **Phase 06 COMPLETE:** Đồng bộ PromptBuilder & Rules.
+- **Phase 05 COMPLETE:** Tính toán Lưu Niên (Annual Luck) cho 10 năm của đại vận hiện tại.
+- **Verification:** Toàn bộ tính năng mới đã được xác minh bằng unit test `AdvancedFeaturesTest.kt` đối chiếu với lá số mẫu (Ngọc 1992).
+- **Accuracy:** Khớp hoàn toàn các thông số Tuần Không, Thai Nguyên, Mệnh Cung, Đào Hoa, Thiên Y và Lưu Niên.
+- **AI Integration:** JSON Prompt giờ đây chứa đầy đủ dữ liệu cao cấp để AI luận giải chuyên sâu từng năm.
+
+---
+
+## [2026-03-23] - Advanced Bazi Features (Phase 04)
+- **Phase 04 COMPLETE:** Mở rộng Thần Sát (Expand Shen Sha).
+- **Thần Sát mới:** Bổ sung Đào Hoa (Hàm Trì), Thiên Y, Hồng Loan, Thiên Hỉ.
+- **Accuracy:** Đã verify khớp với yêu cầu chuyên gia: Đào Hoa & Thiên Y tại Giờ cho lá số mẫu (Ngọc 1992).
+- **Technicals:** Cập nhật `BaZiConstants.kt` với maps tra cứu mới và nâng cấp `calculateShenSha` trong `BaZiLogic.kt`.
+
+---
+
+## [2026-03-23] - Advanced Bazi Features (Phase 03)
+- **Phase 03 COMPLETE:** Thai Nguyên + Mệnh Cung (Trụ Phụ).
+- **Thai Nguyên (Fetal Origin):** Triển khai logic tính trụ thụ thai dựa trên Trụ Tháng (Can tiến 1, Chi tiến 3).
+- **Mệnh Cung (Life Palace):** Triển khai logic tính cung mệnh dựa trên công thức 26 - (MonthIdx + HourIdx) với mapping Dần=1. Tích hợp Ngũ Hổ Độn để tìm Thiên Can Mệnh Cung.
+- **AI Integration:** Cập nhật PromptBuilder để truyền dữ liệu auxiliary_pillars (thai_origin, life_palace) vào JSON gửi Gemini.
+- **Testing:** Đã bổ sung unit test `AuxiliaryPillarTest.kt` xác minh độ chính xác theo lá số mẫu (Ngọc 1992-10-23).
+- **Environment:** Cập nhật `gradle.properties` sang Java 21 để đảm bảo tương thích môi trường build.
+
+---
+
 ## [2026-03-23] - Advanced Bazi Features (Phase 02)
 - **Phase 02 COMPLETE:** Tuần Không + Thập Thần Tàng Can.
 - **Tuần Không (Void Branches):** Triển khai cách tính Niên Không (Năm) và Nhật Không (Ngày) dựa trên Lục Thập Hoa Giáp.

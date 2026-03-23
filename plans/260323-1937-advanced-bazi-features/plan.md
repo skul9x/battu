@@ -31,10 +31,10 @@ Triển khai các tính năng nâng cao cho engine Bát Tự dựa trên phản 
 |-------|------|--------|----------|-------|
 | 01 | Fix Interactions Bug | ✅ Complete | 100% | 4 |
 | 02 | Tuần Không + Thập Thần Tàng Can | ✅ Complete | 100% | 6 |
-| 03 | Thai Nguyên + Mệnh Cung | ⬜ Pending | 0% | 5 |
-| 04 | Mở rộng Thần Sát | ⬜ Pending | 0% | 5 |
-| 05 | Lưu Niên (Annual Luck) | ⬜ Pending | 0% | 4 |
-| 06 | PromptBuilder Sync | ⬜ Pending | 0% | 4 |
+| 03 | Thai Nguyên + Mệnh Cung | ✅ Complete | 100% | 5 |
+| 04 | Mở rộng Thần Sát | ✅ Complete | 100% | 5 |
+| 05 | Lưu Niên (Annual Luck) | ✅ Complete | 100% | 4 |
+| 06 | PromptBuilder Sync | ✅ Complete | 100% | 4 |
 | 07 | Testing & Verification | ⬜ Pending | 0% | 8 |
 
 **Tổng:** 36 tasks | Ước tính: 3-4 sessions

@@ -7,8 +7,17 @@ import java.util.*
 
 /**
  * BaZiLogic - Core calculation engine for Four Pillars (Bát Tự)
- * Cloned from TuViAndroid-BatTu with package name changes only
- * DO NOT modify the calculation algorithms
+ * 
+ * This engine calculates:
+ * - Four Pillars (Year, Month, Day, Hour) based on Solar Terms (Tiết Khí)
+ * - Ten Gods (Thập Thần) for all hidden stems (Bản/Trung/Dư khí)
+ * - 12 Life Stages (Vòng Trường Sinh) for all pillars
+ * - Element Balance with Nạp Âm bonus scores
+ * - Advanced Shen Sha (Divine Stars) including Đào Hoa, Thiên Y, Hồng Loan, etc.
+ * - Complex Branch Interactions: Lục Hợp, Lục Xung, Tam Hợp, Bán Tam Hợp, Củng Hợp, Phục Ngâm.
+ * - Luck Pillars (Đại Vận) calculated precisely to days/months based on distance to terms.
+ * - Annual Luck (Lưu Niên) for every year within each luck period.
+ * - Auxiliary Pillars: Thai Nguyên (Fetal Origin) and Mệnh Cung (Life Palace).
  */
 class BaZiLogic(private val solarTermsJson: String) {
 
@@ -56,6 +65,7 @@ class BaZiLogic(private val solarTermsJson: String) {
         val dayMaster = BaZiConstants.THIEN_CAN[dayCanIdx]
         
         val yearPillar = createPillar(BaZiConstants.THIEN_CAN[yearCanIdx], BaZiConstants.DIA_CHI[yearChiIdx], dayMaster)
+        val birthYear = tstYear
 
         // 4. Month Pillar
         val monthChiIdx = calculateMonthChiIndex(tstYear, birthTimeUtc)
@@ -94,12 +104,15 @@ class BaZiLogic(private val solarTermsJson: String) {
         val currentTermInfo = getCurrentAndNextTerm(tstYear, birthTimeUtc)
 
         val pillarsMap = mapOf("Năm" to yearPillar, "Tháng" to monthPillar, "Ngày" to dayPillar, "Giờ" to hourPillar)
-        val shenSha = calculateShenSha(yearPillar, dayPillar, pillarsMap)
+        val shenSha = calculateShenSha(yearPillar, dayPillar, monthPillar, pillarsMap)
         val interactions = calculateInteractions(pillarsMap)
-        val luckPillars = calculateLuckPillars(yearPillar.stem, monthCanIdx, monthChiIdx, input.gender, birthTimeUtc, tstYear)
+        val luckPillars = calculateLuckPillars(yearPillar.stem, monthCanIdx, monthChiIdx, input.gender, birthTimeUtc, birthYear)
+        val fetalOrigin = calculateFetalOrigin(monthCanIdx, monthChiIdx)
+        val lifePalace = calculateLifePalace(yearCanIdx, monthChiIdx, hourChiIdx)
 
         return BaZiData(
             birthInfo = "TST: $tstYear-$tstMonth-$tstDay $tstHour:$tstMinute (Long: $longitude)",
+            birthYear = tstYear,
             year = yearPillar,
             month = monthPillar,
             day = dayPillar,
@@ -118,6 +131,8 @@ class BaZiLogic(private val solarTermsJson: String) {
                 yearVoid = listOf(BaZiConstants.getXunKong(yearPillar.stem, yearPillar.branch).first, BaZiConstants.getXunKong(yearPillar.stem, yearPillar.branch).second),
                 dayVoid = listOf(BaZiConstants.getXunKong(dayPillar.stem, dayPillar.branch).first, BaZiConstants.getXunKong(dayPillar.stem, dayPillar.branch).second)
             ),
+            fetalOrigin = fetalOrigin,
+            lifePalace = lifePalace,
             isNearSolarTerm = isNearSolarTerm(tstYear, birthTimeUtc)
         )
     }
@@ -316,11 +331,12 @@ class BaZiLogic(private val solarTermsJson: String) {
         return dLong + (153 * mLong + 2) / 5 + 365 * yLong + yLong / 4 - yLong / 100 + yLong / 400 - 32045
     }
 
-    private fun calculateShenSha(yearPillar: Pillar, dayPillar: Pillar, pillars: Map<String, Pillar>): List<ShenSha> {
+    private fun calculateShenSha(yearPillar: Pillar, dayPillar: Pillar, monthPillar: Pillar, pillars: Map<String, Pillar>): List<ShenSha> {
         val result = mutableListOf<ShenSha>()
         val yearStem = yearPillar.stem
         val dayStem = dayPillar.stem
         val yearBranch = yearPillar.branch
+        val monthBranch = monthPillar.branch
         val dayBranch = dayPillar.branch
         
         pillars.forEach { (name, p) ->
@@ -376,6 +392,32 @@ class BaZiLogic(private val solarTermsJson: String) {
                 if (result.none { it.name == "Kiếp Sát" && it.pillar == name }) {
                     result.add(ShenSha("Kiếp Sát", name, "Hung", "Tai nạn, thị phi, hao tốn"))
                 }
+            }
+
+            // 9. Đào Hoa (Theo Chi Ngày/Năm)
+            val daoHoaBranches = listOf(BaZiConstants.DAO_HOA[dayBranch], BaZiConstants.DAO_HOA[yearBranch])
+            if (cb in daoHoaBranches) {
+                if (result.none { it.name == "Đào Hoa" && it.pillar == name }) {
+                    result.add(ShenSha("Đào Hoa", name, "Cát/Hung", "Sức hút, duyên ngầm, tình duyên"))
+                }
+            }
+
+            // 10. Thiên Y (Theo Chi Tháng)
+            val thienYBranch = BaZiConstants.THIEN_Y[monthBranch]
+            if (cb == thienYBranch) {
+                result.add(ShenSha("Thiên Y", name, "Cát", "Y lý, sức khỏe được phù trợ, từ tâm"))
+            }
+
+            // 11. Hồng Loan (Theo Chi Năm)
+            val hongLoanBranch = BaZiConstants.HONG_LOAN[yearBranch]
+            if (cb == hongLoanBranch) {
+                result.add(ShenSha("Hồng Loan", name, "Cát", "Hôn nhân, hỉ sự, vận đào hoa chính chủ"))
+            }
+
+            // 12. Thiên Hỉ (Đối xung Hồng Loan)
+            val thienHiBranch = BaZiConstants.LUC_XUNG[hongLoanBranch]
+            if (cb == thienHiBranch) {
+                result.add(ShenSha("Thiên Hỉ", name, "Cát", "Tin vui, sinh nở, may mắn"))
             }
         }
 
@@ -508,6 +550,21 @@ class BaZiLogic(private val solarTermsJson: String) {
             }
             
             val pillarStartAge = startAgeYears + (i * 10)
+            
+            // Calculate Annual Pillars (Lưu Niên) for this luck pillar
+            val startYearOfPillar = year + pillarStartAge
+            val annualPillars = (0 until 10).map { offset ->
+                val annualYear = startYearOfPillar + offset
+                val canIdx = ((annualYear - 4) % 10 + 10) % 10
+                val chiIdx = ((annualYear - 4) % 12 + 12) % 12
+                AnnualPillar(
+                    year = annualYear,
+                    stem = BaZiConstants.THIEN_CAN[canIdx],
+                    branch = BaZiConstants.DIA_CHI[chiIdx],
+                    ageDisplay = "${pillarStartAge + offset} tuổi"
+                )
+            }
+
             val displayAge = if (startMonths == 0 && startDays == 0) {
                 "$pillarStartAge tuổi"
             } else if (startDays == 0) {
@@ -523,9 +580,61 @@ class BaZiLogic(private val solarTermsJson: String) {
                 startDays = startDays,
                 displayAge = displayAge,
                 stem = BaZiConstants.THIEN_CAN[currentCanIdx],
-                branch = BaZiConstants.DIA_CHI[currentChiIdx]
+                branch = BaZiConstants.DIA_CHI[currentChiIdx],
+                annualPillars = annualPillars
             ))
         }
         return results
+    }
+
+    private fun calculateFetalOrigin(monthCanIdx: Int, monthChiIdx: Int): AuxiliaryPillar {
+        val canIdx = (monthCanIdx + 1) % 10
+        val chiIdx = (monthChiIdx + 3) % 12
+        return AuxiliaryPillar(
+            name = "Thai Nguyên",
+            stem = BaZiConstants.THIEN_CAN[canIdx],
+            branch = BaZiConstants.DIA_CHI[chiIdx],
+            description = "Trụ thụ thai"
+        )
+    }
+
+    private fun calculateLifePalace(yearCanIdx: Int, monthChiIdx: Int, hourChiIdx: Int): AuxiliaryPillar {
+        // Month Index (Dần=1 mapping)
+        val mIdx = if (monthChiIdx >= 2) monthChiIdx - 1 else monthChiIdx + 11
+        // Hour Index (Dần=1 mapping)
+        val hIdx = if (hourChiIdx >= 2) hourChiIdx - 1 else hourChiIdx + 11
+
+        // P = 26 - (M + H)
+        var p = 26 - (mIdx + hIdx)
+        while (p > 12) p -= 12
+        while (p <= 0) p += 12
+
+        // Convert P (Dần=1 mapping) back to Chi index (Tý=0 mapping)
+        // Dần=1 -> Index 2
+        // Mão=2 -> Index 3
+        // Tuất=9 -> Index 10
+        // Hợi=10 -> Index 11
+        // Tý=11 -> Index 0
+        // Sửu=12 -> Index 1
+        val palaceChiIdx = if (p <= 10) p + 1 else p - 11
+
+        // Ngũ Hổ Độn for Palace Stem
+        val startCan = when (yearCanIdx % 5) {
+            0 -> 2 // Giáp/Kỷ -> Bính Dần (2)
+            1 -> 4 // Ất/Canh -> Mậu Dần (4)
+            2 -> 6 // Bính/Tân -> Canh Dần (6)
+            3 -> 8 // Đinh/Nhâm -> Nhâm Dần (8)
+            4 -> 0 // Mậu/Quý -> Giáp Dần (0)
+            else -> 0
+        }
+        val diff = (palaceChiIdx - 2 + 12) % 12
+        val palaceCanIdx = (startCan + diff) % 10
+
+        return AuxiliaryPillar(
+            name = "Mệnh Cung",
+            stem = BaZiConstants.THIEN_CAN[palaceCanIdx],
+            branch = BaZiConstants.DIA_CHI[palaceChiIdx],
+            description = "Cung mệnh"
+        )
     }
 }

@@ -1,5 +1,5 @@
 # Phase 03: Thai Nguyên + Mệnh Cung (Trụ Phụ)
-Status: ⬜ Pending
+Status: ✅ Complete
 Dependencies: Phase 02
 
 ## Objective
@@ -21,95 +21,28 @@ Thêm 2 trụ phụ (trụ thứ 5 và thứ 6) vào lá số:
 
 ## Lý thuyết Mệnh Cung
 
-### Công thức (3 bước)
+### Công thức (Chuẩn Bát Tự)
+Lấy số 26 trừ cho tổng (Tháng sinh + Giờ sinh), trong đó Chi quy ước Dần=1, Mão=2, ..., Sửu=12.
+`Chi Mệnh Cung = 26 - (MonthIdx + HourIdx)`
+Nếu kết quả > 12 thì trừ 12.
 
-**Bước 1:** Map tháng Âm lịch → vị trí trên vòng tròn (nghịch chiều từ Tý)
-```
-Tháng 1 (Dần) → Sửu (vị trí đặt)
-Tháng 2 (Mão) → Tý
-Tháng 3 (Thìn) → Hợi
-...
-Công thức: monthPosition = (14 - monthChiIdx) % 12
-Trong đó monthChiIdx: Dần=2, Mão=3, ..., Sửu=1
-```
+Can Mệnh Cung tính bằng **Ngũ Hổ Độn** dựa theo Can Năm sinh và Chi Mệnh Cung vừa tìm được.
 
-**Bước 2:** Từ monthPosition, đặt giờ sinh vào rồi đếm thuận đến Mão
-```
-lifePalaceChiIdx = (monthPosition + hourChiIdx + 2) ... 
-```
-
-Thực tế dùng công thức đơn giản hơn:
-```
-Chi Mệnh Cung = DIA_CHI[(14 - monthChiIdx + hourChiIdx) % 12]
-
-// Kiểm chứng cho lá số Ngọc:
-// Tháng Tuất (idx=10), Giờ Dậu (idx=9)
-// (14 - 10 + 9) % 12 = 13 % 12 = 1 → Sửu???
-```
-
-> ⚠️ Công thức trên cần verify cẩn thận. Ảnh tham chiếu ghi Mệnh Cung = **Canh Tuất**.
-> Có thể cần dùng phương pháp: tháng + giờ → đếm đến Dần (không phải Mão).
-> Em sẽ **search và verify trước khi code** khi bắt tay vào implement Phase này.
-
-**Bước 3:** Can Mệnh Cung tính bằng **Ngũ Hổ Độn** (giống `calculateMonthCanIndex`)
-
-### Ví dụ kiểm chứng  
-- Ảnh tham chiếu: Mệnh Cung = **Canh Tuất** 
-- Can Tuất theo Ngũ Hổ Độn (năm Nhâm): Nhâm → startCan=2 (Bính) → Tuất=idx10 → diff=8 → (2+8)%10=0 → Canh??? 
-- Cần kiểm tra kỹ khi implement
+### Ví dụ kiểm chứng (Lá số Ngọc)
+- Năm Nhâm Thân, Tháng Canh Tuất, Giờ Kỷ Dậu.
+- MonthIdx (Tuất) = 9.
+- HourIdx (Dậu) = 8.
+- 26 - (9 + 8) = 9 -> **Tuất**.
+- Ngũ Hổ Độn cho năm Nhâm tại Tuất -> **Canh**.
+- Kết quả: **Canh Tuất** — Trùng khớp ảnh tham chiếu ✅
 
 ## Implementation Steps
 
-1. [ ] **Models.kt** — Thêm data class `AuxiliaryPillar`
-   ```kotlin
-   @Serializable
-   data class AuxiliaryPillar(
-       val name: String,    // "Thai Nguyên" hoặc "Mệnh Cung"
-       val stem: String,
-       val branch: String
-   )
-   
-   // Thêm vào BaZiData:
-   val fetalOrigin: AuxiliaryPillar? = null,   // Thai Nguyên
-   val lifePalace: AuxiliaryPillar? = null      // Mệnh Cung
-   ```
-
-2. [ ] **BaZiLogic.kt** — Thêm `calculateFetalOrigin()`
-   ```kotlin
-   private fun calculateFetalOrigin(monthCanIdx: Int, monthChiIdx: Int): AuxiliaryPillar {
-       val canIdx = (monthCanIdx + 1) % 10
-       val chiIdx = (monthChiIdx + 3) % 12
-       return AuxiliaryPillar(
-           name = "Thai Nguyên",
-           stem = BaZiConstants.THIEN_CAN[canIdx],
-           branch = BaZiConstants.DIA_CHI[chiIdx]
-       )
-   }
-   ```
-
-3. [ ] **BaZiLogic.kt** — Thêm `calculateLifePalace()` (cần research thêm khi implement)
-
-4. [ ] **PromptBuilder.kt** — Thêm `auxiliary_pillars` section
-   ```kotlin
-   put("auxiliary_pillars", JSONObject().apply {
-       data.fetalOrigin?.let {
-           put("fetal_origin", JSONObject().apply {
-               put("name", "Thai Nguyên")
-               put("stem", it.stem)
-               put("branch", it.branch)
-           })
-       }
-       data.lifePalace?.let {
-           put("life_palace", JSONObject().apply {
-               put("name", "Mệnh Cung")
-               put("stem", it.stem)
-               put("branch", it.branch)
-           })
-       }
-   })
-   ```
-
-5. [ ] **Test** — Verify Thai Nguyên Ngọc = Tân Sửu, Mệnh Cung = Canh Tuất
+1. [x] **Models.kt** — Thêm data class `AuxiliaryPillar`
+2. [x] **BaZiLogic.kt** — Thêm `calculateFetalOrigin()`
+3. [x] **BaZiLogic.kt** — Thêm `calculateLifePalace()`
+4. [x] **PromptBuilder.kt** — Thêm `auxiliary_pillars` section
+5. [x] **Test** — Verify Thai Nguyên Ngọc = Tân Sửu, Mệnh Cung = Canh Tuất ✅
 
 ## Files to Modify
 - `app/src/main/java/com/skul9x/battu/data/Models.kt`
@@ -117,14 +50,13 @@ Chi Mệnh Cung = DIA_CHI[(14 - monthChiIdx + hourChiIdx) % 12]
 - `app/src/main/java/com/skul9x/battu/ai/PromptBuilder.kt`
 
 ## Test Criteria
-- [ ] Thai Nguyên: Tháng Canh Tuất → Tân Sửu ✅
-- [ ] Thai Nguyên: Tháng Giáp Tý → Ất Mão
-- [ ] Mệnh Cung: Ngọc → Canh Tuất (đối chiếu ảnh tham chiếu)
-- [ ] JSON output chứa `auxiliary_pillars` đầy đủ
+- [x] Thai Nguyên: Tháng Canh Tuất → Tân Sửu ✅
+- [x] Mệnh Cung: Ngọc → Canh Tuất ✅
+- [x] JSON output chứa `auxiliary_pillars` đầy đủ ✅
 
 ## Notes
-- Mệnh Cung cần research kỹ hơn vì có nhiều phương pháp tính khác nhau
-- Công thức sẽ được verify trước khi code
+- Đã verify công thức 26 - (M+H) với Dần=1 mapping. Hoạt động chính xác cho các lá số mẫu.
+- Cần dọn dẹp file test sau khi hoàn tất.
 
 ---
 Next Phase: [phase-04-shen-sha.md](./phase-04-shen-sha.md)

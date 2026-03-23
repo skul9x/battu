@@ -140,6 +140,17 @@ data class ShenSha(
 )
 
 /**
+ * Annual Pillar (Lưu Niên)
+ */
+@Serializable
+data class AnnualPillar(
+    val year: Int,
+    val stem: String,
+    val branch: String,
+    val ageDisplay: String
+)
+
+/**
  * Luck Pillar (Đại Vận)
  */
 @Serializable
@@ -150,7 +161,19 @@ data class LuckPillar(
     val startDays: Int,       // Ngày lẻ
     val displayAge: String,   // Chuỗi hiển thị (e.g., "6 tuổi 4 tháng")
     val stem: String,         // Thiên Can
-    val branch: String        // Địa Chi
+    val branch: String,        // Địa Chi
+    val annualPillars: List<AnnualPillar> = emptyList() // Lưu Niên tương ứng
+)
+
+/**
+ * Auxiliary Pillar (Trụ Phụ: Thai Nguyên, Mệnh Cung)
+ */
+@Serializable
+data class AuxiliaryPillar(
+    val name: String,    // "Thai Nguyên" hoặc "Mệnh Cung"
+    val stem: String,
+    val branch: String,
+    val description: String = ""
 )
 
 /**
@@ -159,6 +182,7 @@ data class LuckPillar(
 @Serializable
 data class BaZiData(
     val birthInfo: String = "",              // Birth details (TST, Longitude info)
+    val birthYear: Int = 0,                  // Solar birth year
     val year: Pillar,                   // Year Pillar (Trụ Năm)
     val month: Pillar,                  // Month Pillar (Trụ Tháng)
     val day: Pillar,                    // Day Pillar (Trụ Ngày)
@@ -174,5 +198,7 @@ data class BaZiData(
     val shenShaList: List<ShenSha> = emptyList(),      // Thần Sát
     val luckPillars: List<LuckPillar> = emptyList(),   // Đại Vận
     val xunKong: XunKong? = null,            // Tuần Không (Không Vong)
+    val fetalOrigin: AuxiliaryPillar? = null,   // Thai Nguyên
+    val lifePalace: AuxiliaryPillar? = null,     // Mệnh Cung
     val isNearSolarTerm: Boolean = false     // Cảnh báo giờ sinh sát giao Tiết Khí
 )

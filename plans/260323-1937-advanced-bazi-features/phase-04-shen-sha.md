@@ -1,5 +1,5 @@
 # Phase 04: Mở rộng Thần Sát (Shen Sha)
-Status: ⬜ Pending
+Status: ✅ Completed
 Dependencies: Phase 01
 
 ## Objective
@@ -96,13 +96,13 @@ Thiên Hỉ nằm ở vị trí đối xung (Lục Xung) với Hồng Loan.
    }
    ```
 
-3. [ ] **BaZiLogic.kt** — Truyền thêm `monthPillar` vào `calculateShenSha()`
+3. [x] **BaZiLogic.kt** — Truyền thêm `monthPillar` vào `calculateShenSha()`
    - Hiện tại hàm chỉ nhận `yearPillar`, `dayPillar`, `pillarsMap`
    - Cần thêm `monthBranch` để tính Thiên Y
 
-4. [ ] **Test** — Verify 4 sao mới
+4. [x] **Test** — Verify 4 sao mới
 
-5. [ ] **Verify với Ngọc** — Đào Hoa tại Giờ, Thiên Y tại Giờ
+5. [x] **Verify với Ngọc** — Đào Hoa tại Giờ, Thiên Y tại Giờ
 
 ## Files to Modify
 - `app/src/main/java/com/skul9x/battu/data/BaZiConstants.kt` — 3 maps mới

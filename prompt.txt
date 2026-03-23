@@ -182,6 +182,7 @@
         "note": "Đại Vận bắt đầu chính xác từ: 0 tuổi. Lưu ý sự tác động của Can/Chi Đại Vận lên Nhật Chủ và các trụ khác.",
         "start_months": 0,
         "start_age": 0,
+        "is_current": false,
         "branch": "Sửu",
         "stem": "Kỷ"
       },
@@ -192,6 +193,7 @@
         "note": "Đại Vận bắt đầu chính xác từ: 10 tuổi. Lưu ý sự tác động của Can/Chi Đại Vận lên Nhật Chủ và các trụ khác.",
         "start_months": 0,
         "start_age": 10,
+        "is_current": false,
         "branch": "Dần",
         "stem": "Canh"
       },
@@ -202,6 +204,7 @@
         "note": "Đại Vận bắt đầu chính xác từ: 20 tuổi. Lưu ý sự tác động của Can/Chi Đại Vận lên Nhật Chủ và các trụ khác.",
         "start_months": 0,
         "start_age": 20,
+        "is_current": false,
         "branch": "Mão",
         "stem": "Tân"
       },
@@ -211,7 +214,70 @@
         "display_age": "30 tuổi",
         "note": "Đại Vận bắt đầu chính xác từ: 30 tuổi. Lưu ý sự tác động của Can/Chi Đại Vận lên Nhật Chủ và các trụ khác.",
         "start_months": 0,
+        "annual_pillars": [
+          {
+            "year": 2020,
+            "branch": "Tý",
+            "age": "30 tuổi",
+            "stem": "Canh"
+          },
+          {
+            "year": 2021,
+            "branch": "Sửu",
+            "age": "31 tuổi",
+            "stem": "Tân"
+          },
+          {
+            "year": 2022,
+            "branch": "Dần",
+            "age": "32 tuổi",
+            "stem": "Nhâm"
+          },
+          {
+            "year": 2023,
+            "branch": "Mão",
+            "age": "33 tuổi",
+            "stem": "Quý"
+          },
+          {
+            "year": 2024,
+            "branch": "Thìn",
+            "age": "34 tuổi",
+            "stem": "Giáp"
+          },
+          {
+            "year": 2025,
+            "branch": "Tỵ",
+            "age": "35 tuổi",
+            "stem": "Ất"
+          },
+          {
+            "year": 2026,
+            "branch": "Ngọ",
+            "age": "36 tuổi",
+            "stem": "Bính"
+          },
+          {
+            "year": 2027,
+            "branch": "Mùi",
+            "age": "37 tuổi",
+            "stem": "Đinh"
+          },
+          {
+            "year": 2028,
+            "branch": "Thân",
+            "age": "38 tuổi",
+            "stem": "Mậu"
+          },
+          {
+            "year": 2029,
+            "branch": "Dậu",
+            "age": "39 tuổi",
+            "stem": "Kỷ"
+          }
+        ],
         "start_age": 30,
+        "is_current": true,
         "branch": "Thìn",
         "stem": "Nhâm"
       },
@@ -222,6 +288,7 @@
         "note": "Đại Vận bắt đầu chính xác từ: 40 tuổi. Lưu ý sự tác động của Can/Chi Đại Vận lên Nhật Chủ và các trụ khác.",
         "start_months": 0,
         "start_age": 40,
+        "is_current": false,
         "branch": "Tỵ",
         "stem": "Quý"
       },
@@ -232,6 +299,7 @@
         "note": "Đại Vận bắt đầu chính xác từ: 50 tuổi. Lưu ý sự tác động của Can/Chi Đại Vận lên Nhật Chủ và các trụ khác.",
         "start_months": 0,
         "start_age": 50,
+        "is_current": false,
         "branch": "Ngọ",
         "stem": "Giáp"
       },
@@ -242,6 +310,7 @@
         "note": "Đại Vận bắt đầu chính xác từ: 60 tuổi. Lưu ý sự tác động của Can/Chi Đại Vận lên Nhật Chủ và các trụ khác.",
         "start_months": 0,
         "start_age": 60,
+        "is_current": false,
         "branch": "Mùi",
         "stem": "Ất"
       },
@@ -252,6 +321,7 @@
         "note": "Đại Vận bắt đầu chính xác từ: 70 tuổi. Lưu ý sự tác động của Can/Chi Đại Vận lên Nhật Chủ và các trụ khác.",
         "start_months": 0,
         "start_age": 70,
+        "is_current": false,
         "branch": "Thân",
         "stem": "Bính"
       },
@@ -262,6 +332,7 @@
         "note": "Đại Vận bắt đầu chính xác từ: 80 tuổi. Lưu ý sự tác động của Can/Chi Đại Vận lên Nhật Chủ và các trụ khác.",
         "start_months": 0,
         "start_age": 80,
+        "is_current": false,
         "branch": "Dậu",
         "stem": "Đinh"
       },
@@ -272,10 +343,25 @@
         "note": "Đại Vận bắt đầu chính xác từ: 90 tuổi. Lưu ý sự tác động của Can/Chi Đại Vận lên Nhật Chủ và các trụ khác.",
         "start_months": 0,
         "start_age": 90,
+        "is_current": false,
         "branch": "Tuất",
         "stem": "Mậu"
       }
     ],
+    "auxiliary_pillars": {
+      "life_palace": {
+        "name": "Mệnh Cung",
+        "description": "Cung mệnh",
+        "branch": "Tý",
+        "stem": "Mậu"
+      },
+      "fetal_origin": {
+        "name": "Thai Nguyên",
+        "description": "Trụ thụ thai",
+        "branch": "Mão",
+        "stem": "Kỷ"
+      }
+    },
     "day_master": {
       "description": "Nhật Chủ là Canh (Kim)",
       "stem": "Canh",

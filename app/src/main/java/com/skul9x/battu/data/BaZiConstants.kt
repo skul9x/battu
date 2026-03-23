@@ -520,6 +520,30 @@ object BaZiConstants {
         "Kỷ" to "Sửu", "Canh" to "Thìn", "Tân" to "Tỵ", "Nhâm" to "Thân", "Quý" to "Hợi"
     )
 
+    // Đào Hoa (Hàm Trì) - Dựa vào Chi Năm/Ngày
+    val DAO_HOA = mapOf(
+        "Thân" to "Dậu", "Tý" to "Dậu", "Thìn" to "Dậu",
+        "Dần" to "Mão", "Ngọ" to "Mão", "Tuất" to "Mão",
+        "Tỵ" to "Ngọ", "Dậu" to "Ngọ", "Sửu" to "Ngọ",
+        "Hợi" to "Tý", "Mão" to "Tý", "Mùi" to "Tý"
+    )
+
+    // Thiên Y - Dựa vào Chi Tháng
+    val THIEN_Y = mapOf(
+        "Tý" to "Hợi", "Sửu" to "Tý", "Dần" to "Sửu",
+        "Mão" to "Dần", "Thìn" to "Mão", "Tỵ" to "Thìn",
+        "Ngọ" to "Tỵ", "Mùi" to "Ngọ", "Thân" to "Mùi",
+        "Dậu" to "Thân", "Tuất" to "Dậu", "Hợi" to "Tuất"
+    )
+
+    // Hồng Loan - Dựa vào Chi Năm
+    val HONG_LOAN = mapOf(
+        "Tý" to "Mão", "Sửu" to "Dần", "Dần" to "Sửu",
+        "Mão" to "Tý", "Thìn" to "Hợi", "Tỵ" to "Tuất",
+        "Ngọ" to "Dậu", "Mùi" to "Thân", "Thân" to "Mùi",
+        "Dậu" to "Ngọ", "Tuất" to "Tỵ", "Hợi" to "Thìn"
+    )
+
     // ============================================================
     // 7. QUAN HỆ ĐỊA CHI (INTERACTIONS)
     // ============================================================

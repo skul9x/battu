@@ -1,5 +1,5 @@
 # Phase 05: Lưu Niên (Annual Luck Pillars)
-Status: ⬜ Pending
+Status: ✅ Complete
 Dependencies: Phase 01
 
 ## Objective
@@ -43,7 +43,7 @@ fun getCurrentLuckPillarIndex(luckPillars: List<LuckPillar>, currentAge: Int): I
 
 ## Implementation Steps
 
-1. [ ] **Models.kt** — Thêm data class và field
+1. [x] **Models.kt** — Thêm data class và field
    ```kotlin
    @Serializable
    data class AnnualPillar(
@@ -57,7 +57,7 @@ fun getCurrentLuckPillarIndex(luckPillars: List<LuckPillar>, currentAge: Int): I
    val annualPillars: List<AnnualPillar> = emptyList()
    ```
 
-2. [ ] **BaZiLogic.kt** — Thêm populate Lưu Niên trong `calculateLuckPillars()`
+2. [x] **BaZiLogic.kt** — Thêm populate Lưu Niên trong `calculateLuckPillars()`
    ```kotlin
    // Tính năm dương lịch bắt đầu Đại Vận
    val birthYear = tstYear  // Cần truyền thêm vào hàm
@@ -76,14 +76,14 @@ fun getCurrentLuckPillarIndex(luckPillars: List<LuckPillar>, currentAge: Int): I
    }
    ```
 
-3. [ ] **PromptBuilder.kt** — Serialize `annual_pillars` (chỉ Đại Vận hiện tại)
+3. [x] **PromptBuilder.kt** — Serialize `annual_pillars` (chỉ Đại Vận hiện tại)
    ```kotlin
    // Xác định Đại Vận hiện tại dựa trên tuổi
    // Chỉ output annual_pillars cho Đại Vận đó
    val currentAge = Calendar.getInstance().get(Calendar.YEAR) - birthYear
    ```
 
-4. [ ] **Test** — Verify Lưu Niên 2026 = Bính Ngọ
+4. [x] **Test** — Verify Lưu Niên 2026 = Bính Ngọ
 
 ## Files to Modify
 - `app/src/main/java/com/skul9x/battu/data/Models.kt` — Thêm model

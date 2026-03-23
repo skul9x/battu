@@ -24,6 +24,9 @@ object PromptBuilder {
      * Build complete JSON prompt for Bát Tự interpretation
      */
     fun buildJsonPrompt(name: String, gender: Gender, baZiData: BaZiData): String {
+        val currentYear = java.util.Calendar.getInstance().get(java.util.Calendar.YEAR)
+        val currentAge = currentYear - baZiData.birthYear
+        
         val json = JSONObject()
         
         // Role and methodology
@@ -55,7 +58,7 @@ object PromptBuilder {
         json.put("output_format", buildOutputFormat())
         
         // Chart data
-        json.put("chart_data", buildChartData(name, gender, baZiData))
+        json.put("chart_data", buildChartData(name, gender, baZiData, currentAge))
         
         return json.toString(2) // Pretty print with indent 2
     }
@@ -72,7 +75,11 @@ object PromptBuilder {
                 "Xét quan hệ Sinh Khắc giữa các Can Chi",
                 "Đánh giá Nhật Chủ vượng/suy dựa trên Ngũ Hành balance",
                 "Xem xét kỹ các tổ hợp Bán Tam Hợp và Củng Hợp ảnh hưởng tới Ngũ Hành",
-                "Tuổi khởi Đại Vận tính chính xác tới từng tháng/ngày, phân mốc giao vận chuẩn xác"
+                "Tuổi khởi Đại Vận tính chính xác tới từng tháng/ngày, phân mốc giao vận chuẩn xác",
+                "Xét Tuần Không (Không Vong): Chi bị Tuần Không sẽ giảm lực lượng",
+                "Đánh giá Thai Nguyên và Mệnh Cung để bổ trợ luận đoán",
+                "Kiểm tra Phục Ngâm (trụ trùng) ảnh hưởng tới ổn định lá số",
+                "Sử dụng Lưu Niên của Đại Vận hiện tại để dự báo cụ thể từng năm"
             )))
             
             put("must_not", JSONArray(listOf(
@@ -90,6 +97,8 @@ object PromptBuilder {
             "Tầng Căn Bản: Xác định Nhật Chủ (Day Master) vượng/suy (BẮT BUỘC xét dựa trên Vòng Trường Sinh tại Lệnh Tháng - chi Tháng)",
             "Tầng Biến Hóa: Đánh giá các tổ hợp Tương Hợp, Bán Tam Hợp, Củng Hợp làm thay đổi thế trận Ngũ Hành (lực lượng ngầm)",
             "Tầng Thời Gian: Sử dụng các mốc khởi Đại Vận chính xác (start_age, start_months, start_days) để đưa ra lời khuyên khớp thời điểm",
+            "Tầng Tuần Không: Xét chi bị Không Vong → giảm điểm lực lượng Ngũ Hành tương ứng",
+            "Tầng Trụ Phụ: Thai Nguyên (gốc rễ) + Mệnh Cung (hậu vận) bổ trợ luận đoán",
             "Bước 4: Tìm Dụng Thần / Hỉ Thần / Kỵ Thần dựa trên 3 tầng trên",
             "Bước 5: Phân tích Thập Thần → Tính cách, năng lực",
             "Bước 6: Phân tích sự nghiệp, tài lộc, tình duyên, sức khỏe",
@@ -122,7 +131,7 @@ object PromptBuilder {
     /**
      * Build chart data from BaZiData
      */
-    private fun buildChartData(name: String, gender: Gender, data: BaZiData): JSONObject {
+    private fun buildChartData(name: String, gender: Gender, data: BaZiData, currentAge: Int): JSONObject {
         return JSONObject().apply {
             // Person info
             put("person", JSONObject().apply {
@@ -160,7 +169,7 @@ object PromptBuilder {
             put("interactions", buildInteractionsJson(data.interactions))
             
             // Luck Pillars (Đại Vận)
-            put("luck_pillars", buildLuckPillarsJson(data.luckPillars))
+            put("luck_pillars", buildLuckPillarsJson(data.luckPillars, currentAge))
             
             // Xun Kong (Tuần Không / Không Vong)
             put("xun_kong", data.xunKong?.let { xk ->
@@ -170,6 +179,26 @@ object PromptBuilder {
                     put("note", "Các Chi rơi vào Tuần Không sẽ bị giảm lực lượng đáng kể (khoảng 70-80%), ảnh hưởng tới sự tương tác với các trụ khác.")
                 }
             } ?: JSONObject())
+
+            // Auxiliary Pillars (Trụ Phụ)
+            put("auxiliary_pillars", JSONObject().apply {
+                data.fetalOrigin?.let {
+                    put("fetal_origin", JSONObject().apply {
+                        put("name", "Thai Nguyên")
+                        put("stem", it.stem)
+                        put("branch", it.branch)
+                        put("description", it.description)
+                    })
+                }
+                data.lifePalace?.let {
+                    put("life_palace", JSONObject().apply {
+                        put("name", "Mệnh Cung")
+                        put("stem", it.stem)
+                        put("branch", it.branch)
+                        put("description", it.description)
+                    })
+                }
+            })
             
             // Day Master (Nhật Chủ)
             put("day_master", JSONObject().apply {
@@ -230,19 +259,38 @@ object PromptBuilder {
         return array
     }
 
-    private fun buildLuckPillarsJson(list: List<com.skul9x.battu.data.LuckPillar>): JSONArray {
+    private fun buildLuckPillarsJson(list: List<com.skul9x.battu.data.LuckPillar>, currentAge: Int): JSONArray {
         val array = JSONArray()
         list.forEach { lp ->
-            array.put(JSONObject().apply {
+            val isCurrent = currentAge >= lp.startAge && currentAge <= lp.endAge
+            
+            val obj = JSONObject().apply {
                 put("start_age", lp.startAge)
                 put("start_months", lp.startMonths)
                 put("start_days", lp.startDays)
-                put("display_age", lp.displayAge) // e.g., "7 tuổi 4 tháng 15 ngày"
+                put("display_age", lp.displayAge)
                 put("age_range", "${lp.startAge}-${lp.endAge}")
                 put("stem", lp.stem)
                 put("branch", lp.branch)
+                put("is_current", isCurrent)
+                
+                // Only include annual pillars for current luck period to save tokens
+                if (isCurrent && lp.annualPillars.isNotEmpty()) {
+                    val annualArray = JSONArray()
+                    lp.annualPillars.forEach { ap ->
+                        annualArray.put(JSONObject().apply {
+                            put("year", ap.year)
+                            put("stem", ap.stem)
+                            put("branch", ap.branch)
+                            put("age", ap.ageDisplay)
+                        })
+                    }
+                    put("annual_pillars", annualArray)
+                }
+                
                 put("note", "Đại Vận bắt đầu chính xác từ: ${lp.displayAge}. Lưu ý sự tác động của Can/Chi Đại Vận lên Nhật Chủ và các trụ khác.")
-            })
+            }
+            array.put(obj)
         }
         return array
     }

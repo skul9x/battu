@@ -1,5 +1,5 @@
 # Phase 06: PromptBuilder & Rules Sync
-Status: ⬜ Pending
+Status: ✅ Complete
 Dependencies: Phase 01, 02, 03, 04, 05
 
 ## Objective
@@ -10,7 +10,7 @@ Dependencies: Phase 01, 02, 03, 04, 05
 
 ## Implementation Steps
 
-1. [ ] **PromptBuilder.kt** — Cập nhật `buildAbsoluteRules()`
+1. [x] **PromptBuilder.kt** — Cập nhật `buildAbsoluteRules()`
    ```kotlin
    // Thêm vào must_do:
    "Xét Tuần Không (Không Vong): Chi bị Tuần Không sẽ giảm lực lượng",
@@ -19,14 +19,14 @@ Dependencies: Phase 01, 02, 03, 04, 05
    "Sử dụng Lưu Niên của Đại Vận hiện tại để dự báo cụ thể từng năm"
    ```
 
-2. [ ] **PromptBuilder.kt** — Cập nhật `buildAnalysisPipeline()`
+2. [x] **PromptBuilder.kt** — Cập nhật `buildAnalysisPipeline()`
    ```kotlin
    // Thêm tầng mới:
    "Tầng Tuần Không: Xét chi bị Không Vong → giảm điểm lực lượng Ngũ Hành tương ứng",
    "Tầng Trụ Phụ: Thai Nguyên (gốc rễ) + Mệnh Cung (hậu vận) bổ trợ luận đoán"
    ```
 
-3. [ ] **PromptBuilder.kt** — Verify toàn bộ JSON structure
+3. [x] **PromptBuilder.kt** — Verify toàn bộ JSON structure
    - `chart_data.xun_kong` ← Phase 02
    - `chart_data.auxiliary_pillars` ← Phase 03
    - `chart_data.shen_sha` (expanded) ← Phase 04

@@ -146,4 +146,54 @@ class BaZiLogicTest {
 
         println("✓ Element balance test passed: ${result.elementBalance}")
     }
+
+    @Test
+    fun testInteractions_BanTamHop() {
+        // Create dummy pillars
+        fun createDummyPillar(branch: String) = com.skul9x.battu.data.Pillar(
+            stem = "Giáp", stemYinYang = "Dương", stemElement = "Mộc",
+            branch = branch, branchYinYang = "Dương", branchElement = "Mộc"
+        )
+
+        val pillars = mapOf(
+            "Năm" to createDummyPillar("Thân"),
+            "Tháng" to createDummyPillar("Tý"),
+            "Ngày" to createDummyPillar("Dần"),
+            "Giờ" to createDummyPillar("Ngọ")
+        )
+
+        val interactions = logic.calculateInteractions(pillars)
+        
+        // Should have "Bán Tam Hợp" (Thân-Tý and Dần-Ngọ)
+        val banThuy = interactions.find { it.description.contains("Thân hợp Tý") }
+        val banHoa = interactions.find { it.description.contains("Dần hợp Ngọ") }
+        
+        assertNotNull("Bán Tam Hợp Thủy should be detected", banThuy)
+        assertNotNull("Bán Tam Hợp Hỏa should be detected", banHoa)
+        assertEquals("Bán Tam Hợp", banThuy?.typeName)
+    }
+
+    @Test
+    fun testInteractions_TamHopPriority() {
+        fun createDummyPillar(branch: String) = com.skul9x.battu.data.Pillar(
+            stem = "Giáp", stemYinYang = "Dương", stemElement = "Mộc",
+            branch = branch, branchYinYang = "Dương", branchElement = "Mộc"
+        )
+
+        // Case: Thân, Tý, Thìn -> Should be Tam Hợp, NO separate Bán Tam Hợp
+        val pillars = mapOf(
+            "Năm" to createDummyPillar("Thân"),
+            "Tháng" to createDummyPillar("Tý"),
+            "Ngày" to createDummyPillar("Thìn"),
+            "Giờ" to createDummyPillar("Mão")
+        )
+
+        val interactions = logic.calculateInteractions(pillars)
+        
+        val containsTamHop = interactions.any { it.typeName == "Tam Hợp" }
+        val containsBanTamHop = interactions.any { it.typeName == "Bán Tam Hợp" }
+        
+        assertTrue("Should contain Tam Hợp", containsTamHop)
+        assertFalse("Should NOT contain Bán Tam Hợp (redundant)", containsBanTamHop)
+    }
 }

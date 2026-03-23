@@ -1,9 +1,20 @@
-# Phase 03: Có/Không Bán Hợp (Tương Tác Địa Chi)
+# Phase 03: Semi-Harmonies (Bán Tam Hợp)
 Status: ⬜ Pending
+Dependencies: phase-02
 
 ## Objective
-Luận đoán của Thiên Mệnh thường thiếu chính xác nếu bỏ sót "Bán Tam Hợp" (Semi-Harmonies), chẳng hạn Thân - (Tý) - Thìn tạo cục Thủy ảo.
+Luận đoán Bát Tự thường thiếu chính xác nếu bỏ sót "Bán Tam Hợp" (Semi-Harmonies), ví dụ cặp Thân - Thìn (thiếu Tý) vẫn tạo ra một luồng khí Thủy mạnh.
+
+## Requirements
+### Functional
+- [ ] Bổ sung bảng tra cứu `BAN_TAM_HOP` vào `BaZiConstants.kt`.
+- [ ] Cập nhật logic `calculateInteractions` trong `BaZiLogic.kt` để phát hiện các cặp Bán Hợp.
+- [ ] Phân biệt "Bán Hợp" (2 chi đầu-cuối hoặc đầu-giữa) và "Tam Hợp" (đủ 3 chi).
 
 ## Implementation Steps
-- Add mảng BAN_TAM_HOP vào `BaZiConstants.kt`
-- Kiểm tra các cặp 2 chi trong 4 trụ (so sánh Year-Month, Year-Day, Year-Hour...). Nếu khớp mảng thì gán "Bán Tam Hợp" vào Interactions.
+1. Thêm data structure cho Bán Hợp.
+2. Viết hàm check cặp đôi chi trong danh sách 4 trụ.
+3. Thêm vào mảng trả về của `interactions`.
+
+## Test Criteria
+- [ ] Lá số Nhâm Thân / Canh Thìn phải báo "Bán Hợp Thủy (Thân-Thìn)".

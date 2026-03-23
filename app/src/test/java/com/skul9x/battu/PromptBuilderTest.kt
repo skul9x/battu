@@ -63,7 +63,9 @@ class PromptBuilderTest {
             assertTrue("Should have type field", stemObj.has("type"))
         }
 
-        println("✓ [Phase 04] Prompt JSON structure verified successfully!")
+        // Dump prompt to prompt.txt
+        java.io.File("../prompt.txt").writeText(prompt)
+        println("✓ [Phase 05] Prompt JSON structure verified successfully and exported to prompt.txt!")
         // DEBUG: println(prompt)
     }
 }

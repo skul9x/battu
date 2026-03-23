@@ -1,5 +1,5 @@
 # Phase 01: Day Branch Ten God & Minor Shen Sha Fix
-Status: 🟡 In Progress
+Status: ✅ Complete
 Dependencies: None
 
 ## Objective
@@ -22,12 +22,12 @@ Sửa triệt để lỗi Thập Thần ở ô Trụ Ngày bị gán nhầm giá
 
 ## Files Modified
 - `...data/Models.kt` - Đã apply
-- `...core/BaZiLogic.kt` - Đã add 1 phần, cần apply phần name Shen Sha.
+- `...core/BaZiLogic.kt` - Đã apply
 - `...ai/PromptBuilder.kt` - Đã apply
 
 ## Test Criteria
-- [ ] Chạy unit test Prompt builder.
-- [ ] So sánh raw output của Nhật Chủ hiện thực/cũ.
+- [x] Chạy unit test Prompt builder.
+- [x] So sánh raw output của Nhật Chủ hiện thực/cũ.
 
 ---
 Next Phase: `phase-02-life-stages.md`

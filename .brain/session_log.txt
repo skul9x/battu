@@ -35,3 +35,23 @@ Phase 01: Setup completed and UI Phase Vibe Mockup designed
 [13:55] DONE task: Connect Save button to historyDao in ChartScreen.kt
 [14:00] END Phase 05 - History & Migration Implementation ✅
 [14:10] DONE: Phase 05 Migration & UI Upgrade completed.
+[13:42] PLAN CREATED - 260323-1340-fix-battu-accuracy: Accuracy fixes for Bazi Logic.
+[14:15] RECAP: Verified Phase 01 (Day Branch God, Shen Sha separation) and Phase 02 (12 Life Stages, Canh/Dần -> Tuyệt). Everything is correctly implemented.
+[14:16] DONE task: Pass unit tests for BaZiConstantsTest.kt ✅
+[14:17] STATUS: Updated phase-01, phase-02 and plan.md to 'Complete'.
+[14:18] NEXT: Starting Phase 03 - Semi-Harmonies (Bán Hợp).
+[14:20] START Phase 04 - Luck Pillars Age Accuracy Implementation
+[14:25] DONE task: Update Models.kt (LuckPillar) with detailed age fields
+[14:30] DONE task: Refactor calculateLuckPillars in BaZiLogic.kt with 3:1 ratio
+[14:35] BUGFIX: Reset Calendar seconds/milliseconds in birth time calculation
+[14:40] DONE task: Update PromptBuilder.kt with detailed luck pillar JSON
+[14:45] TEST: Passed Phase04AccuracyTest.kt ✅
+[14:50] END Phase 04 - Luck Pillars Age Accuracy Implementation ✅
+[14:55] START phase-05-promptbuilder
+[14:58] DONE task: Update PromptBuilder.kt logic for Luck Pillars and element balances
+[14:59] DONE task: Pass unit tests for PromptBuilder
+[15:00] END phase-05-promptbuilder ✅
+[15:01] START phase-06-testing
+[15:03] DONE task: Run all unit tests (MigrationTest.kt, Phase04AccuracyTest.kt, PromptBuilderTest.kt)
+[15:04] DONE task: Verify prompt.txt JSON structure
+[15:05] END phase-06-testing ✅

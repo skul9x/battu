@@ -134,8 +134,11 @@ data class ShenSha(
  */
 @Serializable
 data class LuckPillar(
-    val startAge: Int,        // Tuổi bắt đầu
-    val endAge: Int,          // Tuổi kết thúc
+    val startAge: Int,        // Tuổi nguyên (Years)
+    val endAge: Int,          // Tuổi kết thúc (Years)
+    val startMonths: Int,     // Tháng lẻ
+    val startDays: Int,       // Ngày lẻ
+    val displayAge: String,   // Chuỗi hiển thị (e.g., "6 tuổi 4 tháng")
     val stem: String,         // Thiên Can
     val branch: String        // Địa Chi
 )

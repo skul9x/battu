@@ -39,5 +39,21 @@ Dài liệu này ghi lại các quy tắc thuật lý được áp dụng trong 
   - Tàng Can của 4 trụ: Tổng đóng góp của 1 chi là 60 đơn vị, chia theo tỷ lệ phần trăm của các Tàng Can bên trong.
 - **Công thức:** `Điểm = (Số Thiên Can gốc * 40) + Σ(Tỷ lệ Tàng Can * 60)`
 
+## 5. Đại Vận (Luck Pillars)
+- **Quy tắc tính tuổi khởi vận:** Sử dụng quy tắc **3 ngày = 1 năm, 6 giờ = 1 tháng, 12 phút = 1 ngày**.
+- Tính từ thời điểm sinh (Solar Time) đến thời điểm chuyển Tiết Khí (Lập Xuân, Vũ Thủy...) kế tiếp hoặc trước đó (tùy theo tính chất Âm Nam/Dương Nữ...).
+- **Fix lỗi:** Reset Calendar giây và mili giây về 0 để tính toán khoảng cách Tiết khí chính xác nhất.
+
+## 6. Tương Tác Địa Chi (Interactions)
+- Hệ thống tự động nhận diện các quan hệ giữa các trụ:
+  - **Lục Xung, Lục Hợp, Lục Hại.**
+  - **Tam Hợp (VD: Thân-Tý-Thìn).**
+  - **Bán Tam Hợp (VD: Thân-Tý, Tý-Thìn):** Chỉ tính điểm bonus khi chi Tháng là hành trung tâm (Tý, Ngọ, Mão, Dậu).
+  - **Củng Hợp (VD: Thân-Thìn):** Nhận diện lực lượng ngầm tiềm năng.
+
+## 7. Thần Sát (Shen Sha)
+- **Thiên Ất Quý Nhân:** Phân tách rõ ràng Quý nhân theo **Can Năm** (người bảo hộ từ gia đình) và **Can Ngày** (quý nhân cho cá nhân).
+- **Phân loại Cát/Hung:** Giúp AI tập trung phân tích đúng trọng tâm các sao ảnh hưởng lớn tới mệnh cục.
+
 ---
 *Cập nhật lần cuối: 2026-03-23*

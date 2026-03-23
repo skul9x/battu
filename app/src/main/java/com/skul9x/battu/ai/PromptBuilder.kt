@@ -70,7 +70,9 @@ object PromptBuilder {
                 "Phân biệt rõ: Nhật Chủ, Dụng Thần, Hỉ Thần, Kỵ Thần",
                 "Phân tích Tàng Can và trọng số ảnh hưởng",
                 "Xét quan hệ Sinh Khắc giữa các Can Chi",
-                "Đánh giá Nhật Chủ vượng/suy dựa trên Ngũ Hành balance"
+                "Đánh giá Nhật Chủ vượng/suy dựa trên Ngũ Hành balance",
+                "Xem xét kỹ các tổ hợp Bán Tam Hợp và Củng Hợp ảnh hưởng tới Ngũ Hành",
+                "Tuổi khởi Đại Vận tính chính xác tới từng tháng/ngày, phân mốc giao vận chuẩn xác"
             )))
             
             put("must_not", JSONArray(listOf(
@@ -92,7 +94,7 @@ object PromptBuilder {
             "Bước 2: Tìm Dụng Thần (Use God) / Hỉ Thần (Favorable God) / Kỵ Thần (Unfavorable God)",
             "Bước 3: Phân tích Thập Thần (Ten Gods) → Tính cách, năng lực",
             "Bước 4: Phân tích Ngũ Hành balance → Sức khỏe",
-            "Bước 5: Phân tích quan hệ Can Chi → Sự nghiệp, tài lộc, tình duyên",
+            "Bước 5: Phân tích quan hệ Can Chi (đặc biệt Tương Hợp, Bán Tam Hợp, Củng Hợp) → Sự nghiệp, tài lộc, tình duyên",
             "Bước 6: Tổng hợp và lời khuyên"
         ))
     }
@@ -150,6 +152,7 @@ object PromptBuilder {
                 put("Thổ", data.elementBalance["Thổ"] ?: 0)
                 put("season", data.season)
                 put("day_master_strength", data.dayMasterStrength)
+                put("note", "Điểm số Ngũ Hành đã tính toán bao gồm Tàng Can chính; chú ý sự thay đổi Lực lượng ngầm do Tam Hợp/Bán Tam Hợp tạo ra (xem INTERACTIONS).")
             })
             
             // Shen Sha (Thần Sát)
@@ -223,8 +226,11 @@ object PromptBuilder {
         val array = JSONArray()
         list.forEach { lp ->
             array.put(JSONObject().apply {
-                put("age", "${lp.startAge}-${lp.endAge}")
-                put("pillar", "${lp.stem} ${lp.branch}")
+                put("start_age", lp.displayAge) // e.g., "7 tuổi 4 tháng 15 ngày"
+                put("age_range", "${lp.startAge}-${lp.endAge}")
+                put("stem", lp.stem)
+                put("branch", lp.branch)
+                put("note", "Đại Vận bắt đầu từ: ${lp.displayAge}. Lưu ý sự tác động của Can/Chi Đại Vận lên Nhật Chủ và các trụ khác.")
             })
         }
         return array

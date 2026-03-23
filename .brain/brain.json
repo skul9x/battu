@@ -6,8 +6,8 @@
   "project": {
     "name": "Bát Tự AI",
     "type": "Android (Jetpack Compose)",
-    "status": "Prompt Updated & Logic Completed (Phase 04 FIX)",
-    "last_updated": "2026-03-23T13:15:00Z"
+    "status": "Precision Overhaul Completed (Phases 01-06)",
+    "last_updated": "2026-03-23T15:15:00+07:00"
   },
   "branding": {
     "name": "Bát Tự AI",
@@ -35,11 +35,12 @@
     "Accurate Nạp Âm (60 Giáp Tý) mapping",
     "Tàng Can weights (60-30-10) and correct branch interpretation",
     "Life Stages (12 Trường Sinh) with Yin-Yang direction rules",
-    "Season Strength (Vượng, Tướng, Hưu, Tù, Tử) for Day Master",
+    "Day Master Strength follows 12 Vòng Trường Sinh (Tuyệt, Tử, Mộ...)",
+    "Distinction between Year-based and Day-based Shen Sha",
+    "Extended Shen Sha: Văn Xương, Kiếp Sát, Thập Ác Đại Bại",
     "Weighted Element Balance with Nạp Âm bonus",
-    "Shen Sha (Gods & Killers) based on birth stems/branches",
-    "Branch Interactions (Luc Hop, Luc Xung, Tam Hop, Tam Hinh...)",
-    "Luck Pillar (Dai Van) calculation with term-based offset and correct direction",
+    "Branch Interactions (Luc Hop, Luc Xung, Tam Hop, Tam Hinh, Ban Tam Hop, Cung Hop)",
+    "Luck Pillar (Dai Van) calculation with term-based offset (3 days = 1 year)",
     "AI Interpretation via JSON Prompting (Gemini)",
     "Save and manage calculation history (Offline)",
     "Share results via Android Intent",
@@ -53,7 +54,9 @@
     ],
     "gotchas": [
       "Metadata version mismatch in Kotlin 2.1.0+ requires Room 2.7+",
-      "Bazi requires main hidden stem for correct Ten Gods calculation"
+      "Day master strength must follow 12 Stages for higher accuracy",
+      "Year vs Day based Quý Nhân should be clarified",
+      "Calendar seconds/milliseconds must be reset for precise term calculations"
     ],
     "conventions": ["MVVM Architecture", "Navigation Component Compose"]
   }

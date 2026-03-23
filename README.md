@@ -1,67 +1,39 @@
-# Bát Tự (BatTu) - Tra cứu & Luận giải Tứ Trụ bằng AI
+# Bát Tự AI
 
-Ứng dụng Android hiện đại được xây dựng bằng Jetpack Compose, cho phép người dùng lập lá số Bát Tự (Tứ Trụ) chính xác và cung cấp khả năng luận giải thông minh thông qua tích hợp Trí tuệ nhân tạo (AI - Gemini).
+Dự án Bát Tự AI là một ứng dụng Android (được viết bằng Kotlin và Jetpack Compose) nhằm cung cấp giải pháp lập lá số Bát Tự (Tứ Trụ) và phân tích các thông số mệnh lý tự động dựa trên trí tuệ nhân tạo (Generative AI - Google Gemini).
 
-## 🌟 Tính năng chính
+## Tính năng nổi bật
+*   **Lập Lá Số Bát Tự:** Tính toán và hiển thị Tứ Trụ (Năm, Tháng, Ngày, Giờ sinh), Can Chi Dụng Thần, Hỉ Kỵ Thần.
+*   **Lập Đại Vận & Lưu Niên:** Tuổi khởi vận chi tiết (Năm, Tháng, Ngày).
+*   **Xác định Lực Lượng Ngũ Hành:** So sánh và đánh giá vượng/suy của Nhật Chủ, tương tác Sinh Khắc (Tam Hợp, Bán Tam Hợp, Lục Xung, Lục Hợp...).
+*   **Thần Sát:** Tra cứu hệ thống Thần Sát cát hung, bao gồm Thiên Ất Quý Nhân cho từng trụ, Hoa Cái, Kiếp Sát, Thập Ác Đại Bại...
+*   **AI Trợ Lý (Gemini):** Đưa ra các kiến giải và luận giải khoa học (dựa vào cấu hình prompt được điều hướng nghiêm ngặt theo các sách Tử Bình kinh điển).
 
-- **Lập lá số Tứ Trụ:** Phân tích Năm, Tháng, Ngày, Giờ sinh để xác định Thiên Can, Địa Chi.
-- **Phân tích chuyên sâu:**
-    - **Thập Thần:** Xác định chính xác các đại diện (Thực Thần, Thương Quan, Thiên Tài, Chính Quan, etc).
-    - **Vòng Trường Sinh:** Theo dõi các giai đoạn sinh trưởng của Nhật Chủ theo từng trụ.
-    - **Nạp Âm:** Xác định tính chất ngũ hành của từng cặp Thiên Can - Địa Chi.
-    - **Tàng Can:** Phân tích sâu các năng lượng ẩn trong Địa Chi.
-- **Hệ thống Thần Sát:** Tra cứu các thần sát phổ biến như Thiên Ất Quý Nhân, Hoa Cái, Dịch Mã, Khôi Cương, v.v.
-- **Đại Vận & Lưu Niên:** Cung cấp thông tin về các chu kỳ vận hạn 10 năm và diễn biến từng năm.
-- **Ngũ Hành Balance:** Biểu đồ hóa sự cân bằng của 5 yếu tố Kim, Mộc, Thủy, Hỏa, Thổ.
-- **Luận giải AI:** Tự động tạo Prompt cấu trúc JSON chuyên sâu để gửi cho AI (Gemini) thực hiện phân tích mệnh lý chi tiết.
+## Công nghệ sử dụng
+*   Kotlin 2.0.20
+*   Jetpack Compose (Trải nghiệm người dùng tương tác, mượt mà chuẩn Material 3)
+*   Room Database KSP (Quản lý lưu trữ tệp hồ sơ cá nhân)
+*   Google Generative AI SDK (Gemini)
 
-## 🛠 Công nghệ sử dụng
+## Hướng dẫn cài đặt
+1.  **Clone mã nguồn:** `git clone https://github.com/skul9x/battu.git`
+2.  Mở dự án trong **Android Studio (Bản mới nhất có hỗ trợ Kotlin 2.0.x)**.
+3.  Khi Gradle build xong, chạy ứng dụng trên máy ảo (Emulator) hoặc điện thoại thực.
+4.  Cần cung cấp API Key của Google Gemini trong giao diện **Settings** (Cài đặt) để tính năng luận giải tự động với AI được kích hoạt.
 
-- **Ngôn ngữ:** Kotlin
-- **UI Framework:** Jetpack Compose (Modern Android Development)
-- **Kiến trúc:** MVVM (Model-View-ViewModel)
-- **Dependency Injection:** Dagger Hilt
-- **Local Cache:** Room Database (Lưu lịch sử xem lá số)
-- **AI Integration:** Google Gemini SDK
+## Cấu trúc thư mục (Tham khảo)
+*   `app/src/main/java/com/skul9x/battu/data`: Bao gồm Models (Pillar, Interaction, LuckPillar...) và Database DAOs.
+*   `app/src/main/java/com/skul9x/battu/core`: Chứa bộ Engine `BaZiLogic.kt` và hằng số `BaZiConstants.kt` để thực thi logic mệnh lý chuẩn.
+*   `app/src/main/java/com/skul9x/battu/ai`: `PromptBuilder.kt` đóng vai trò gộp thông tin người dùng và config cấu trúc đầu ra gửi lên AI.
+*   `docs/plans`: Tài liệu phân tích kế hoạch (Phases), bug fix và định hướng nâng cấp.
+*   `.brain`: Chứa bộ nhớ và state lịch sử của assistant đã thiết lập theo thiết kế.
 
-## 📁 Cấu trúc thư mục
-
-```text
-├── app/                        # Mã nguồn chính của ứng dụng Android
-│   ├── src/main/java/com/skul9x/battu/
-│   │   ├── ai/                 # Xử lý Prompt và giao tiếp AI
-│   │   ├── core/               # Engine tính toán Bát Tự (Logic lõi)
-│   │   ├── data/               # Models, Constants, Room DB
-│   │   └── ui/                 # Giao diện (Compose Components, Screens)
-├── docs/                       # Tài liệu thiết kế và kế hoạch phát triển (Phases)
-├── .brain/                     # Lưu trữ lịch sử AI Session (Context Knowledge)
-└── CHANGELOG.md                # Nhật ký thay đổi và các phiên bản cập nhật
-```
-
-## 🚀 Hướng dẫn cài đặt
-
-1. **Clone dự án:**
-   ```bash
-   git clone https://github.com/skul9x/battu.git
-   ```
-2. **Mở dự án:**
-   Mở thư mục bằng **Android Studio (Ladybug hoặc mới hơn)**.
-3. **Cài đặt API Key:**
-   Tạo file `local.properties` (nếu chưa có) và thêm:
-   ```properties
-   GEMINI_API_KEY=YOUR_API_KEY_HERE
-   ```
-4. **Build & Run:**
-   Đảm bảo bạn có JDK 17+ và Android SDK API 24 trở lên.
-
-## 📖 Cách sử dụng
-
-1. Mở ứng dụng, nhập Họ tên, Giới tính và Ngày giờ sinh.
-2. Nhấn "Lập Lá Số" để xem thông tin chi tiết các trụ, thần sát và đại vận.
-3. Sử dụng nút "Gửi AI" để xem phần bình giải chi tiết về sự nghiệp, tình duyên và sức khỏe.
+## Hướng dẫn sử dụng
+*   **Bắt đầu lập lá số:** Điền Tên, Ngày Tháng Năm Sinh, Giờ Sinh, Giới Tính (Nam/Nữ).
+*   **Lưu kết quả:** Chuyển qua tab History (Lịch sử) để theo dõi lại các lá số đã lưu và kết quả do AI phân tích.
+*   **Chia sẻ:** Nhanh chóng tạo tệp văn bản từ AI và chia sẻ ra các ứng dụng nhắn tin khác.
 
 ---
 
-### Copyright
-
-Copyright 2026 Nguyễn Duy Trường
+Bản quyền Copyright 2026 Nguyễn Duy Trường.
+Được xây dựng với mục tiêu giúp những người yêu thích mệnh lý tiếp cận lý thuyết Tử Bình một cách khoa học và hệ thống hóa.

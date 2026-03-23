@@ -133,10 +133,10 @@ class BaZiConstantsTest {
         assertEquals(BaZiConstants.Season.HA, BaZiConstants.getSeason("Ngọ"))
         assertEquals(BaZiConstants.Season.TU_QUY, BaZiConstants.getSeason("Thìn"))
         
-        // Day Master Strength in Season
-        val spring = BaZiConstants.Season.XUAN
-        assertEquals("Vượng", BaZiConstants.getDayMasterStrength(spring, "Giáp")) // Mộc in Spring
-        assertEquals("Tướng", BaZiConstants.getDayMasterStrength(spring, "Bính")) // Hỏa in Spring
-        assertEquals("Tử", BaZiConstants.getDayMasterStrength(spring, "Canh"))    // Kim in Spring
+        // Day Master Strength based on 12 Life Stages (New Implementation)
+        val springBranch = "Dần"
+        assertEquals("Lâm Quan", BaZiConstants.getDayMasterStrength(springBranch, "Giáp")) // Giáp in Dần
+        assertEquals("Trường Sinh", BaZiConstants.getDayMasterStrength(springBranch, "Bính")) // Bính in Dần
+        assertEquals("Tuyệt", BaZiConstants.getDayMasterStrength(springBranch, "Canh"))    // Canh in Dần
     }
 }

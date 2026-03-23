@@ -263,15 +263,12 @@ ResultScreen displays with MarkdownText
 - ✅ Phase 02: Core Bát Tự Logic
 - ✅ Phase 03: UI Input & Chart Display
 - ✅ Phase 04: AI Integration (Gemini)
-- ✅ **Phase 01-Fix: Core Data Structure Accuracy (Nạp Âm, Tàng Can, Thập Thần)**
+- ✅ **Phase 01-06 (Fix): Accuracy Overhaul (Shen Sha, Life Stages, Harmonies, Luck Pillars)**
 
 **In Progress:**
-- 🔄 **Phase 02-Fix: Bazi Basic Logic (Season, Life Stages, Balance)**
+- 🔄 Phase 05 (New): History & Polish (Room DB integration is core, Syncing UI)
 
-**Pending:**
-- 🟡 Phase 05: History & Polish (Room DB, HistoryScreen, Share feature, App Icon)
-
-**Overall Progress:** 85% (Core Fix in progress)
+**Overall Progress:** 90% (Precision Engine 100% Completed)
 
 ---
 

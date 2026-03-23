@@ -4,6 +4,24 @@ Tất cả thay đổi quan trọng của dự án BatTu được ghi lại ở 
 
 ---
 
+## [2026-03-23] - Bazi Logic Accuracy Overhaul (Phases 01-06) ✅
+- **Phase 01-02:** Triệt để sửa lỗi Thập Thần trụ Ngày, phân tách Thiên Ất Quý Nhân (Năm/Ngày), và 12 Vòng Trường Sinh (Canh/Dần -> Tuyệt).
+- **Phase 03 - Tam Hợp & Bán Hợp:**
+  - **BaZiConstants.kt:** Bổ sung bảng tra cứu `BAN_TAM_HOP` và `CUNG_HOP`.
+  - **BaZiLogic.kt:** Tích hợp logic nhận diện Bán Hợp/Củng Hợp.
+- **Phase 04 - Luck Pillars Age Accuracy:** ✅
+  - **BaZiLogic.kt:** Tính toán tuổi khởi vận chính xác theo quy tắc 3 ngày = 1 năm (đến từng ngày, tháng lẻ).
+  - **Fix Bug:** Reset Calendar seconds/milliseconds để đảm bảo kết quả tính toán khoảng cách Tiết khí chuẩn xác.
+- **Phase 05 - PromptBuilder Final Sync:** ✅
+  - **PromptBuilder.kt:** Đồng bộ JSON output bao gồm `displayAge`, `startMonths`, `startDays`.
+  - Cập nhật **Rules** cho AI để ưu tiên phân tích Bán Hợp và Củng Hợp.
+- **Phase 06 - Final Testing:** ✅
+  - Chạy toàn bộ Unit Test suite (`MigrationTest`, `Phase04AccuracyTest`, `PromptBuilderTest`).
+  - Xuất file `prompt.txt` mẫu để verify cấu trúc JSON cuối cùng.
+  - Đảm bảo tương thích ngược cho dữ liệu lịch sử (Migration).
+
+---
+
 ## [2026-03-23] - Bazi Engine Fix (Phase 04) ✅
 
 ### ✅ Added

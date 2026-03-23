@@ -257,50 +257,12 @@ object BaZiConstants {
         }
     }
 
-    fun getDayMasterStrength(season: Season, stem: String): String {
-        val element = getElementOfStem(stem)
-        return when (season) {
-            Season.XUAN -> when (element) {
-                Element.MOC -> "Vượng"
-                Element.HOA -> "Tướng"
-                Element.THUY -> "Hưu"
-                Element.THO -> "Tù"
-                Element.KIM -> "Tử"
-                else -> ""
-            }
-            Season.HA -> when (element) {
-                Element.HOA -> "Vượng"
-                Element.THO -> "Tướng"
-                Element.MOC -> "Hưu"
-                Element.KIM -> "Tù"
-                Element.THUY -> "Tử"
-                else -> ""
-            }
-            Season.THU -> when (element) {
-                Element.KIM -> "Vượng"
-                Element.THUY -> "Tướng"
-                Element.THO -> "Hưu"
-                Element.HOA -> "Tù"
-                Element.MOC -> "Tử"
-                else -> ""
-            }
-            Season.DONG -> when (element) {
-                Element.THUY -> "Vượng"
-                Element.MOC -> "Tướng"
-                Element.KIM -> "Hưu"
-                Element.THO -> "Tù"
-                Element.HOA -> "Tử"
-                else -> ""
-            }
-            Season.TU_QUY -> when (element) {
-                Element.THO -> "Vượng"
-                Element.KIM -> "Tướng"
-                Element.HOA -> "Hưu"
-                Element.MOC -> "Tù"
-                Element.THUY -> "Tử"
-                else -> ""
-            }
-        }
+    /**
+     * Get Day Master Strength based on 12 Life Stages relative to birth month (Lệnh tháng)
+     * Replaces the old seasonal element balance rules with more accurate Bazi methodology
+     */
+    fun getDayMasterStrength(monthBranch: String, stem: String): String {
+        return getLifeStage(stem, monthBranch)
     }
 
     // ============================================================
@@ -570,6 +532,24 @@ object BaZiConstants {
         setOf("Dần", "Ngọ", "Tuất"),
         setOf("Hợi", "Mão", "Mùi"),
         setOf("Tỵ", "Dậu", "Sửu")
+    )
+
+    // Bán Tam Hợp (Có Chi chính: Tý, Ngọ, Mão, Dậu)
+    // Sinh Bán Hợp: Thân-Tý, Dần-Ngọ, Hợi-Mão, Tỵ-Dậu
+    // Mộ Bán Hợp: Tý-Thìn, Ngọ-Tuất, Mão-Mùi, Dậu-Sửu
+    val BAN_TAM_HOP = mapOf(
+        "Thân" to "Tý", "Tý" to "Thìn",
+        "Dần" to "Ngọ", "Ngọ" to "Tuất",
+        "Hợi" to "Mão", "Mão" to "Mùi",
+        "Tỵ" to "Dậu", "Dậu" to "Sửu"
+    )
+
+    // Củng Hợp (Không có Chi chính)
+    val CUNG_HOP = mapOf(
+        "Thân" to "Thìn",
+        "Dần" to "Tuất",
+        "Hợi" to "Mùi",
+        "Tỵ" to "Sửu"
     )
 
     val TAM_HINH = listOf(

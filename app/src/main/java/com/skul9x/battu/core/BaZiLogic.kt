@@ -27,6 +27,8 @@ class BaZiLogic(private val solarTermsJson: String) {
         
         val calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT+7")).apply {
             set(input.solarYear, input.solarMonth - 1, input.solarDay, input.hour, 0)
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
             add(Calendar.MINUTE, longitudeCorrectionMinutes)
         }
         
@@ -87,7 +89,7 @@ class BaZiLogic(private val solarTermsJson: String) {
 
         // 9. Season & Strength
         val birthSeason = BaZiConstants.getSeason(monthPillar.branch)
-        val dmStrength = BaZiConstants.getDayMasterStrength(birthSeason, dayMaster)
+        val dmStrength = BaZiConstants.getDayMasterStrength(monthPillar.branch, dayMaster)
 
         val currentTermInfo = getCurrentAndNextTerm(tstYear, birthTimeUtc)
 
@@ -301,19 +303,18 @@ class BaZiLogic(private val solarTermsJson: String) {
         val dayStem = dayPillar.stem
         val yearBranch = yearPillar.branch
         val dayBranch = dayPillar.branch
-        val thienAtRefs = listOf(dayStem, yearStem)
         
         pillars.forEach { (name, p) ->
             val cb = p.branch
             
             // 1. Thiên Ất Quý Nhân
-            var addedTA = false
-            for (ref in thienAtRefs) {
-                val validTA = BaZiConstants.THIEN_AT_QUY_NHAN[ref] ?: emptyList()
-                if (!addedTA && validTA.contains(cb)) {
-                    result.add(ShenSha("Thiên Ất Quý Nhân", name, "Cát", "Gặp dữ hóa lành, quý nhân phù trợ"))
-                    addedTA = true
-                }
+            val yearTA = BaZiConstants.THIEN_AT_QUY_NHAN[yearStem] ?: emptyList()
+            if (yearTA.contains(cb)) {
+                result.add(ShenSha("Thiên Ất (Năm)", name, "Cát", "Quý nhân phù trợ từ tổ nghiệp/cha mẹ"))
+            }
+            val dayTA = BaZiConstants.THIEN_AT_QUY_NHAN[dayStem] ?: emptyList()
+            if (dayTA.contains(cb)) {
+                result.add(ShenSha("Thiên Ất (Ngày)", name, "Cát", "Quý nhân phù trợ cho bản thân/hôn nhân"))
             }
             
             // 2. Lộc Tồn
@@ -367,7 +368,7 @@ class BaZiLogic(private val solarTermsJson: String) {
         return result
     }
 
-    private fun calculateInteractions(pillarsMap: Map<String, Pillar>): List<Interaction> {
+    internal fun calculateInteractions(pillarsMap: Map<String, Pillar>): List<Interaction> {
         val result = mutableListOf<Interaction>()
         val list = pillarsMap.toList()
         
@@ -391,12 +392,38 @@ class BaZiLogic(private val solarTermsJson: String) {
         }
         
         val allBranches = list.map { it.second.branch }.toSet()
+        val foundTamHopGroups = mutableListOf<Set<String>>()
+
         BaZiConstants.TAM_HOP.forEach { group ->
             if (allBranches.containsAll(group)) {
-                val involved = list.filter { group.contains(it.second.branch) }.map { it.first }
-                result.add(Interaction(InteractionType.TAM_HOP, "Tam Hợp", involved, group.joinToString("-")))
+                val involvedPillars = list.filter { group.contains(it.second.branch) }.map { it.first }
+                result.add(Interaction(InteractionType.TAM_HOP, "Tam Hợp", involvedPillars, group.joinToString("-")))
+                foundTamHopGroups.add(group)
             }
         }
+
+        // 7. Bán Tam Hợp (Chỉ xét nếu không có Tam Hợp hoàn chỉnh)
+        for (i in 0 until list.size) {
+            val (name1, p1) = list[i]
+            for (j in i + 1 until list.size) {
+                val (name2, p2) = list[j]
+                
+                // Kiểm tra xem cặp này có nằm trong Tam Hợp hoàn chỉnh đã tìm thấy không
+                val isPartOfFullTamHop = foundTamHopGroups.any { it.contains(p1.branch) && it.contains(p2.branch) }
+                if (isPartOfFullTamHop) continue
+
+                // Check Bán Tam Hợp (Có Chi chính)
+                if (BaZiConstants.BAN_TAM_HOP[p1.branch] == p2.branch || BaZiConstants.BAN_TAM_HOP[p2.branch] == p1.branch) {
+                    result.add(Interaction(InteractionType.BAN_TAM_HOP, "Bán Tam Hợp", listOf(name1, name2), "${p1.branch} hợp ${p2.branch}"))
+                }
+                
+                // Check Củng Hợp (Không có Chi chính)
+                if (BaZiConstants.CUNG_HOP[p1.branch] == p2.branch || BaZiConstants.CUNG_HOP[p2.branch] == p1.branch) {
+                    result.add(Interaction(InteractionType.BAN_TAM_HOP, "Củng Hợp", listOf(name1, name2), "${p1.branch} hợp ${p2.branch}"))
+                }
+            }
+        }
+
         BaZiConstants.TAM_HINH.forEach { group ->
             if (allBranches.containsAll(group)) {
                 val involved = list.filter { group.contains(it.second.branch) }.map { it.first }
@@ -415,7 +442,7 @@ class BaZiLogic(private val solarTermsJson: String) {
         val isThuan = (isMale && isYearYang) || (!isMale && !isYearYang)
         
         val terms = mutableListOf<Long>()
-        // Tiết khí đại diện cho sự chuyển giao các tháng
+        // 12 Tiết khí chính (Major Terms - Start of months)
         val ts = listOf("minor_cold", "start_of_spring", "awakening_of_insects", "pure_brightness", 
                         "start_of_summer", "grain_in_ear", "minor_heat", "start_of_autumn", 
                         "white_dew", "cold_dew", "start_of_winter", "major_snow")
@@ -430,10 +457,24 @@ class BaZiLogic(private val solarTermsJson: String) {
             terms.lastOrNull { it <= birthTimeUtc } ?: birthTimeUtc
         }
         
+        // 1. Calculate duration in seconds
         val diffMillis = Math.abs(targetTermTime - birthTimeUtc)
-        val diffDays = diffMillis / (1000 * 60 * 60 * 24)
-        var startAge = (diffDays / 3).toInt()
-        if (startAge == 0) startAge = 1
+        val diffSeconds = diffMillis / 1000
+        
+        // 2. Traditionally: 3 days real time = 1 year of luck
+        // 1 year (3 days) = 259,200 seconds
+        // 1 month (6 hours) = 21,600 seconds
+        // 1 day (12 minutes) = 720 seconds
+        
+        val startAgeYears = (diffSeconds / 259200).toInt()
+        val remainingAfterYears = diffSeconds % 259200
+        val startMonths = (remainingAfterYears / 21600).toInt()
+        val remainingAfterMonths = remainingAfterYears % 21600
+        val startDays = (remainingAfterMonths / 720).toInt()
+        
+        // Bazi luck pillars start from age 1 minimum if calculation is 0 (optional convention)
+        // But for precise calculation, we use the actual value. 
+        // If years == 0, the first pillar starts at 0 years X months.
         
         var currentCanIdx = monthCanIdx
         var currentChiIdx = monthChiIdx
@@ -446,9 +487,22 @@ class BaZiLogic(private val solarTermsJson: String) {
                 currentCanIdx = (currentCanIdx - 1 + 10) % 10
                 currentChiIdx = (currentChiIdx - 1 + 12) % 12
             }
+            
+            val pillarStartAge = startAgeYears + (i * 10)
+            val displayAge = if (startMonths == 0 && startDays == 0) {
+                "$pillarStartAge tuổi"
+            } else if (startDays == 0) {
+                "$pillarStartAge tuổi $startMonths tháng"
+            } else {
+                "$pillarStartAge tuổi $startMonths tháng $startDays ngày"
+            }
+
             results.add(LuckPillar(
-                startAge = startAge + (i * 10),
-                endAge = startAge + (i * 10) + 9,
+                startAge = pillarStartAge,
+                endAge = pillarStartAge + 9,
+                startMonths = startMonths,
+                startDays = startDays,
+                displayAge = displayAge,
                 stem = BaZiConstants.THIEN_CAN[currentCanIdx],
                 branch = BaZiConstants.DIA_CHI[currentChiIdx]
             ))

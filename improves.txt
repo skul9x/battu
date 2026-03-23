@@ -1,0 +1,192 @@
+# 🔍 GỢI Ý CẢI TIẾN FILE .TXT ĐỂ HOÀN THIỆN HƠN
+
+Dựa trên phân tích và đối chiếu với phương pháp luận Bát Tự cổ điển, đây là những điểm file .txt **cần bổ sung** để đạt độ chính xác tối ưu:
+
+---
+
+## 📌 1. THẦN SÁT (SHEN SHA) - THIẾU NHIỀU ⚠️
+
+| Hiện tại | Cần bổ sung |
+|----------|-------------|
+| Chỉ có "Thập Ác Đại Bại" | Đào Hoa, Thiên Y, Thiên Ất Quý Nhân |
+| | Văn Xương, Học Đường (học vấn) |
+| | Kiếp Sát, Tai Sát (tai họa) |
+| | Hồng Loan, Thiên Hỉ (hôn nhân) |
+| | Dương Nhận, Không Vong |
+
+**Lý do:** Thần sát bổ trợ quan trọng cho luận đoán tính cách và sự kiện cụ thể.
+
+---
+
+## 📌 2. LƯU NIÊN (ANNUAL LUCK) - HOÀN TOÀN THIẾU ⚠️️
+
+```json
+// CẦN THÊM
+"annual_luck": [
+  {
+    "year": 2026,
+    "stem": "Bính",
+    "branch": "Ngọ",
+    "age": 35,
+    "interaction": "Ngọ khắc Thân (Năm/Ngày)",
+    "prediction": "..."
+  },
+  {
+    "year": 2027,
+    "stem": "Đinh",
+    "branch": "Mùi",
+    "age": 36,
+    "interaction": "...",
+    "prediction": "..."
+  }
+]
+```
+
+**Lý do:** Người xem cần biết vận trình từng năm cụ thể, không chỉ Đại Vận 10 năm.
+
+---
+
+## 📌 3. DỤNG THẦN PHÂN TÍCH SÂU - CHƯA ĐỦ CHI TIẾT
+
+| Hiện tại | Cần bổ sung |
+|----------|-------------|
+| Chỉ liệt kê Dụng/Hỉ/Kỵ | **Giải thích TẠI SAO** chọn Dụng Thần đó |
+| | Phân tích **cách cục** (Chính Quan Cách, Ấn Cách...) |
+| | Đánh giá **thành bại** của cách cục |
+| | **Mức độ hữu dụng** của Dụng Thần (0-100%) |
+
+**Ví dụ cải tiến:**
+```json
+"yong_shen_analysis": {
+  "yong_shen": "Hỏa",
+  "reason": "Nhật Chủ Thủy vượng, Kim quá nhiều (220 điểm), cần Hỏa để khắc Kim, ấm cục",
+  "effectiveness": "75%",
+  "limitation": "Hỏa trong lá số chỉ có 6 điểm, cần bổ sung từ Đại Vận/Lưu Niên"
+}
+```
+
+---
+
+## 📌 4. TƯƠNG TÁC CAN CHI - CẦN MỞ RỘNG
+
+| Hiện tại | Cần bổ sung |
+|----------|-------------|
+| Lục Hại (Tuất-Dậu) | **Lục Xung** (nếu có) |
+| Bán Hợp Thủy (Thân-Thân) | **Tam Hình** (Dần-Tỵ-Thân, Sửu-Tuất-Mùi...) |
+| | **Lục Hợp** (Tý-Sửu, Dần-Hợi...) |
+| | **Thiên Khắc Địa Xung** giữa các trụ |
+| | **Phục Ngâm** (Can hoặc Chi trùng lặp) |
+
+---
+
+## 📌 5. CUNG MỆNH/THÂN - THIẾU HOÀN TOÀN
+
+```json
+"cung_menh_than": {
+  "menh_cung": "...",
+  "than_cung": "...",
+  "menh_chu": "...",
+  "than_chu": "..."
+}
+```
+
+**Lý do:** Cung Mệnh/Thân giúp luận đoán thêm về:
+- Ngoại hình, tính cách bẩm sinh
+- Cung vị tốt/xấu trong đời
+- Phối hợp với Bát Tự để tăng độ chính xác
+
+---
+
+## 📌 6. PHONG THỦY ỨNG DỤNG - THIẾU
+
+| Mục | Cần thêm |
+|-----|----------|
+| **Màu sắc** | Màu hợp/kỵ (dựa trên Hỉ/Dụng/Kỵ Thần) |
+| **Phương vị** | Hướng tốt/xấu (Đông, Tây, Nam, Bắc...) |
+| **Số hợp** | Số may mắn theo Ngũ Hành |
+| **Vật phẩm** | Đá quý, vật phẩm phong thủy nên dùng |
+| **Nghề nghiệp** | Ngành nghề phù hợp với Dụng Thần |
+
+---
+
+## 📌 7. ĐẠI VẬN - CẦN DỰ BÁO SỰ KIỆN
+
+Hiện tại chỉ có Can Chi Đại Vận, cần thêm:
+
+```json
+"luck_pillars": [
+  {
+    "age_range": "25-34",
+    "stem": "Đinh",
+    "branch": "Mùi",
+    "overall_rating": "7/10",
+    "career": "Thuận lợi, có quý nhân",
+    "wealth": "Tài lộc tăng nhưng khó tụ",
+    "love": "Có hôn nhân hoặc sinh con",
+    "health": "Chú ý hệ tiêu hóa",
+    "key_years": [2028, 2029, 2031]
+  }
+]
+```
+
+---
+
+## 📌 8. THỜI ĐIỂM QUAN TRỌNG - THIẾU
+
+| Sự kiện | Cần dự báo |
+|---------|------------|
+| Hôn nhân | Năm nào dễ kết hôn |
+| Sinh con | Năm nào thuận lợi sinh con |
+| Đổi việc | Năm nào nên thay đổi sự nghiệp |
+| Đầu tư | Năm nào nên/cẩn trọng đầu tư |
+| Sức khỏe | Năm nào cần chú ý sức khỏe |
+
+---
+
+## 📌 9. THẾ CỤC & CÁCH CỤC - CHƯA RÕ RÀNG
+
+```json
+"pattern_analysis": {
+  "main_pattern": "Chính Quan Ấn Cách",
+  "pattern_quality": "Khá tốt",
+  "breaking_factors": ["Thập Ác Đại Bại"],
+  "supporting_factors": ["Nhật Chủ đắc lệnh", "Ấn tinh vượng"]
+}
+```
+
+---
+
+## 📌 10. ĐỊNH LƯỢNG HÓA - CẦN CHUẨN HÓA
+
+| Hiện tại | Vấn đề | Cải tiến |
+|----------|--------|----------|
+| Kim: 220, Thủy: 116... | Không rõ thang điểm | Chuẩn hóa 0-1000 hoặc % |
+| Không có ngưỡng vượng/suy | Khó đánh giá | Thêm ngưỡng tham chiếu |
+| Không có độ tin cậy | Khó biết mức độ chính xác | Thêm confidence score |
+
+---
+
+## 📊 BẢNG TÓM TẮT ƯU TIÊN CẢI TIẾN
+
+| STT | Mục | Mức độ ưu tiên | Độ khó |
+|-----|-----|----------------|--------|
+| 1 | Lưu Niên (Annual Luck) | 🔴 Cao | Trung bình |
+| 2 | Thần Sát đầy đủ | 🔴 Cao | Dễ |
+| 3 | Dụng Thần phân tích sâu | 🔴 Cao | Khó |
+| 4 | Dự báo sự kiện Đại Vận | 🟡 Trung bình | Khó |
+| 5 | Phong thủy ứng dụng | 🟡 Trung bình | Dễ |
+| 6 | Cung Mệnh/Thân | 🟡 Trung bình | Trung bình |
+| 7 | Tương tác Can Chi mở rộng | 🟢 Thấp | Trung bình |
+| 8 | Định lượng hóa chuẩn | 🟢 Thấp | Khó |
+
+---
+
+## ✅ KẾT LUẬN
+
+File .txt hiện tại **đã tốt về cấu trúc cơ bản** (Tứ Trụ, Tàng Can, Đại Vận, Ngũ Hành), nhưng để trở nên **perfect** cần:
+
+1. **Bắt buộc:** Thêm Lưu Niên + Thần Sát đầy đủ + Dụng Thần phân tích sâu
+2. **Nên có:** Dự báo sự kiện + Phong thủy ứng dụng
+3. **Nâng cao:** Cung Mệnh/Thân + Định lượng hóa chuẩn
+
+Bạn có muốn tôi hỗ trợ tạo template cải tiến cho file .txt không?

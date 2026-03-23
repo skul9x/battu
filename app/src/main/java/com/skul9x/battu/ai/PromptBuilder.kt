@@ -162,6 +162,15 @@ object PromptBuilder {
             // Luck Pillars (Đại Vận)
             put("luck_pillars", buildLuckPillarsJson(data.luckPillars))
             
+            // Xun Kong (Tuần Không / Không Vong)
+            put("xun_kong", data.xunKong?.let { xk ->
+                JSONObject().apply {
+                    put("year_void", JSONArray(xk.yearVoid))
+                    put("day_void", JSONArray(xk.dayVoid))
+                    put("note", "Các Chi rơi vào Tuần Không sẽ bị giảm lực lượng đáng kể (khoảng 70-80%), ảnh hưởng tới sự tương tác với các trụ khác.")
+                }
+            } ?: JSONObject())
+            
             // Day Master (Nhật Chủ)
             put("day_master", JSONObject().apply {
                 put("stem", data.day.stem)
@@ -189,6 +198,7 @@ object PromptBuilder {
                 hsObj.put("stem", hs.stem)
                 hsObj.put("percentage", hs.percentage)
                 hsObj.put("type", hs.type.name)
+                hsObj.put("ten_god", hs.tenGod ?: "")
                 hiddenStemsArray.put(hsObj)
             }
             put("hidden_stems", hiddenStemsArray)

@@ -1,0 +1,87 @@
+{
+  "chart_data": {
+    "pillars": {
+      "month": {
+        "stem": "Canh",
+        "branch": "Tuất",
+        "hidden_stems": [
+          {
+            "stem": "Mậu",
+            "percentage": 60,
+            "type": "BAN_KHI",
+            "ten_god": "Thất Sát" // CẢI TIẾN 1: Bắt buộc phải gắn Thập Thần cho TỪNG Tàng Can [cite: 10, 11, 12]
+          },
+          {
+            "stem": "Tân",
+            "percentage": 30,
+            "type": "TRUNG_KHI",
+            "ten_god": "Chính Ấn"
+          },
+          {
+            "stem": "Đinh",
+            "percentage": 10,
+            "type": "DU_KHI",
+            "ten_god": "Chính Tài"
+          }
+        ]
+      }
+    },
+    
+    // CẢI TIẾN 2: Bổ sung Tuần Không (Rất quan trọng để xét lực lượng Can Chi có bị triệt tiêu hay không)
+    "xun_kong": {
+      "year_void": ["Tuất", "Hợi"],
+      "day_void": ["Tuất", "Hợi"],
+      "note": "Chi Tháng (Tuất) rơi vào Tuần Không, lực lượng Thổ và tàng can tại đây bị giảm sút nghiêm trọng."
+    },
+
+    // CẢI TIẾN 3: Bổ sung Thai Nguyên và Mệnh Cung (Được xem là trụ thứ 5 và thứ 6, ảnh hưởng đến gốc rễ lá số)
+    "auxiliary_pillars": {
+      "fetal_origin": {
+        "name": "Thai Nguyên",
+        "stem": "Tân",
+        "branch": "Sửu"
+      },
+      "life_palace": {
+        "name": "Mệnh Cung",
+        "stem": "Canh",
+        "branch": "Tuất"
+      }
+    },
+
+    // CẢI TIẾN 4: Cập nhật đầy đủ Thần Sát thay vì chỉ để 1 sao [cite: 20]
+    "shen_sha": [
+      {
+        "name": "Thập Ác Đại Bại",
+        "pillar": ["Năm", "Ngày"], // Sửa lại: Xuất hiện ở cả trụ Năm và Ngày
+        "type": "Hung",
+        "description": "Hao tốn tiền bạc, khó tụ tài"
+      },
+      {
+        "name": "Đào Hoa",
+        "pillar": ["Giờ"],
+        "type": "Cát/Hung tùy cục",
+        "description": "Sức hút cá nhân, duyên ngầm hoặc rắc rối tình cảm"
+      },
+      {
+        "name": "Thiên Y",
+        "pillar": ["Giờ"],
+        "type": "Cát",
+        "description": "Có duyên với y lý, tôn giáo, trực giác tốt, sức khỏe được phù trợ"
+      }
+    ],
+
+    // CẢI TIẾN 5: Bổ sung mảng Lưu Niên (Từng năm) vào trong Đại Vận để AI có căn cứ luận đoán hạn từng năm [cite: 22, 23, 24]
+    "luck_pillars": [
+      {
+        "age_range": "5-14",
+        "stem": "Kỷ",
+        "branch": "Dậu",
+        "annual_pillars": [
+          {"year": 1997, "stem": "Đinh", "branch": "Sửu", "age_display": "6 tuổi"},
+          {"year": 1998, "stem": "Mậu", "branch": "Dần", "age_display": "7 tuổi"}
+          // ... (Liệt kê đủ 10 năm của đại vận này)
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,317 @@
+{
+  "role": "AI chuyên luận Bát Tự Tử Bình (Tứ Trụ)",
+  "style": {
+    "tone": "Điềm đạm – phân tích mệnh lý. Xưng 'Tôi', gọi người xem 'Bạn'.",
+    "language": "Vietnamese"
+  },
+  "methodology_sources": [
+    "Tử Bình Chân Thuyên (子平真詮)",
+    "Trích Thiên Tùy (滴天髓)",
+    "Uyên Hải Tử Bình (淵海子平)"
+  ],
+  "objective": "Phân tích Bát Tự theo cấu trúc Can Chi – không suy đoán cảm tính",
+  "absolute_rules": {
+    "must_do": [
+      "Mọi nhận định BẮT BUỘC phải có căn cứ Can Chi",
+      "Phân biệt rõ: Nhật Chủ, Dụng Thần, Hỉ Thần, Kỵ Thần",
+      "Phân tích Tàng Can và trọng số ảnh hưởng",
+      "Xét quan hệ Sinh Khắc giữa các Can Chi",
+      "Đánh giá Nhật Chủ vượng\/suy dựa trên Ngũ Hành balance",
+      "Xem xét kỹ các tổ hợp Bán Tam Hợp và Củng Hợp ảnh hưởng tới Ngũ Hành",
+      "Tuổi khởi Đại Vận tính chính xác tới từng tháng\/ngày, phân mốc giao vận chuẩn xác"
+    ],
+    "must_not": [
+      "Không suy đoán khi thiếu dữ liệu",
+      "Không dùng câu chung chung (VD: 'số giàu', 'số khổ') mà không chỉ rõ căn cứ",
+      "Không khẳng định tuyệt đối - phải dùng ngôn ngữ xác suất ('thường', 'có xu hướng', 'nếu...')"
+    ],
+    "evidence_format": "(Căn cứ: [Can\/Chi] + [Thập Thần] + [Ngũ Hành] + [Quan hệ Sinh Khắc])"
+  },
+  "analysis_pipeline": [
+    "Tầng Căn Bản: Xác định Nhật Chủ (Day Master) vượng\/suy (BẮT BUỘC xét dựa trên Vòng Trường Sinh tại Lệnh Tháng - chi Tháng)",
+    "Tầng Biến Hóa: Đánh giá các tổ hợp Tương Hợp, Bán Tam Hợp, Củng Hợp làm thay đổi thế trận Ngũ Hành (lực lượng ngầm)",
+    "Tầng Thời Gian: Sử dụng các mốc khởi Đại Vận chính xác (start_age, start_months, start_days) để đưa ra lời khuyên khớp thời điểm",
+    "Bước 4: Tìm Dụng Thần \/ Hỉ Thần \/ Kỵ Thần dựa trên 3 tầng trên",
+    "Bước 5: Phân tích Thập Thần → Tính cách, năng lực",
+    "Bước 6: Phân tích sự nghiệp, tài lộc, tình duyên, sức khỏe",
+    "Bước 7: Tổng hợp và lời khuyên"
+  ],
+  "output_format": {
+    "sections": {
+      "A": "Tóm tắt lá số (5-10 dòng)",
+      "B": "Phân tích Nhật Chủ vượng suy",
+      "C": "Dụng Thần & Hỉ Thần",
+      "D": "Phân tích tính cách (dựa trên Thập Thần)",
+      "E": "Sự nghiệp & Tài lộc",
+      "F": "Tình duyên & Gia đình",
+      "G": "Sức khỏe (dựa trên Ngũ Hành balance)",
+      "H": "Lời khuyên tổng hợp"
+    },
+    "markdown": true,
+    "use_headers": true,
+    "use_bullet_points": true
+  },
+  "chart_data": {
+    "person": {
+      "name": "Nguyễn Thị Ngọc ",
+      "gender": "Nữ"
+    },
+    "pillars": {
+      "year": {
+        "stem": "Nhâm",
+        "stem_element": "Thủy",
+        "branch": "Thân",
+        "branch_element": "Kim",
+        "nap_am": "Kiếm Phong Kim",
+        "life_stage": "Trường Sinh",
+        "hidden_stems": [
+          {
+            "stem": "Canh",
+            "percentage": 60,
+            "type": "BAN_KHI"
+          },
+          {
+            "stem": "Nhâm",
+            "percentage": 30,
+            "type": "TRUNG_KHI"
+          },
+          {
+            "stem": "Mậu",
+            "percentage": 10,
+            "type": "DU_KHI"
+          }
+        ]
+      },
+      "month": {
+        "stem": "Canh",
+        "stem_element": "Kim",
+        "branch": "Tuất",
+        "branch_element": "Thổ",
+        "nap_am": "Thoa Xuyến Kim",
+        "life_stage": "Quan Đới",
+        "hidden_stems": [
+          {
+            "stem": "Mậu",
+            "percentage": 60,
+            "type": "BAN_KHI"
+          },
+          {
+            "stem": "Tân",
+            "percentage": 30,
+            "type": "TRUNG_KHI"
+          },
+          {
+            "stem": "Đinh",
+            "percentage": 10,
+            "type": "DU_KHI"
+          }
+        ]
+      },
+      "day": {
+        "stem": "Nhâm",
+        "stem_element": "Thủy",
+        "branch": "Thân",
+        "branch_element": "Kim",
+        "nap_am": "Kiếm Phong Kim",
+        "life_stage": "Trường Sinh",
+        "hidden_stems": [
+          {
+            "stem": "Canh",
+            "percentage": 60,
+            "type": "BAN_KHI"
+          },
+          {
+            "stem": "Nhâm",
+            "percentage": 30,
+            "type": "TRUNG_KHI"
+          },
+          {
+            "stem": "Mậu",
+            "percentage": 10,
+            "type": "DU_KHI"
+          }
+        ]
+      },
+      "hour": {
+        "stem": "Kỷ",
+        "stem_element": "Thổ",
+        "branch": "Dậu",
+        "branch_element": "Kim",
+        "nap_am": "Đại Dịch Thổ",
+        "life_stage": "Mộc Dục",
+        "hidden_stems": [
+          {
+            "stem": "Tân",
+            "percentage": 100,
+            "type": "BAN_KHI"
+          }
+        ]
+      }
+    },
+    "ten_gods": {
+      "year_stem": "Tỷ Kiên",
+      "year_branch": "Thiên Ấn",
+      "month_stem": "Thiên Ấn",
+      "month_branch": "Thất Sát",
+      "day_stem": "Nhật Chủ",
+      "day_branch": "Thiên Ấn",
+      "hour_stem": "Chính Quan",
+      "hour_branch": "Chính Ấn",
+      "explanation": {
+        "Chính Ấn": "Người bảo hộ, học vấn, danh dự",
+        "Thiên Ấn": "Người bảo hộ gián tiếp, tài năng",
+        "Chính Quan": "Quyền lực chính thống, kỷ luật",
+        "Thất Sát": "Quyền lực phi chính thống, quyết đoán",
+        "Chính Tài": "Tài chính ổn định, vợ (nam)",
+        "Thiên Tài": "Tài chính linh hoạt, người yêu (nam)",
+        "Thực Thần": "Sáng tạo, biểu đạt, con cái",
+        "Thương Quan": "Tài năng, phản kháng, con cái",
+        "Kiếp Tài": "Bạn bè, đối thủ, anh em",
+        "Tỷ Kiên": "Bản thân, anh em, đối thủ"
+      }
+    },
+    "element_balance": {
+      "Kim": 220,
+      "Mộc": 0,
+      "Thủy": 116,
+      "Hỏa": 6,
+      "Thổ": 98,
+      "season": "Tứ Quý",
+      "day_master_strength": "Quan Đới",
+      "note": "Điểm số Ngũ Hành đã tính toán bao gồm Tàng Can chính; chú ý sự thay đổi Lực lượng ngầm do Tam Hợp\/Bán Tam Hợp tạo ra (xem INTERACTIONS)."
+    },
+    "shen_sha": [
+      {
+        "name": "Thập Ác Đại Bại",
+        "pillar": "Ngày",
+        "type": "Hung",
+        "description": "Hao tốn tiền bạc, khó tụ tài"
+      }
+    ],
+    "interactions": [
+      {
+        "type": "Lục Hại",
+        "pillars": [
+          "Tháng",
+          "Giờ"
+        ],
+        "description": "Tuất hại Dậu"
+      },
+      {
+        "type": "Bán Hợp Thủy",
+        "pillars": [
+          "Năm",
+          "Ngày"
+        ],
+        "description": "Thân - Thân"
+      }
+    ],
+    "luck_pillars": [
+      {
+        "start_age": 5,
+        "start_months": 1,
+        "start_days": 20,
+        "display_age": "5 tuổi 1 tháng 20 ngày",
+        "age_range": "5-14",
+        "stem": "Kỷ",
+        "branch": "Dậu",
+        "note": "Đại Vận bắt đầu chính xác từ: 5 tuổi 1 tháng 20 ngày. Lưu ý sự tác động của Can\/Chi Đại Vận lên Nhật Chủ và các trụ khác."
+      },
+      {
+        "start_age": 15,
+        "start_months": 1,
+        "start_days": 20,
+        "display_age": "15 tuổi 1 tháng 20 ngày",
+        "age_range": "15-24",
+        "stem": "Mậu",
+        "branch": "Thân",
+        "note": "Đại Vận bắt đầu chính xác từ: 15 tuổi 1 tháng 20 ngày. Lưu ý sự tác động của Can\/Chi Đại Vận lên Nhật Chủ và các trụ khác."
+      },
+      {
+        "start_age": 25,
+        "start_months": 1,
+        "start_days": 20,
+        "display_age": "25 tuổi 1 tháng 20 ngày",
+        "age_range": "25-34",
+        "stem": "Đinh",
+        "branch": "Mùi",
+        "note": "Đại Vận bắt đầu chính xác từ: 25 tuổi 1 tháng 20 ngày. Lưu ý sự tác động của Can\/Chi Đại Vận lên Nhật Chủ và các trụ khác."
+      },
+      {
+        "start_age": 35,
+        "start_months": 1,
+        "start_days": 20,
+        "display_age": "35 tuổi 1 tháng 20 ngày",
+        "age_range": "35-44",
+        "stem": "Bính",
+        "branch": "Ngọ",
+        "note": "Đại Vận bắt đầu chính xác từ: 35 tuổi 1 tháng 20 ngày. Lưu ý sự tác động của Can\/Chi Đại Vận lên Nhật Chủ và các trụ khác."
+      },
+      {
+        "start_age": 45,
+        "start_months": 1,
+        "start_days": 20,
+        "display_age": "45 tuổi 1 tháng 20 ngày",
+        "age_range": "45-54",
+        "stem": "Ất",
+        "branch": "Tỵ",
+        "note": "Đại Vận bắt đầu chính xác từ: 45 tuổi 1 tháng 20 ngày. Lưu ý sự tác động của Can\/Chi Đại Vận lên Nhật Chủ và các trụ khác."
+      },
+      {
+        "start_age": 55,
+        "start_months": 1,
+        "start_days": 20,
+        "display_age": "55 tuổi 1 tháng 20 ngày",
+        "age_range": "55-64",
+        "stem": "Giáp",
+        "branch": "Thìn",
+        "note": "Đại Vận bắt đầu chính xác từ: 55 tuổi 1 tháng 20 ngày. Lưu ý sự tác động của Can\/Chi Đại Vận lên Nhật Chủ và các trụ khác."
+      },
+      {
+        "start_age": 65,
+        "start_months": 1,
+        "start_days": 20,
+        "display_age": "65 tuổi 1 tháng 20 ngày",
+        "age_range": "65-74",
+        "stem": "Quý",
+        "branch": "Mão",
+        "note": "Đại Vận bắt đầu chính xác từ: 65 tuổi 1 tháng 20 ngày. Lưu ý sự tác động của Can\/Chi Đại Vận lên Nhật Chủ và các trụ khác."
+      },
+      {
+        "start_age": 75,
+        "start_months": 1,
+        "start_days": 20,
+        "display_age": "75 tuổi 1 tháng 20 ngày",
+        "age_range": "75-84",
+        "stem": "Nhâm",
+        "branch": "Dần",
+        "note": "Đại Vận bắt đầu chính xác từ: 75 tuổi 1 tháng 20 ngày. Lưu ý sự tác động của Can\/Chi Đại Vận lên Nhật Chủ và các trụ khác."
+      },
+      {
+        "start_age": 85,
+        "start_months": 1,
+        "start_days": 20,
+        "display_age": "85 tuổi 1 tháng 20 ngày",
+        "age_range": "85-94",
+        "stem": "Tân",
+        "branch": "Sửu",
+        "note": "Đại Vận bắt đầu chính xác từ: 85 tuổi 1 tháng 20 ngày. Lưu ý sự tác động của Can\/Chi Đại Vận lên Nhật Chủ và các trụ khác."
+      },
+      {
+        "start_age": 95,
+        "start_months": 1,
+        "start_days": 20,
+        "display_age": "95 tuổi 1 tháng 20 ngày",
+        "age_range": "95-104",
+        "stem": "Canh",
+        "branch": "Tý",
+        "note": "Đại Vận bắt đầu chính xác từ: 95 tuổi 1 tháng 20 ngày. Lưu ý sự tác động của Can\/Chi Đại Vận lên Nhật Chủ và các trụ khác."
+      }
+    ],
+    "day_master": {
+      "stem": "Nhâm",
+      "element": "Thủy",
+      "description": "Nhật Chủ là Nhâm (Thủy)"
+    }
+  }
+}

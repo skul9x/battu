@@ -15,7 +15,9 @@
 - **Thập Thần & Tàng Can chuyên sâu:** Phân tích trọng số Tàng Can (60% - 30% - 10%) và Ten Gods chính xác cho cả 8 vị trí.
 - **Vòng Trường Sinh (12 Life Stages):** Áp dụng đầy đủ quy tắc Âm nghịch - Dương thuận cho 10 Thiên Can trên tất cả các trụ.
 - **Thần Sát (Shen Sha):** Phân tích hệ thống Thần Sát đa tầng (Thiên Ất Quý Nhân, Văn Xương, Lộc Tồn, Kình Dương, v.v.) dựa trên cả Năm và Ngày sinh.
-- **Tương Tác Địa Chi Động:** Nhận diện đầy đủ Lục Hợp, Lục Xung, Lục Hại, Tam Hợp, **Bán Tam Hợp** và **Củng Hợp**.
+- **Tuần Không (Void Branches):** Tính toán chính xác Niên Không và Nhật Không (Void of Day/Year).
+- **Thập Thần Tàng Can chuyên sâu:** Thập Thần được tính cho toàn bộ các Tàng Can (Bản khí, Trung khí, Dư khí).
+- **Tương Tác Địa Chi Động:** Nhận diện đầy đủ Lục Hợp, Lục Xung, Lục Hại, Tam Hợp, **Bán Tam Hợp**, **Củng Hợp** và **Phục Ngâm**.
 - **Đại Vận (Luck Pillars) Tiết Khí:** Tính mốc khởi vận chính xác đến từng ngày và tháng lẻ dựa trên khoảng cách tới Tiết khí (quy tắc 3 ngày = 1 năm).
 
 ### 🤖 Trí Tuệ Nhân Tạo (Gemini AI)

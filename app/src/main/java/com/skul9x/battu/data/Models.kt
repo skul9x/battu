@@ -44,7 +44,17 @@ enum class HiddenStemType {
 data class HiddenStem(
     val stem: String,
     val percentage: Int,
-    val type: HiddenStemType
+    val type: HiddenStemType,
+    val tenGod: String? = null
+)
+
+/**
+ * Tuần Không (Void Branches / Không Vong)
+ */
+@Serializable
+data class XunKong(
+    val yearVoid: List<String>, // Niên Không
+    val dayVoid: List<String>   // Nhật Không
 )
 
 /**
@@ -104,7 +114,7 @@ data class TenGods(
  */
 @Serializable
 enum class InteractionType {
-    LUC_HOP, TAM_HOP, BAN_TAM_HOP, TAM_HOI, LUC_XUNG, LUC_HAI, TAM_HINH, TU_HINH, CAN_HOP, CAN_XUNG
+    LUC_HOP, TAM_HOP, BAN_TAM_HOP, TAM_HOI, LUC_XUNG, LUC_HAI, TAM_HINH, TU_HINH, CAN_HOP, CAN_XUNG, PHUC_NGAM
 }
 
 /**
@@ -163,5 +173,6 @@ data class BaZiData(
     val interactions: List<Interaction> = emptyList(), // Hợp, Xung, Hình, Hại
     val shenShaList: List<ShenSha> = emptyList(),      // Thần Sát
     val luckPillars: List<LuckPillar> = emptyList(),   // Đại Vận
+    val xunKong: XunKong? = null,            // Tuần Không (Không Vong)
     val isNearSolarTerm: Boolean = false     // Cảnh báo giờ sinh sát giao Tiết Khí
 )

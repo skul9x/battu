@@ -114,6 +114,10 @@ class BaZiLogic(private val solarTermsJson: String) {
             interactions = interactions,
             shenShaList = shenSha,
             luckPillars = luckPillars,
+            xunKong = XunKong(
+                yearVoid = listOf(BaZiConstants.getXunKong(yearPillar.stem, yearPillar.branch).first, BaZiConstants.getXunKong(yearPillar.stem, yearPillar.branch).second),
+                dayVoid = listOf(BaZiConstants.getXunKong(dayPillar.stem, dayPillar.branch).first, BaZiConstants.getXunKong(dayPillar.stem, dayPillar.branch).second)
+            ),
             isNearSolarTerm = isNearSolarTerm(tstYear, birthTimeUtc)
         )
     }
@@ -134,7 +138,10 @@ class BaZiLogic(private val solarTermsJson: String) {
             branchYinYang = BaZiConstants.getYinYangOfBranch(chi),
             branchElement = BaZiConstants.getElementNameVi(branchElement),
             napAm = BaZiConstants.getNapAm(can, chi),
-            hiddenStems = BaZiConstants.getHiddenStems(chi),
+            hiddenStems = BaZiConstants.getHiddenStems(chi).map { hs ->
+                hs.copy(tenGod = if (dayMaster.isNotEmpty()) 
+                    BaZiConstants.calculateTenGod(dayMaster, hs.stem) else null)
+            },
             lifeStage = if (dayMaster.isNotEmpty()) BaZiConstants.getLifeStage(dayMaster, chi) else null
         )
     }
@@ -400,6 +407,9 @@ class BaZiLogic(private val solarTermsJson: String) {
                 if (p1.branch == p2.branch && BaZiConstants.TU_HINH.contains(p1.branch)) {
                     result.add(Interaction(InteractionType.TU_HINH, "Tự Hình", listOf(name1, name2), "${p1.branch} tự hình"))
                 }
+                if (p1.branch == p2.branch && !BaZiConstants.TU_HINH.contains(p1.branch)) {
+                    result.add(Interaction(InteractionType.PHUC_NGAM, "Phục Ngâm", listOf(name1, name2), "${p1.branch} trùng ${p2.branch}"))
+                }
             }
         }
         
@@ -426,7 +436,7 @@ class BaZiLogic(private val solarTermsJson: String) {
 
                 // Check Bán Tam Hợp qua từng group
                 BaZiConstants.TAM_HOP.forEach { (group, element) ->
-                    if (group.contains(p1.branch) && group.contains(p2.branch)) {
+                    if (group.contains(p1.branch) && group.contains(p2.branch) && p1.branch != p2.branch) {
                         result.add(Interaction(InteractionType.BAN_TAM_HOP, "Bán Hợp $element", listOf(name1, name2), "${p1.branch} - ${p2.branch}"))
                     }
                 }

@@ -266,7 +266,31 @@ object BaZiConstants {
     }
 
     // ============================================================
-    // 5. HELPER FUNCTIONS
+    // 5. TUẦN KHÔNG (XUN KONG / VOID BRANCHES)
+    // ============================================================
+
+    /**
+     * Calculate Void Branches (Không Vong) for a given Stem-Branch pair.
+     * Each 10-day cycle (Tuần) in the 60-year cycle has 2 missing branches.
+     * @return Pair of branch names that are Void
+     */
+    fun getXunKong(stem: String, branch: String): Pair<String, String> {
+        val canIdx = THIEN_CAN.indexOf(stem)
+        val chiIdx = DIA_CHI.indexOf(branch)
+        if (canIdx == -1 || chiIdx == -1) return "" to ""
+
+        // Find the start branch of the 10-day cycle (Tuần) by counting back canIdx steps
+        val startChiIdx = (chiIdx - canIdx + 12) % 12
+        
+        // The 2 void branches are the 11th and 12th positions after the start branch
+        val void1Idx = (startChiIdx + 10) % 12
+        val void2Idx = (startChiIdx + 11) % 12
+        
+        return DIA_CHI[void1Idx] to DIA_CHI[void2Idx]
+    }
+
+    // ============================================================
+    // 6. HELPER FUNCTIONS
     // ============================================================
     
     /**

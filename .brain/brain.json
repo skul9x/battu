@@ -6,9 +6,9 @@
   "project": {
     "name": "Bát Tự AI",
     "type": "Android (Jetpack Compose)",
-    "status": "Precision Overhaul Completed (Phases 01-06) ✅",
-    "updated_at": "2026-03-23T19:15:00+07:00",
-    "overall_progress": "60%"
+    "status": "Advanced Bazi Features - Implementing Phase 03",
+    "updated_at": "2026-03-23T19:55:00+07:00",
+    "overall_progress": "72%"
   },
   "branding": {
     "name": "Bát Tự AI",
@@ -40,8 +40,10 @@
     "Distinction between Year-based and Day-based Shen Sha",
     "Extended Shen Sha: Văn Xương, Kiếp Sát, Thập Ác Đại Bại",
     "Weighted Element Balance with Nạp Âm bonus",
-    "Branch Interactions (Luc Hop, Luc Xung, Tam Hop, Tam Hinh, Ban Tam Hop, Cung Hop)",
+    "Branch Interactions (Luc Hop, Luc Xung, Tam Hop, Tam Hinh, Ban Tam Hop, Cung Hop, Phuc Ngam)",
     "Luck Pillar (Dai Van) calculation with term-based offset (3 days = 1 year)",
+    "Tuần Không (Void Branches) calculation (Niên Không, Nhật Không)",
+    "Ten Gods for all Hidden Stems (Main, Middle, Residual)",
     "AI Interpretation via JSON Prompting (Gemini)",
     "Save and manage calculation history (Offline)",
     "Share results via Android Intent",

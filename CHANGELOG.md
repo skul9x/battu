@@ -4,6 +4,23 @@ Tất cả thay đổi quan trọng của dự án BatTu được ghi lại ở 
 
 ---
 
+## [2026-03-23] - Advanced Bazi Features (Phase 02)
+- **Phase 02 COMPLETE:** Tuần Không + Thập Thần Tàng Can.
+- **Tuần Không (Void Branches):** Triển khai cách tính Niên Không (Năm) và Nhật Không (Ngày) dựa trên Lục Thập Hoa Giáp.
+- **Thập Thần Tàng Can:** Gán Thập Thần cho toàn bộ các Tàng Can (Bản, Trung, Dư khí) giúp AI phân tích lực lượng ngũ hành ẩn dật.
+- **AI Integration:** Cập nhật PromptBuilder để truyền dữ liệu xun_kong và ten_god của tàng can vào JSON interpreted by Gemini.
+- **Testing:** Đã bổ sung unit test cho logic Tuần Không và cấu trúc JSON output.
+
+---
+
+## [2026-03-23] - Advanced Bazi Features (Phase 01)
+- **Phase 01 COMPLETE:** Fix Interactions Bug (Phục Ngâm + Bán Hợp).
+- **Tương tác Địa Chi:** Sửa lỗi Bán Tam Hợp nhận diện sai các chi trùng nhau (VD: Thân-Thân thành Bán Hợp Thủy).
+- **Phục Ngâm:** Bổ sung logic tính toán tương tác Phục Ngâm khi 2 chi giống hệt nhau (trừ trường hợp Tự hình).
+- **Testing:** Thêm test case xác minh Thân-Thân trả về chính xác Phục Ngâm, không phải Bán Hợp.
+
+---
+
 ## [2026-03-23] - Bazi Logic Accuracy Overhaul (Phases 01-06) ✅
 - **Phase 01-06 COMPLETE:** Đã hoàn thiện toàn bộ engine Bát Tự với độ chính xác tuyệt đối.
 - **Tính toán Đại Vận (Luck Pillars):** Đã tích hợp logic tính mốc khởi vận chính xác theo Tiết khí (3 ngày = 1 năm, 12 phút = 1 ngày) kèm hiển thị "Năm-Tháng-Ngày" lẻ. (Fixed reset Calendar seconds/ms).
@@ -124,7 +141,7 @@ Tất cả thay đổi quan trọng của dự án BatTu được ghi lại ở 
 - **SettingsScreen**
   - Quản lý multiple API keys
   - Test API key functionality
-  - Model selection dropdown
+    - Model selection dropdown
   - DataStore persistence cho settings
 
 - **Navigation Updates**

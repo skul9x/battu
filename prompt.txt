@@ -8,6 +8,7 @@
         "hidden_stems": [{
           "percentage": 100,
           "type": "BAN_KHI",
+          "ten_god": "Thương Quan",
           "stem": "Quý"
         }],
         "stem_element": "Thổ",
@@ -22,16 +23,19 @@
           {
             "percentage": 60,
             "type": "BAN_KHI",
+            "ten_god": "Thất Sát",
             "stem": "Bính"
           },
           {
             "percentage": 30,
             "type": "TRUNG_KHI",
+            "ten_god": "Thiên Ấn",
             "stem": "Mậu"
           },
           {
             "percentage": 10,
             "type": "DU_KHI",
+            "ten_god": "Tỷ Kiên",
             "stem": "Canh"
           }
         ],
@@ -47,11 +51,13 @@
           {
             "percentage": 70,
             "type": "BAN_KHI",
+            "ten_god": "Chính Quan",
             "stem": "Đinh"
           },
           {
             "percentage": 30,
             "type": "TRUNG_KHI",
+            "ten_god": "Chính Ấn",
             "stem": "Kỷ"
           }
         ],
@@ -67,16 +73,19 @@
           {
             "percentage": 60,
             "type": "BAN_KHI",
+            "ten_god": "Thiên Ấn",
             "stem": "Mậu"
           },
           {
             "percentage": 30,
             "type": "TRUNG_KHI",
+            "ten_god": "Chính Tài",
             "stem": "Ất"
           },
           {
             "percentage": 10,
             "type": "DU_KHI",
+            "ten_god": "Thương Quan",
             "stem": "Quý"
           }
         ],
@@ -95,6 +104,17 @@
       "Thủy": 66,
       "Kim": 146,
       "Hỏa": 88
+    },
+    "xun_kong": {
+      "year_void": [
+        "Tuất",
+        "Hợi"
+      ],
+      "note": "Các Chi rơi vào Tuần Không sẽ bị giảm lực lượng đáng kể (khoảng 70-80%), ảnh hưởng tới sự tương tác với các trụ khác.",
+      "day_void": [
+        "Thân",
+        "Dậu"
+      ]
     },
     "person": {
       "gender": "Nam",
@@ -156,72 +176,102 @@
     ],
     "luck_pillars": [
       {
+        "start_days": 0,
         "age_range": "0-9",
-        "note": "Đại Vận bắt đầu từ: 0 tuổi. Lưu ý sự tác động của Can/Chi Đại Vận lên Nhật Chủ và các trụ khác.",
-        "start_age": "0 tuổi",
+        "display_age": "0 tuổi",
+        "note": "Đại Vận bắt đầu chính xác từ: 0 tuổi. Lưu ý sự tác động của Can/Chi Đại Vận lên Nhật Chủ và các trụ khác.",
+        "start_months": 0,
+        "start_age": 0,
         "branch": "Sửu",
         "stem": "Kỷ"
       },
       {
+        "start_days": 0,
         "age_range": "10-19",
-        "note": "Đại Vận bắt đầu từ: 10 tuổi. Lưu ý sự tác động của Can/Chi Đại Vận lên Nhật Chủ và các trụ khác.",
-        "start_age": "10 tuổi",
+        "display_age": "10 tuổi",
+        "note": "Đại Vận bắt đầu chính xác từ: 10 tuổi. Lưu ý sự tác động của Can/Chi Đại Vận lên Nhật Chủ và các trụ khác.",
+        "start_months": 0,
+        "start_age": 10,
         "branch": "Dần",
         "stem": "Canh"
       },
       {
+        "start_days": 0,
         "age_range": "20-29",
-        "note": "Đại Vận bắt đầu từ: 20 tuổi. Lưu ý sự tác động của Can/Chi Đại Vận lên Nhật Chủ và các trụ khác.",
-        "start_age": "20 tuổi",
+        "display_age": "20 tuổi",
+        "note": "Đại Vận bắt đầu chính xác từ: 20 tuổi. Lưu ý sự tác động của Can/Chi Đại Vận lên Nhật Chủ và các trụ khác.",
+        "start_months": 0,
+        "start_age": 20,
         "branch": "Mão",
         "stem": "Tân"
       },
       {
+        "start_days": 0,
         "age_range": "30-39",
-        "note": "Đại Vận bắt đầu từ: 30 tuổi. Lưu ý sự tác động của Can/Chi Đại Vận lên Nhật Chủ và các trụ khác.",
-        "start_age": "30 tuổi",
+        "display_age": "30 tuổi",
+        "note": "Đại Vận bắt đầu chính xác từ: 30 tuổi. Lưu ý sự tác động của Can/Chi Đại Vận lên Nhật Chủ và các trụ khác.",
+        "start_months": 0,
+        "start_age": 30,
         "branch": "Thìn",
         "stem": "Nhâm"
       },
       {
+        "start_days": 0,
         "age_range": "40-49",
-        "note": "Đại Vận bắt đầu từ: 40 tuổi. Lưu ý sự tác động của Can/Chi Đại Vận lên Nhật Chủ và các trụ khác.",
-        "start_age": "40 tuổi",
+        "display_age": "40 tuổi",
+        "note": "Đại Vận bắt đầu chính xác từ: 40 tuổi. Lưu ý sự tác động của Can/Chi Đại Vận lên Nhật Chủ và các trụ khác.",
+        "start_months": 0,
+        "start_age": 40,
         "branch": "Tỵ",
         "stem": "Quý"
       },
       {
+        "start_days": 0,
         "age_range": "50-59",
-        "note": "Đại Vận bắt đầu từ: 50 tuổi. Lưu ý sự tác động của Can/Chi Đại Vận lên Nhật Chủ và các trụ khác.",
-        "start_age": "50 tuổi",
+        "display_age": "50 tuổi",
+        "note": "Đại Vận bắt đầu chính xác từ: 50 tuổi. Lưu ý sự tác động của Can/Chi Đại Vận lên Nhật Chủ và các trụ khác.",
+        "start_months": 0,
+        "start_age": 50,
         "branch": "Ngọ",
         "stem": "Giáp"
       },
       {
+        "start_days": 0,
         "age_range": "60-69",
-        "note": "Đại Vận bắt đầu từ: 60 tuổi. Lưu ý sự tác động của Can/Chi Đại Vận lên Nhật Chủ và các trụ khác.",
-        "start_age": "60 tuổi",
+        "display_age": "60 tuổi",
+        "note": "Đại Vận bắt đầu chính xác từ: 60 tuổi. Lưu ý sự tác động của Can/Chi Đại Vận lên Nhật Chủ và các trụ khác.",
+        "start_months": 0,
+        "start_age": 60,
         "branch": "Mùi",
         "stem": "Ất"
       },
       {
+        "start_days": 0,
         "age_range": "70-79",
-        "note": "Đại Vận bắt đầu từ: 70 tuổi. Lưu ý sự tác động của Can/Chi Đại Vận lên Nhật Chủ và các trụ khác.",
-        "start_age": "70 tuổi",
+        "display_age": "70 tuổi",
+        "note": "Đại Vận bắt đầu chính xác từ: 70 tuổi. Lưu ý sự tác động của Can/Chi Đại Vận lên Nhật Chủ và các trụ khác.",
+        "start_months": 0,
+        "start_age": 70,
         "branch": "Thân",
         "stem": "Bính"
       },
       {
+        "start_days": 0,
         "age_range": "80-89",
-        "note": "Đại Vận bắt đầu từ: 80 tuổi. Lưu ý sự tác động của Can/Chi Đại Vận lên Nhật Chủ và các trụ khác.",
-        "start_age": "80 tuổi",
+        "display_age": "80 tuổi",
+        "note": "Đại Vận bắt đầu chính xác từ: 80 tuổi. Lưu ý sự tác động của Can/Chi Đại Vận lên Nhật Chủ và các trụ khác.",
+        "start_months": 0,
+        "start_age": 80,
         "branch": "Dậu",
         "stem": "Đinh"
       },
       {
+        "start_days": 0,
         "age_range": "90-99",
-        "note": "Đại Vận bắt đầu từ: 90 tuổi. Lưu ý sự tác động của Can/Chi Đại Vận lên Nhật Chủ và các trụ khác.",
-        "start_age": "90 tuổi",
+        "display_age": "90 tuổi",
+        "note": "Đại Vận bắt đầu chính xác từ: 90 tuổi. Lưu ý sự tác động của Can/Chi Đại Vận lên Nhật Chủ và các trụ khác.",
+        "start_months": 0,
+        "start_age": 90,
         "branch": "Tuất",
         "stem": "Mậu"
       }
@@ -266,12 +316,13 @@
     }
   },
   "analysis_pipeline": [
-    "Bước 1: Xác định Nhật Chủ (Day Master) vượng/suy",
-    "Bước 2: Tìm Dụng Thần (Use God) / Hỉ Thần (Favorable God) / Kỵ Thần (Unfavorable God)",
-    "Bước 3: Phân tích Thập Thần (Ten Gods) → Tính cách, năng lực",
-    "Bước 4: Phân tích Ngũ Hành balance → Sức khỏe",
-    "Bước 5: Phân tích quan hệ Can Chi (đặc biệt Tương Hợp, Bán Tam Hợp, Củng Hợp) → Sự nghiệp, tài lộc, tình duyên",
-    "Bước 6: Tổng hợp và lời khuyên"
+    "Tầng Căn Bản: Xác định Nhật Chủ (Day Master) vượng/suy (BẮT BUỘC xét dựa trên Vòng Trường Sinh tại Lệnh Tháng - chi Tháng)",
+    "Tầng Biến Hóa: Đánh giá các tổ hợp Tương Hợp, Bán Tam Hợp, Củng Hợp làm thay đổi thế trận Ngũ Hành (lực lượng ngầm)",
+    "Tầng Thời Gian: Sử dụng các mốc khởi Đại Vận chính xác (start_age, start_months, start_days) để đưa ra lời khuyên khớp thời điểm",
+    "Bước 4: Tìm Dụng Thần / Hỉ Thần / Kỵ Thần dựa trên 3 tầng trên",
+    "Bước 5: Phân tích Thập Thần → Tính cách, năng lực",
+    "Bước 6: Phân tích sự nghiệp, tài lộc, tình duyên, sức khỏe",
+    "Bước 7: Tổng hợp và lời khuyên"
   ],
   "style": {
     "tone": "Điềm đạm \u2013 phân tích mệnh lý. Xưng 'Tôi', gọi người xem 'Bạn'.",

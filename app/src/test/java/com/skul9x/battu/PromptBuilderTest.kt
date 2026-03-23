@@ -40,6 +40,11 @@ class PromptBuilderTest {
         assertTrue("Should have shen_sha", chartData.has("shen_sha"))
         assertTrue("Should have interactions", chartData.has("interactions"))
         assertTrue("Should have luck_pillars", chartData.has("luck_pillars"))
+        assertTrue("Should have xun_kong", chartData.has("xun_kong"))
+        
+        val xunKong = chartData.getJSONObject("xun_kong")
+        assertTrue("Should have year_void", xunKong.has("year_void"))
+        assertTrue("Should have day_void", xunKong.has("day_void"))
         
         // Check element_balance fields
         val balance = chartData.getJSONObject("element_balance")
@@ -61,6 +66,7 @@ class PromptBuilderTest {
             assertTrue("Should have stem field", stemObj.has("stem"))
             assertTrue("Should have percentage field", stemObj.has("percentage"))
             assertTrue("Should have type field", stemObj.has("type"))
+            assertTrue("Should have ten_god field", stemObj.has("ten_god"))
         }
 
         // Dump prompt to prompt.txt

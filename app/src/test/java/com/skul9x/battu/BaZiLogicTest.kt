@@ -196,4 +196,26 @@ class BaZiLogicTest {
         assertTrue("Should contain Tam Hợp", containsTamHop)
         assertFalse("Should NOT contain Bán Tam Hợp (redundant)", containsBanTamHop)
     }
+
+    @Test
+    fun testInteractions_PhucNgam() {
+        fun createDummyPillar(branch: String) = com.skul9x.battu.data.Pillar(
+            stem = "Giáp", stemYinYang = "Dương", stemElement = "Mộc",
+            branch = branch, branchYinYang = "Dương", branchElement = "Kim"
+        )
+
+        // Case: Thân, Thân -> Should be Phục Ngâm, NO Bán Tam Hợp Thủy
+        val pillars = mapOf(
+            "Năm" to createDummyPillar("Thân"),
+            "Ngày" to createDummyPillar("Thân")
+        )
+
+        val interactions = logic.calculateInteractions(pillars)
+        
+        val containsPhucNgam = interactions.any { it.typeName == "Phục Ngâm" }
+        val containsBanTamHop = interactions.any { it.typeName.startsWith("Bán Hợp") }
+        
+        assertTrue("Should contain Phục Ngâm", containsPhucNgam)
+        assertFalse("Should NOT contain Bán Tam Hợp (Thân-Thân is not Bán Hợp Thủy)", containsBanTamHop)
+    }
 }

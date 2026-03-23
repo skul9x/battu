@@ -139,4 +139,24 @@ class BaZiConstantsTest {
         assertEquals("Trường Sinh", BaZiConstants.getDayMasterStrength(springBranch, "Bính")) // Bính in Dần
         assertEquals("Tuyệt", BaZiConstants.getDayMasterStrength(springBranch, "Canh"))    // Canh in Dần
     }
+
+    @Test
+    fun testXunKong_CorrectValues() {
+        // TC-11: Verify Void Branches (Tuần Không)
+        
+        // Nhâm Thân -> Tuất, Hợi (Tuần Giáp Tý)
+        val xk1 = BaZiConstants.getXunKong("Nhâm", "Thân")
+        assertEquals("Tuất", xk1.first)
+        assertEquals("Hợi", xk1.second)
+        
+        // Giáp Tuất -> Thân, Dậu (Tuần Giáp Tuất)
+        val xk2 = BaZiConstants.getXunKong("Giáp", "Tuất")
+        assertEquals("Thân", xk2.first)
+        assertEquals("Dậu", xk2.second)
+        
+        // Bính Thân -> Thìn, Tỵ (Tuần Giáp Ngọ)
+        val xk3 = BaZiConstants.getXunKong("Bính", "Thân")
+        assertEquals("Thìn", xk3.first)
+        assertEquals("Tỵ", xk3.second)
+    }
 }

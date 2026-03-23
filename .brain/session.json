@@ -1,45 +1,74 @@
 {
-  "updated_at": "2026-03-23T19:18:00+07:00",
+  "updated_at": "2026-03-23T19:46:11+07:00",
   "working_on": {
-    "feature": "Bát Tự Accuracy Refinement",
-    "task": "Completed Phase 05: Luck Pillar Age Precision Implementation",
-    "status": "in_progress",
-    "files": ["BaZiLogic.kt", "Models.kt", "LuckPillarTest.kt"],
-    "progress": "83%",
-    "notes": "Verified high-precision Luck Pillar calculation (3 days = 1 year, 1 day = 4 months, 12 min = 1 day) and display age (years/months/days)."
+    "feature": "Advanced Bazi Features",
+    "task": "Phase 03: Thai Nguyên + Mệnh Cung",
+    "status": "pending",
+    "files": ["BaZiConstants.kt", "Models.kt", "BaZiLogic.kt", "PromptBuilder.kt"],
+    "progress": "28%",
+    "notes": "Finished Phase 02 (Tuần Không + Thập Thần Tàng Can). Next is calculating Thai Nguyên and Mệnh Cung."
   },
-  "pending_tasks": [],
+  "pending_tasks": [
+    {
+      "task": "Implement Thai Nguyên + Mệnh Cung",
+      "priority": "medium",
+      "notes": "Phase 03"
+    },
+    {
+      "task": "Expand Shen Sha (Đào Hoa, Thiên Y, Hồng Loan, Thiên Hỉ)",
+      "priority": "medium",
+      "notes": "Phase 04"
+    },
+    {
+      "task": "Implement Annual Luck Pillars (Lưu Niên)",
+      "priority": "medium",
+      "notes": "Phase 05"
+    }
+  ],
   "recent_changes": [
     {
-      "timestamp": "2026-03-23T18:45:00+07:00",
-      "type": "logic",
-      "description": "Bổ sung Bán Hợp Thủy/Hỏa/Mộc/Kim và Củng Hợp động trong calculateInteractions.",
-      "files": ["BaZiLogic.kt", "BaZiConstants.kt", "BaZiLogicTest.kt"]
-    }
-  ],
-  "errors_encountered": [
+      "timestamp": "2026-03-23T20:00:00+07:00",
+      "type": "feature",
+      "description": "Implemented Tuần Không (Void Branches) and Ten Gods mapping for all Hidden Stems.",
+      "files": [
+        "BaZiConstants.kt",
+        "Models.kt",
+        "BaZiLogic.kt",
+        "PromptBuilder.kt"
+      ]
+    },
     {
-      "error": "Lỗi jlink executable not found trong gradle build",
-      "solution": " ./gradlew --stop & rebuild (môi trường JVM/JDK conflict)",
-      "resolved": true
+      "timestamp": "2026-03-23T19:45:00+07:00",
+      "type": "bugfix",
+      "description": "Fixed Bán Tam Hợp logic to not trigger on identical branches and added Phục Ngâm interaction logic.",
+      "files": [
+        "BaZiLogic.kt",
+        "Models.kt",
+        "BaZiLogicTest.kt"
+      ]
     }
   ],
+  "errors_encountered": [],
   "decisions_made": [
     {
-      "decision": "Duyệt BAN_TAM_HOP thông qua logic loop tập hợp Map thay vì fix cứng hardcode",
-      "reason": "Dễ bảo trì và đồng nhất hóa tất cả kết quả Bán Hợp/Tam Hợp.",
-      "timestamp": "2026-03-23T18:30:00"
+      "decision": "Lưu Niên scope limited to 10 years of current Đại Vận",
+      "reason": "Save Gemini token usage",
+      "timestamp": "2026-03-23T19:37:00+07:00"
+    },
+    {
+      "decision": "Keep precice Luck Pillar age logic",
+      "reason": "Expert precision vs reference image rounding",
+      "timestamp": "2026-03-23T19:37:00+07:00"
     }
   ],
   "phase_progress": {
-    "accuracy_refinement": {
-      "status": "completed",
-      "completion": "100%"
+    "advanced_bazi_features": {
+      "status": "in_progress",
+      "completion": "28%"
     }
   },
-  "overall_progress": "100% Accuracy Overhaul Refined",
+  "overall_progress": "28% of Advanced Bazi Features",
   "next_steps": [
-    "Final Testing on Android Device",
-    "Deploy"
+    "/code phase-03"
   ]
 }

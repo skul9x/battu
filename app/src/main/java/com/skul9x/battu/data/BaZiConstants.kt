@@ -527,29 +527,11 @@ object BaZiConstants {
         "Dậu" to "Tuất", "Tuất" to "Dậu"
     )
 
-    val TAM_HOP = listOf(
-        setOf("Thân", "Tý", "Thìn"),
-        setOf("Dần", "Ngọ", "Tuất"),
-        setOf("Hợi", "Mão", "Mùi"),
-        setOf("Tỵ", "Dậu", "Sửu")
-    )
-
-    // Bán Tam Hợp (Có Chi chính: Tý, Ngọ, Mão, Dậu)
-    // Sinh Bán Hợp: Thân-Tý, Dần-Ngọ, Hợi-Mão, Tỵ-Dậu
-    // Mộ Bán Hợp: Tý-Thìn, Ngọ-Tuất, Mão-Mùi, Dậu-Sửu
-    val BAN_TAM_HOP = mapOf(
-        "Thân" to "Tý", "Tý" to "Thìn",
-        "Dần" to "Ngọ", "Ngọ" to "Tuất",
-        "Hợi" to "Mão", "Mão" to "Mùi",
-        "Tỵ" to "Dậu", "Dậu" to "Sửu"
-    )
-
-    // Củng Hợp (Không có Chi chính)
-    val CUNG_HOP = mapOf(
-        "Thân" to "Thìn",
-        "Dần" to "Tuất",
-        "Hợi" to "Mùi",
-        "Tỵ" to "Sửu"
+    val TAM_HOP = mapOf(
+        setOf("Thân", "Tý", "Thìn") to "Thủy",
+        setOf("Dần", "Ngọ", "Tuất") to "Hỏa",
+        setOf("Hợi", "Mão", "Mùi") to "Mộc",
+        setOf("Tỵ", "Dậu", "Sửu") to "Kim"
     )
 
     val TAM_HINH = listOf(

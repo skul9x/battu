@@ -41,7 +41,6 @@ fun ChartScreen(
 ) {
     val baZiData by viewModel.baZiData.collectAsState()
     val clipboardManager: ClipboardManager = LocalClipboardManager.current
-    val context = LocalContext.current
     var saveSuccess by remember { mutableStateOf(false) }
     
     Scaffold(
@@ -99,6 +98,34 @@ fun ChartScreen(
                     Spacer(modifier = Modifier.height(8.dp))
                     Text("Sinh vào Tiết: ${data.currentTerm}")
                     Text("Nạp Âm Năm: ${data.year.branchElement} ${data.year.stemElement}")
+                }
+            }
+            
+            // Cảnh báo giao điểm Tiết Khí (Edge Case)
+            if (data.isNearSolarTerm) {
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.errorContainer
+                    )
+                ) {
+                    Row(
+                        modifier = Modifier.padding(16.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Warning,
+                            contentDescription = "Cảnh báo Tiết Khí",
+                            tint = MaterialTheme.colorScheme.error
+                        )
+                        Spacer(Modifier.width(12.dp))
+                        Text(
+                            text = "Giờ sinh sát mốc giao Tiết Khí!\nHãy chắc chắn giờ sinh chính xác từng phút, nếu không trụ Tháng/Năm có thể bị lệch hoàn toàn.",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onErrorContainer,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
                 }
             }
             

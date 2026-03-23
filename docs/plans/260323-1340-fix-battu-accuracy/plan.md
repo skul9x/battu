@@ -17,9 +17,9 @@ Dựa trên báo cáo lỗi logic chuyên sâu, chúng ta cần khắc phục 5 
 | 01 | Day Branch Ten God Fix | ✅ Complete | 100% |
 | 02 | Accurate Shen Sha (Thiên Ất & More) | ✅ Complete | 100% |
 | 03 | 12 Life Stages Refactor | ✅ Complete | 100% |
-| 04 | Luck Pillars Age Calculation | ✅ Complete | 100% |
-| 05 | PromptBuilder Final Sync | ✅ Complete | 100% |
-| 06 | Final Testing & JSON Dump | ✅ Complete | 100% |
+| 04 | Semi-Harmonies (Bán Hợp) Integration | ✅ Complete | 100% |
+| 05 | Luck Pillars Age Calculation | ✅ Complete | 100% |
+| 06 | PromptBuilder Update & Testing | ✅ Complete | 100% |
 
 ## Detailed Breakdown
 

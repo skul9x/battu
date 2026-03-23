@@ -245,8 +245,8 @@
           "Tháng",
           "Ngày"
         ],
-        "description": "Tý hợp Thìn",
-        "type": "Bán Tam Hợp"
+        "description": "Tý - Thìn",
+        "type": "Bán Hợp Thủy"
       }
     ]
   },

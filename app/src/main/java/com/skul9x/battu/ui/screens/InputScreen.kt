@@ -158,9 +158,15 @@ fun InputScreen(
             
             // Birth Hour Selection
             Text(
-                text = "Giờ Sinh",
+                text = "Giờ Sinh (Theo Can Chi)",
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.SemiBold
+            )
+            Text(
+                text = "Hệ thống tự động lấy điểm giữa (Midpoint) của Giờ Can Chi để tối đa hóa tính chính xác và triệt tiêu sai số.",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(bottom = 8.dp)
             )
             HourSelector(
                 selectedHour = inputState.birthHour,

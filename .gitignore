@@ -1,3 +1,4 @@
+# Android
 *.iml
 .gradle
 /local.properties
@@ -23,11 +24,33 @@ bin/
 gen/
 # macOS
 .DS_Store
-# Room schemas (if any)
+# Room schemas
 schemas/
 # JUnit test results
 /app/build/test-results/
 /test-reports/
-# AI Studio image artifacts (if any)
+
+# AI Studio temp files
 *.png.temp
 *.jpg.temp
+
+# Gradle
+.gradle/
+build/
+
+# Kotlin
+.kotlin/
+kotlin-js-store/
+
+# IDE specific
+.idea/
+*.ipr
+*.iws
+
+# Sensitive data (KEEP Local but EXCLUDE if necessary)
+# app/google-services.json
+
+# ALLOW .brain directory (Mandatory requirement)
+! .brain/
+! .brain/*
+! .brain/**/*

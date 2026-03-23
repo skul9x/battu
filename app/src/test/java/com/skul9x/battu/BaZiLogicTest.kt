@@ -164,13 +164,13 @@ class BaZiLogicTest {
 
         val interactions = logic.calculateInteractions(pillars)
         
-        // Should have "Bán Tam Hợp" (Thân-Tý and Dần-Ngọ)
-        val banThuy = interactions.find { it.description.contains("Thân hợp Tý") }
-        val banHoa = interactions.find { it.description.contains("Dần hợp Ngọ") }
+        // Should have "Bán Hợp" (Thân-Tý and Dần-Ngọ)
+        val banThuy = interactions.find { it.description.contains("Thân - Tý") }
+        val banHoa = interactions.find { it.description.contains("Dần - Ngọ") }
         
         assertNotNull("Bán Tam Hợp Thủy should be detected", banThuy)
         assertNotNull("Bán Tam Hợp Hỏa should be detected", banHoa)
-        assertEquals("Bán Tam Hợp", banThuy?.typeName)
+        assertEquals("Bán Hợp Thủy", banThuy?.typeName)
     }
 
     @Test
@@ -190,8 +190,8 @@ class BaZiLogicTest {
 
         val interactions = logic.calculateInteractions(pillars)
         
-        val containsTamHop = interactions.any { it.typeName == "Tam Hợp" }
-        val containsBanTamHop = interactions.any { it.typeName == "Bán Tam Hợp" }
+        val containsTamHop = interactions.any { it.typeName.startsWith("Tam Hợp") }
+        val containsBanTamHop = interactions.any { it.typeName.startsWith("Bán Hợp") }
         
         assertTrue("Should contain Tam Hợp", containsTamHop)
         assertFalse("Should NOT contain Bán Tam Hợp (redundant)", containsBanTamHop)

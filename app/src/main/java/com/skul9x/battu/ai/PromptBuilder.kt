@@ -85,17 +85,15 @@ object PromptBuilder {
         }
     }
     
-    /**
-     * Build analysis pipeline (step-by-step process)
-     */
     private fun buildAnalysisPipeline(): JSONArray {
         return JSONArray(listOf(
-            "Bước 1: Xác định Nhật Chủ (Day Master) vượng/suy",
-            "Bước 2: Tìm Dụng Thần (Use God) / Hỉ Thần (Favorable God) / Kỵ Thần (Unfavorable God)",
-            "Bước 3: Phân tích Thập Thần (Ten Gods) → Tính cách, năng lực",
-            "Bước 4: Phân tích Ngũ Hành balance → Sức khỏe",
-            "Bước 5: Phân tích quan hệ Can Chi (đặc biệt Tương Hợp, Bán Tam Hợp, Củng Hợp) → Sự nghiệp, tài lộc, tình duyên",
-            "Bước 6: Tổng hợp và lời khuyên"
+            "Tầng Căn Bản: Xác định Nhật Chủ (Day Master) vượng/suy (BẮT BUỘC xét dựa trên Vòng Trường Sinh tại Lệnh Tháng - chi Tháng)",
+            "Tầng Biến Hóa: Đánh giá các tổ hợp Tương Hợp, Bán Tam Hợp, Củng Hợp làm thay đổi thế trận Ngũ Hành (lực lượng ngầm)",
+            "Tầng Thời Gian: Sử dụng các mốc khởi Đại Vận chính xác (start_age, start_months, start_days) để đưa ra lời khuyên khớp thời điểm",
+            "Bước 4: Tìm Dụng Thần / Hỉ Thần / Kỵ Thần dựa trên 3 tầng trên",
+            "Bước 5: Phân tích Thập Thần → Tính cách, năng lực",
+            "Bước 6: Phân tích sự nghiệp, tài lộc, tình duyên, sức khỏe",
+            "Bước 7: Tổng hợp và lời khuyên"
         ))
     }
     
@@ -226,11 +224,14 @@ object PromptBuilder {
         val array = JSONArray()
         list.forEach { lp ->
             array.put(JSONObject().apply {
-                put("start_age", lp.displayAge) // e.g., "7 tuổi 4 tháng 15 ngày"
+                put("start_age", lp.startAge)
+                put("start_months", lp.startMonths)
+                put("start_days", lp.startDays)
+                put("display_age", lp.displayAge) // e.g., "7 tuổi 4 tháng 15 ngày"
                 put("age_range", "${lp.startAge}-${lp.endAge}")
                 put("stem", lp.stem)
                 put("branch", lp.branch)
-                put("note", "Đại Vận bắt đầu từ: ${lp.displayAge}. Lưu ý sự tác động của Can/Chi Đại Vận lên Nhật Chủ và các trụ khác.")
+                put("note", "Đại Vận bắt đầu chính xác từ: ${lp.displayAge}. Lưu ý sự tác động của Can/Chi Đại Vận lên Nhật Chủ và các trụ khác.")
             })
         }
         return array

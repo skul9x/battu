@@ -162,5 +162,6 @@ data class BaZiData(
     val dayMasterStrength: String = "", // Trạng thái Nhật Chủ (Vượng, Tướng, Hưu, Tù, Tử)
     val interactions: List<Interaction> = emptyList(), // Hợp, Xung, Hình, Hại
     val shenShaList: List<ShenSha> = emptyList(),      // Thần Sát
-    val luckPillars: List<LuckPillar> = emptyList()    // Đại Vận
+    val luckPillars: List<LuckPillar> = emptyList(),   // Đại Vận
+    val isNearSolarTerm: Boolean = false     // Cảnh báo giờ sinh sát giao Tiết Khí
 )

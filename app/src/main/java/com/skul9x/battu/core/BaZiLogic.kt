@@ -113,7 +113,8 @@ class BaZiLogic(private val solarTermsJson: String) {
             dayMasterStrength = dmStrength,
             interactions = interactions,
             shenShaList = shenSha,
-            luckPillars = luckPillars
+            luckPillars = luckPillars,
+            isNearSolarTerm = isNearSolarTerm(tstYear, birthTimeUtc)
         )
     }
 
@@ -256,6 +257,17 @@ class BaZiLogic(private val solarTermsJson: String) {
         return Triple(current, next, nextTime)
     }
 
+    private fun isNearSolarTerm(year: Int, birthTimeUtc: Long): Boolean {
+        val allTerms = mutableListOf<Long>()
+        for (y in (year - 1)..(year + 1)) {
+            solarTermNames.keys.forEach { key ->
+                allTerms.add(getSolarTerm(y, key))
+            }
+        }
+        val oneHourMillis = 3600 * 1000L
+        return allTerms.any { Math.abs(it - birthTimeUtc) <= oneHourMillis }
+    }
+
     private fun calculateElementBalance(pillars: List<Pillar>): Map<String, Int> {
         val scores = mutableMapOf("Kim" to 0, "Mộc" to 0, "Thủy" to 0, "Hỏa" to 0, "Thổ" to 0)
         for (p in pillars) {
@@ -394,10 +406,10 @@ class BaZiLogic(private val solarTermsJson: String) {
         val allBranches = list.map { it.second.branch }.toSet()
         val foundTamHopGroups = mutableListOf<Set<String>>()
 
-        BaZiConstants.TAM_HOP.forEach { group ->
+        BaZiConstants.TAM_HOP.forEach { (group, element) ->
             if (allBranches.containsAll(group)) {
                 val involvedPillars = list.filter { group.contains(it.second.branch) }.map { it.first }
-                result.add(Interaction(InteractionType.TAM_HOP, "Tam Hợp", involvedPillars, group.joinToString("-")))
+                result.add(Interaction(InteractionType.TAM_HOP, "Tam Hợp $element", involvedPillars, group.joinToString("-")))
                 foundTamHopGroups.add(group)
             }
         }
@@ -412,14 +424,11 @@ class BaZiLogic(private val solarTermsJson: String) {
                 val isPartOfFullTamHop = foundTamHopGroups.any { it.contains(p1.branch) && it.contains(p2.branch) }
                 if (isPartOfFullTamHop) continue
 
-                // Check Bán Tam Hợp (Có Chi chính)
-                if (BaZiConstants.BAN_TAM_HOP[p1.branch] == p2.branch || BaZiConstants.BAN_TAM_HOP[p2.branch] == p1.branch) {
-                    result.add(Interaction(InteractionType.BAN_TAM_HOP, "Bán Tam Hợp", listOf(name1, name2), "${p1.branch} hợp ${p2.branch}"))
-                }
-                
-                // Check Củng Hợp (Không có Chi chính)
-                if (BaZiConstants.CUNG_HOP[p1.branch] == p2.branch || BaZiConstants.CUNG_HOP[p2.branch] == p1.branch) {
-                    result.add(Interaction(InteractionType.BAN_TAM_HOP, "Củng Hợp", listOf(name1, name2), "${p1.branch} hợp ${p2.branch}"))
+                // Check Bán Tam Hợp qua từng group
+                BaZiConstants.TAM_HOP.forEach { (group, element) ->
+                    if (group.contains(p1.branch) && group.contains(p2.branch)) {
+                        result.add(Interaction(InteractionType.BAN_TAM_HOP, "Bán Hợp $element", listOf(name1, name2), "${p1.branch} - ${p2.branch}"))
+                    }
                 }
             }
         }

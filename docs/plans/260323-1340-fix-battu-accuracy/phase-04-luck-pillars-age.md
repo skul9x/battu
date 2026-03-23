@@ -1,5 +1,5 @@
 # Phase 04: Calculate Luck Pillars Age Accuracy
-Status: ⬜ Pending
+Status: ✅ Complete
 
 ## Objective
 Hiện tại giao vận đang fix cứng 1-10. Cần tạo ra được một phép chia để ra được năm sinh thứ mấy thì bước vào Đại Vận thứ 1.

@@ -514,6 +514,26 @@ object BaZiConstants {
         "Tỵ" to "Sửu", "Dậu" to "Sửu", "Sửu" to "Sửu"
     )
 
+    // Văn Xương (Dựa vào Can Năm/Ngày)
+    val VAN_XUONG = mapOf(
+        "Giáp" to "Tỵ", "Ất" to "Ngọ", "Bính" to "Thân", "Đinh" to "Dậu", "Mậu" to "Thân",
+        "Kỷ" to "Dậu", "Canh" to "Hợi", "Tân" to "Tý", "Nhâm" to "Dần", "Quý" to "Mão"
+    )
+
+    // Kiếp Sát (Dựa vào Chi Năm/Ngày)
+    val KIEP_SAT = mapOf(
+        "Hợi" to "Thân", "Mão" to "Thân", "Mùi" to "Thân",
+        "Dần" to "Hợi", "Ngọ" to "Hợi", "Tuất" to "Hợi",
+        "Tỵ" to "Dần", "Dậu" to "Dần", "Sửu" to "Dần",
+        "Thân" to "Tỵ", "Tý" to "Tỵ", "Thìn" to "Tỵ"
+    )
+
+    // Thập Ác Đại Bại (Dựa vào Trụ Ngày)
+    val THAP_AC_DAI_BAI = setOf(
+        "Giáp" to "Thìn", "Ất" to "Tỵ", "Bính" to "Thân", "Đinh" to "Hợi", "Mậu" to "Tuất",
+        "Kỷ" to "Sửu", "Canh" to "Thìn", "Tân" to "Tỵ", "Nhâm" to "Thân", "Quý" to "Hợi"
+    )
+
     // ============================================================
     // 7. QUAN HỆ ĐỊA CHI (INTERACTIONS)
     // ============================================================

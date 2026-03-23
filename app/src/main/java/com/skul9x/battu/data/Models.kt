@@ -93,6 +93,8 @@ data class TenGods(
     val yearBranchGod: String = "",  // Ten God of Year Branch
     val monthStemGod: String = "",   // Ten God of Month Stem
     val monthBranchGod: String = "", // Ten God of Month Branch
+    val dayStemGod: String = "Nhật Chủ", // Ten God of Day Stem (Always Day Master)
+    val dayBranchGod: String = "",   // Ten God of Day Branch
     val hourStemGod: String = "",    // Ten God of Hour Stem
     val hourBranchGod: String = ""   // Ten God of Hour Branch
 )

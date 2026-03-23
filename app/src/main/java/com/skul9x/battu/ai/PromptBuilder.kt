@@ -240,7 +240,7 @@ object PromptBuilder {
             put("month_stem", tenGods.monthStemGod)
             put("month_branch", tenGods.monthBranchGod)
             put("day_stem", "Nhật Chủ")
-            put("day_branch", tenGods.monthBranchGod)
+            put("day_branch", tenGods.dayBranchGod)
             put("hour_stem", tenGods.hourStemGod)
             put("hour_branch", tenGods.hourBranchGod)
             

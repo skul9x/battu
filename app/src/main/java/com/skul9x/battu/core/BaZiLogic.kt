@@ -76,6 +76,8 @@ class BaZiLogic(private val solarTermsJson: String) {
             yearBranchGod = BaZiConstants.calculateTenGod(dayMaster, BaZiConstants.getMainHiddenStem(yearPillar.branch)),
             monthStemGod = BaZiConstants.calculateTenGod(dayMaster, monthPillar.stem),
             monthBranchGod = BaZiConstants.calculateTenGod(dayMaster, BaZiConstants.getMainHiddenStem(monthPillar.branch)),
+            dayStemGod = "Nhật Chủ",
+            dayBranchGod = BaZiConstants.calculateTenGod(dayMaster, BaZiConstants.getMainHiddenStem(dayPillar.branch)),
             hourStemGod = BaZiConstants.calculateTenGod(dayMaster, hourPillar.stem),
             hourBranchGod = BaZiConstants.calculateTenGod(dayMaster, BaZiConstants.getMainHiddenStem(hourPillar.branch))
         )
@@ -303,6 +305,8 @@ class BaZiLogic(private val solarTermsJson: String) {
         
         pillars.forEach { (name, p) ->
             val cb = p.branch
+            
+            // 1. Thiên Ất Quý Nhân
             var addedTA = false
             for (ref in thienAtRefs) {
                 val validTA = BaZiConstants.THIEN_AT_QUY_NHAN[ref] ?: emptyList()
@@ -311,25 +315,55 @@ class BaZiLogic(private val solarTermsJson: String) {
                     addedTA = true
                 }
             }
+            
+            // 2. Lộc Tồn
             if (BaZiConstants.LOC_TON[dayStem] == cb) {
                 result.add(ShenSha("Lộc Tồn", name, "Cát", "Tài lộc, phú quý"))
             }
+            
+            // 3. Kình Dương
             if (BaZiConstants.KINH_DUONG[dayStem] == cb) {
                 result.add(ShenSha("Kình Dương", name, "Hung", "Nóng tính, cản trở, tai họa"))
             }
+            
+            // 4. Dịch Mã
             val dichMaBranches = listOf(BaZiConstants.DICH_MA[dayBranch], BaZiConstants.DICH_MA[yearBranch])
             if (cb in dichMaBranches) {
                 if (result.none { it.name == "Dịch Mã" && it.pillar == name }) {
                     result.add(ShenSha("Dịch Mã", name, "Trung", "Biến động, di chuyển, thay đổi"))
                 }
             }
+            
+            // 5. Hoa Cái
             val hoaCaiBranches = listOf(BaZiConstants.HOA_CAI[dayBranch], BaZiConstants.HOA_CAI[yearBranch])
             if (cb in hoaCaiBranches) {
                 if (result.none { it.name == "Hoa Cái" && it.pillar == name }) {
                     result.add(ShenSha("Hoa Cái", name, "Trung", "Nghệ thuật, cô độc, huyền học"))
                 }
             }
+
+            // 6. Văn Xương
+            val vanXuongBranches = listOf(BaZiConstants.VAN_XUONG[dayStem], BaZiConstants.VAN_XUONG[yearStem])
+            if (cb in vanXuongBranches) {
+                if (result.none { it.name == "Văn Xương" && it.pillar == name }) {
+                    result.add(ShenSha("Văn Xương", name, "Cát", "Thông minh, học vấn, công danh"))
+                }
+            }
+
+            // 7. Kiếp Sát
+            val kiepSatBranches = listOf(BaZiConstants.KIEP_SAT[dayBranch], BaZiConstants.KIEP_SAT[yearBranch])
+            if (cb in kiepSatBranches) {
+                if (result.none { it.name == "Kiếp Sát" && it.pillar == name }) {
+                    result.add(ShenSha("Kiếp Sát", name, "Hung", "Tai nạn, thị phi, hao tốn"))
+                }
+            }
         }
+
+        // 8. Thập Ác Đại Bại (Chỉ xét trụ ngày)
+        if (BaZiConstants.THAP_AC_DAI_BAI.contains(dayStem to dayBranch)) {
+            result.add(ShenSha("Thập Ác Đại Bại", "Ngày", "Hung", "Hao tốn tiền bạc, khó tụ tài"))
+        }
+
         return result
     }
 

@@ -1,0 +1,91 @@
+Chào bạn, đây là một ý tưởng rất hay. Dựa trên source code mà bạn đã cung cấp (từ app Tử Vi cũ), chúng ta đã có sẵn phần lõi (`BaZiLogic.kt`, `LunarConverter.kt`, `Constants.kt`) để tính toán Thiên Can Địa Chi cho Năm, Tháng, Ngày, Giờ (Tứ Trụ). 
+
+Để xây dựng một app hoàn toàn mới bằng Kotlin với package name `com.skul9x.battu` chuyên về lập lá số Bát Tự và gửi JSON prompt cho AI luận giải, mình đề xuất một lộ trình (Plan) gồm 5 Phase cụ thể như sau:
+
+### Phase 1: Khởi tạo Project & Cấu hình cơ bản (Project Setup)
+Mục tiêu: Tạo bộ khung vững chắc cho app Android hiện đại.
+1. **Tạo Project mới:**
+   * Mở Android Studio, tạo project "Empty Activity" (Jetpack Compose).
+   * Package name: `com.skul9x.battu`.
+   * Ngôn ngữ: Kotlin.
+   * Minimum SDK: API 24 (hoặc 26 tùy nhu cầu).
+2. **Thiết lập Dependencies (`build.gradle.kts`):**
+   * **Jetpack Compose:** Cho toàn bộ UI.
+   * **ViewModel & Coroutines:** Quản lý state và xử lý đa luồng.
+   * **Kotlinx Serialization / Gson:** Để parse/generate dữ liệu Tứ Trụ thành chuỗi JSON.
+   * **Generative AI SDK:** `com.google.ai.client.generativeai` (nếu dùng Gemini) hoặc Retrofit (nếu gọi API server/AI khác).
+   * **Room Database:** (Tùy chọn ở các phase sau để lưu lịch sử).
+
+### Phase 2: Clone & Tái cấu trúc Logic Bát Tự (Core Logic)
+Mục tiêu: Trích xuất thuật toán lập Tứ Trụ từ app cũ sang app mới một cách độc lập và sạch sẽ.
+1. **Copy các file Core từ source cũ:**
+   * Chuyển các file sau từ `com.example.tviai.core` sang `com.skul9x.battu.core`:
+     * `BaZiLogic.kt` (Logic tính toán Bát Tự chính).
+     * `LunarConverter.kt` & `LunarDateUtil.kt` (Chuyển đổi Âm - Dương lịch).
+     * `Constants.kt` (Chứa các mảng Thiên Can, Địa Chi, Ngũ Hành...).
+2. **Tạo Data Classes (Models):**
+   * Định nghĩa các model rõ ràng để chuẩn bị cho việc serialize sang JSON. Ví dụ:
+     ```kotlin
+     @Serializable
+     data class Tru(val can: String, val chi: String)
+     
+     @Serializable
+     data class BatTuChart(
+         val nam: Tru,
+         val thang: Tru,
+         val ngay: Tru,
+         val gio: Tru,
+         val gioiTinh: String
+     )
+     ```
+3. **Unit Test Logic (Tùy chọn nhưng khuyến khích):**
+   * Clone các file test từ app cũ (như `BaZiLogicTest.kt`, `LunarDateUtilTest.kt`) sang để đảm bảo logic Bát Tự bê sang hoạt động chuẩn 100%.
+
+### Phase 3: Xây dựng Giao diện Người dùng (UI/UX - Compose)
+Mục tiêu: Làm màn hình nhập liệu và hiển thị cơ bản.
+1. **Màn hình Nhập liệu (Input Screen):**
+   * Form điền thông tin: Tên, Giới tính (Nam/Nữ), Ngày tháng năm sinh (chọn Dương lịch hoặc Âm lịch), Giờ sinh.
+   * Nút "Lập Lá Số & Luận Giải".
+2. **Màn hình Hiển thị Lá Số (Chart Screen):**
+   * Hiển thị giao diện 4 cột (Tứ Trụ): Trụ Giờ - Trụ Ngày - Trụ Tháng - Trụ Năm.
+   * Hiển thị màu sắc theo Ngũ Hành (Mộc: Xanh lá, Hỏa: Đỏ, Thổ: Vàng/Nâu, Kim: Trắng/Xám, Thủy: Đen/Xanh dương).
+3. **Thành phần UI báo trạng thái (Loading/Error):**
+   * Khi đang gọi AI, hiển thị animation loading (vì AI generate text mất vài giây đến hàng chục giây).
+
+### Phase 4: Thiết kế JSON Prompt & Tích hợp AI (AI Engine)
+Mục tiêu: Đóng gói dữ liệu Bát Tự thành JSON, gửi prompt cho AI và nhận kết quả.
+1. **Xây dựng System Instruction (Hướng dẫn cho AI):**
+   * Bạn cần set System Prompt cho AI đóng vai một chuyên gia Bát Tự Tử Bình. 
+   * Yêu cầu AI chỉ nhận input là chuỗi JSON và trả về kết quả phân tích theo cấu trúc Markdown rõ ràng (Đánh giá Vượng Suy, Tìm Dụng Thần, Luận Tính Cách, Lời Khuyên...).
+2. **Đóng gói Prompt (JSON Builder):**
+   * Khi người dùng bấm nút, app sẽ dùng `BaZiLogic` tính ra kết quả, sau đó dùng Kotlinx Serialization chuyển thành JSON string.
+   * Ví dụ payload gửi đi: 
+     ```json
+     {
+       "user_info": {"name": "Nguyễn Văn A", "gender": "Nam"},
+       "battu_data": {
+         "nam": {"can": "Giáp", "chi": "Tý"},
+         "thang": {"can": "Bính", "chi": "Dần"},
+         "ngay": {"can": "Mậu", "chi": "Thìn"},
+         "gio": {"can": "Canh", "chi": "Thân"}
+       },
+       "request": "Phân tích nhật can vượng suy, tìm dụng thần và luận giải sơ bộ tổng quan cuộc đời."
+     }
+     ```
+3. **Tích hợp GeminiClient / AI Client:**
+   * Xây dựng class `AIClient` (bạn có thể tham khảo `GeminiClient.kt` từ source cũ).
+   * Cấu hình API Key an toàn (có thể qua `local.properties`).
+   * Gọi API dạng Streaming (để UI có hiệu ứng chữ chạy ra từng từ, tăng trải nghiệm người dùng).
+
+### Phase 5: Màn hình Kết quả & Lưu trữ (Polish & History)
+Mục tiêu: Hoàn thiện luồng trải nghiệm và tính năng lưu trữ.
+1. **Màn hình Kết quả AI (Result Screen):**
+   * Render kết quả trả về của AI. 
+   * Cần có một component `MarkdownText` (bạn có thể lấy `MarkdownText.kt` từ source cũ) để hiển thị định dạng in đậm, in nghiêng, danh sách của AI.
+2. **Lưu Lịch sử (Room Database):**
+   * Clone lại `HistoryDatabase`, `HistoryDao`, `HistoryEntity` từ source cũ để người dùng có thể xem lại các lá số và bài luận đã gen mà không cần tốn token gọi AI lại.
+3. **Tối ưu UX:**
+   * Thêm chức năng Copy kết quả, Chia sẻ (Share) dạng text.
+   * Chỉnh sửa Adaptive Icon, Theme (Sáng/Tối) cho `com.skul9x.battu`.
+
+Bạn có muốn bắt đầu đi sâu vào triển khai luôn **Phase 1 & 2** (Khởi tạo project và extract code Bát Tự sang) không? Mình có thể viết sẵn cấu trúc thư mục và Data Class cho bạn.

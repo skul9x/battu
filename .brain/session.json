@@ -1,0 +1,29 @@
+{
+  "updated_at": "2026-03-23T09:00:56Z",
+  "working_on": {
+    "feature": "Planning",
+    "task": "Tạo cấu trúc các phase chi tiết",
+    "status": "completed",
+    "files": [
+      "/home/skul9x/Desktop/Test_code/BatTu/plans/260323-0840-clone-battu/plan.md",
+      "phase-01-setup.md",
+      "phase-02-core-logic.md",
+      "phase-03-ui.md",
+      "phase-04-ai.md",
+      "phase-05-history.md"
+    ],
+    "blockers": [],
+    "notes": "Đã tạo chi tiết 5 phases cho dự án BatTu, sẵn sàng start."
+  },
+  "pending_tasks": [
+    { "task": "Bắt đầu Phase 01: Setup Project & Dependencies", "priority": "high", "notes": "Chạy /code phase-01 để bắt đầu code" }
+  ],
+  "recent_changes": [
+    { "timestamp": "2026-03-23T09:00:56Z", "type": "feature", "description": "Chia nhỏ phase, bóc tách cấu trúc code cần clone, phân tích GeminiClient.kt", "files": ["plan.md", "phase-*.md"] }
+  ],
+  "errors_encountered": [],
+  "decisions_made": [
+    { "decision": "Tech Stack", "reason": "Sử dụng Android Kotlin + Jetpack Compose + Gemini AI SDK dựa theo source cũ." },
+    { "decision": "Gemini Prompt", "reason": "Sử dụng JSON structure chuyên biệt cho Bát Tự (không dùng chung với Tử Vi)." }
+  ]
+}

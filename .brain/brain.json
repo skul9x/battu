@@ -1,0 +1,37 @@
+{
+  "meta": { "schema_version": "1.1.0", "awf_version": "3.3.0" },
+  "project": { "name": "BatTu", "type": "Android App", "status": "Ready for Phase 1" },
+  "tech_stack": { 
+      "frontend": {"framework": "Jetpack Compose", "language": "Kotlin"}, 
+      "backend": {"logic": "Embedded Kotlin cloned from TuViAndroid-BatTu", "ai": "Google Gemini SDK"}, 
+      "database": {"type": "Room Database"} 
+  },
+  "database_schema": { 
+      "summary": "App lưu: Lịch sử các lá số Bát Tự đã lập và kết quả luận giải từ AI",
+      "tables": [
+          {"name": "history", "columns": ["id", "name", "gender", "birthDate", "birthHour", "chartJson", "promptJson", "aiResult", "createdAt"]}
+      ], 
+      "relationships_explained": "Lưu các lá số riêng biệt theo entity, kèm cả JSON dữ liệu gửi đi và text AI trả về để người dùng xem lại mà không tốn Token."
+  },
+  "api_endpoints": [
+      {
+          "path": "Google Gemini API (GenerativeModel.generateContentStream)",
+          "explained": "Xây dựng JSON Prompt và gửi lên Gemini AI chuyên về Bát Tự Tử Bình. AI stream chữ về giao diện App."
+      }
+  ],
+  "business_rules": [
+      "Luôn phải ưu tiên clone Core Logic Bát Tự, loại bỏ hoàn toàn Tử Vi.",
+      "Luận giải phải dùng System Instruction yêu cầu AI đóng vai chuyên gia Bát Tự Tử Bình, phân tích Nhật Chủ, Dụng Thần, Hỉ Thần, Kỵ Thần."
+  ],
+  "features": [
+      "Tính toán Tứ Trụ từ logic có sẵn",
+      "Hiển thị Lá Số (Chart Screen) với màu sắc Ngũ Hành",
+      "Gửi AI Luận Giải Streaming kèm JSON Builder",
+      "Lưu lại Lịch sử App với Room database"
+  ],
+  "knowledge_items": { 
+      "patterns": ["Jetpack Compose UI MVVM", "Kotlinx Serialization JSON"], 
+      "gotchas": ["Cần API Key của Gemini AI Studio để chạy", "Constants.kt cũ cần lược bỏ đến 60% chỉ giữ phần Bát Tự"], 
+      "conventions": ["Màu Tứ Trụ: Kim-Trắng, Mộc-Xanh lá, Thủy-Xanh dương, Hỏa-Đỏ, Thổ-Vàng Nâu"] 
+  }
+}

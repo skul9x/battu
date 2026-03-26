@@ -4,6 +4,17 @@ Tất cả thay đổi quan trọng của dự án BatTu được ghi lại ở 
 
 ---
 
+## [2026-03-26] - Bazi Accuracy Audit & Bug Fix 🛠️
+- **Bug Fix:** Sửa lỗi đảo ngược thứ tự Tàng Can (Hidden Stems) của Chi Tỵ (巳) trong `BaZiConstants.kt`.
+  - Đã chuyển **Canh Kim** về đúng vị trí **Trung Khí (30%)** và **Mậu Thổ** về **Dư Khí (10%)**.
+  - Lý do: Tỵ là Trường Sinh của Canh Kim, lực lượng Kim tại đây mạnh hơn Thổ. Xác nhận theo *Tam Mệnh Thông Hội* và *Uyên Hải Tử Bình*.
+- **Audit:** Rà soát thuật toán tính `element_balance` trong `BaZiLogic.kt`.
+  - Xác minh phép toán hiện tại (Can 40, Chi 60, Nạp Âm 10) là chính xác về mặt số học (110đ/trụ).
+  - Nhận diện hạn chế: Hệ thống hiện tại coi 4 trụ có trọng số bằng nhau, chưa tính hệ số **Lệnh Tháng (Nguyệt Lệnh)** và chưa trừ điểm **Tuần Không** trực tiếp vào bảng điểm.
+- **Knowledge:** Cập nhật tài liệu nội bộ về sự khác biệt giữa "Số lượng" (Quantity) và "Sức mạnh thực tế" (Quality/Seasonality) trong Bát Tự.
+
+---
+
 ## [2026-03-23] - Advanced Bazi Features (Phase 05-07) ✅
 - **Phase 07 COMPLETE:** Kiểm thử & Xác minh tổng thể (Testing & Verification).
 - **Phase 06 COMPLETE:** Đồng bộ PromptBuilder & Rules.
@@ -211,11 +222,3 @@ Tất cả thay đổi quan trọng của dự án BatTu được ghi lại ở 
 
 - **SettingsScreen.kt**
   - Replaced deprecated `Divider` với `HorizontalDivider`
-
----
-
-## [2026-03-23] - Phase 03 Completion
-
-### ✅ Added
-- **ChartScreen**
-... (rest removed for space, but I have the idea)

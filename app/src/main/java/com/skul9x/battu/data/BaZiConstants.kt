@@ -176,8 +176,8 @@ object BaZiConstants {
         ),
         "Tỵ" to listOf(
             HiddenStem("Bính", 60, HiddenStemType.BAN_KHI),
-            HiddenStem("Mậu", 30, HiddenStemType.TRUNG_KHI),
-            HiddenStem("Canh", 10, HiddenStemType.DU_KHI)
+            HiddenStem("Canh", 30, HiddenStemType.TRUNG_KHI),
+            HiddenStem("Mậu", 10, HiddenStemType.DU_KHI)
         ),
         "Ngọ" to listOf(
             HiddenStem("Đinh", 70, HiddenStemType.BAN_KHI),

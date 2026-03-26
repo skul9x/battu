@@ -73,3 +73,9 @@ WAITING: Next phase: Annual Luck
 [22:10] DONE phase-05-annual-luck ✅
 [22:20] DONE phase-06-promptbuilder-sync ✅
 [22:21] START phase-07-testing
+[2026-03-26 18:55] Accuracy Audit & Tỵ Bug Fix
+- Phân tích toán học element_balance: 110đ/trụ x 4 = 440đ (Can 40, Chi 60, Nạp Âm 10). Khớp 100%.
+- Phát hiện lỗi dữ liệu Tàng Can Tỵ: Canh Kim (10%) <-> Mậu Thổ (30%). 
+- Đã sửa BaZiConstants.kt: Canh Kim (Trung Khí 30%), Mậu Thổ (Dư Khí 10%).
+- Rà soát bugs.txt: Nhận diện hạn chế về Lệnh Tháng và Tuần Không trong công thức tính điểm hiện tại.
+- Đã cập nhật brain.json, session.json và CHANGELOG.md.

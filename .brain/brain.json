@@ -61,7 +61,8 @@
       "Metadata version mismatch in Kotlin 2.1.0+ requires Room 2.7+",
       "Day master strength must follow 12 Stages for higher accuracy",
       "Year vs Day based Quý Nhân should be clarified",
-      "Calendar seconds/milliseconds must be reset for precise term calculations"
+      "Calendar seconds/milliseconds must be reset for precise term calculations",
+      "Hidden Stems of Tỵ (巳): Canh Kim is Trung Khí (30%), Mậu Thổ is Dư Khí (10%) due to Tỵ being Trường Sinh of Kim"
     ],
     "conventions": ["MVVM Architecture", "Navigation Component Compose"]
   }

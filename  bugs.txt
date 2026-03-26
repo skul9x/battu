@@ -1,0 +1,87 @@
+Chào bạn, tôi đã rà soát kỹ thuật toán tính toán trong file `BaZiLogic.kt`, cụ thể là hàm `calculateElementBalance`. 
+
+Về mặt **toán học lập trình**, các con số (Kim 162, Mộc 54, Thủy 104, Hỏa 54, Thổ 66) được tính ra là **chính xác 100% dựa trên logic code hiện tại**. Tuy nhiên, về mặt **học thuật Bát Tự**, công thức này đang có một "lỗ hổng" lớn dẫn đến việc phản ánh sai lệch sức mạnh thực tế của Ngũ Hành.
+
+Dưới đây là phân tích chi tiết của tôi:
+
+### 1. Thuật toán của bạn đang chạy như thế nào? (Giải mã con số)
+Hàm `calculateElementBalance` trong code của bạn chia điểm số cho mỗi trụ (Năm, Tháng, Ngày, Giờ) với tổng điểm cố định là **110 điểm/trụ**. Cụ thể:
+* [cite_start]**Thiên Can (40 điểm):** Lộ ra ngoài nên được điểm cao[cite: 58].
+* [cite_start]**Địa Chi - Tàng Can (60 điểm):** Chia theo tỷ lệ phần trăm của Tàng Can (Ví dụ: Bản khí 60% = 36 điểm, Trung khí 30% = 18 điểm, Dư khí 10% = 6 điểm)[cite: 58].
+* [cite_start]**Nạp Âm (10 điểm):** Điểm thưởng bonus[cite: 58].
+* **Tổng cộng:** 110 điểm x 4 trụ = **440 điểm tổng**.
+*(Tổng của 162 + 54 + 104 + 54 + 66 đúng bằng 440).*
+
+**Ví dụ tính Trụ Năm (Nhâm Thân) của bạn:**
+* [cite_start]Thiên Can: Nhâm (Thủy) = +40 Thủy[cite: 58].
+* Địa Chi: Thân chứa Canh (60%), Nhâm (30%), Mậu (10%). [cite_start]=> +36 Kim, +18 Thủy, +6 Thổ[cite: 58].
+* [cite_start]Nạp Âm: Kiếm Phong Kim = +10 Kim[cite: 58].
+=> Nội cái trụ Năm này đã đóng góp: **46 Kim, 58 Thủy, 6 Thổ**. [cite_start]Code chạy toán học rất chuẩn[cite: 58].
+
+---
+
+### 2. Vấn đề Học thuật Bát Tự: Tại sao kết quả này "Có Vấn Đề"?
+
+Điểm yếu chí mạng của hàm `calculateElementBalance` hiện tại là **coi trọng lượng của 4 trụ (Năm, Tháng, Ngày, Giờ) là BẰNG NHAU (đều là 110 điểm).**
+
+Trong Bát Tự kinh điển (Tử Bình), **Lệnh Tháng (Nguyệt Lệnh - Chi Tháng) nắm quyền sinh sát**, quyết định mùa sinh. Khí của mùa sinh lớn hơn tất cả các trụ khác cộng lại. 
+* Lá số sinh tháng Dần (Mùa Xuân), Mộc là Vượng nhất. 
+* Tuy nhiên, do bạn chia đều 60 điểm Tàng Can cho mọi Địa Chi, nên Chi Dần (Tháng) cũng chỉ đóng góp tối đa 60 điểm giống hệt Chi Thân (Năm) và Chi Thìn (Ngày). 
+* Thậm chí, vì lá số có Canh, Tân, Thân (Năm), Thìn sinh Kim... nên cộng dồn lại điểm Kim lên tới 162, đè bẹp điểm Mộc 54 của tháng Dần. 
+=> **Hậu quả:** AI khi đọc JSON sẽ thấy điểm Kim (162) > Mộc (54) và kết luận sai lầm rằng "Kim vượng hơn Mộc", dẫn đến luận sai toàn bộ Dụng Thần.
+
+[cite_start]Ngoài ra, code hiện tại **chưa trừ điểm Tuần Không**[cite: 58]. [cite_start]Trong JSON có cảnh báo giảm 70-80% lực lượng [cite: 58][cite_start], nhưng trong hàm `calculateElementBalance` chưa hề có logic nào trừ đi số điểm này[cite: 58].
+
+---
+
+### 3. Giải pháp nâng cấp code (Khắc phục triệt để)
+
+Để bảng điểm phản ánh đúng học thuật Bát Tự, bạn cần cập nhật lại hàm `calculateElementBalance` trong `BaZiLogic.kt`. Dưới đây là 2 cách xử lý:
+
+**Cách 1: Thêm hệ số Lệnh Tháng (Season Multiplier) vào code Kotlin**
+Bạn cần truyền thêm index để biết đâu là Trụ Tháng, sau đó nhân trọng số (ví dụ: x2.5 hoặc x3) cho Tàng Can của trụ Tháng.
+
+*Gợi ý sửa code trong `BaZiLogic.kt`:*
+```kotlin
+private fun calculateElementBalance(pillars: List<Pillar>, monthPillar: Pillar, xunKong: XunKong? = null): Map<String, Int> {
+    val scores = mutableMapOf("Kim" to 0.0, "Mộc" to 0.0, "Thủy" to 0.0, "Hỏa" to 0.0, "Thổ" to 0.0) // Đổi sang Double để tính toán cho chuẩn
+    
+    for (p in pillars) {
+        // Kiểm tra Tuần Không
+        val isVoid = xunKong?.yearVoid?.contains(p.branch) == true || xunKong?.dayVoid?.contains(p.branch) == true
+        val voidMultiplier = if (isVoid) 0.3 else 1.0 // Giảm 70% nếu dính Tuần Không
+        
+        // 1. Thiên Can: 40 điểm
+        val stemName = BaZiConstants.getElementNameVi(BaZiConstants.getElementOfStem(p.stem))
+        if (stemName.isNotEmpty()) scores[stemName] = scores[stemName]!! + 40.0
+        
+        // Xác định hệ số Lệnh Tháng (Chỉ áp dụng cho Địa Chi)
+        val branchWeightMultiplier = if (p === monthPillar) 2.5 else 1.0 // Tháng x2.5 lần sức mạnh
+        
+        // 2. Địa Chi: 60 điểm cơ bản x Hệ số tháng x Hệ số Tuần Không
+        for (hs in p.hiddenStems) {
+            val hsName = BaZiConstants.getElementNameVi(BaZiConstants.getElementOfStem(hs.stem))
+            if (hsName.isNotEmpty()) {
+                val contribution = (hs.percentage * 60.0 / 100.0) * branchWeightMultiplier * voidMultiplier
+                scores[hsName] = scores[hsName]!! + contribution
+            }
+        }
+        
+        // 3. Nạp Âm: +10 điểm
+        val naName = p.napAm?.let { BaZiConstants.getElementNameVi(it.element) } ?: ""
+        if (naName.isNotEmpty()) scores[naName] = scores[naName]!! + 10.0
+    }
+    
+    // Làm tròn về Int trước khi trả về
+    return scores.mapValues { it.value.toInt() }
+}
+```
+
+**Cách 2: Giữ nguyên hàm cũ, nhưng dặn dò AI thật kỹ trong PromptBuilder**
+[cite_start]Nếu bạn không muốn sửa logic thuật toán tính điểm vì sợ rủi ro, bạn BẮT BUỘC phải sửa `PromptBuilder.kt`[cite: 58]. Ở phần `element_balance` -> `note`, hãy đổi thành:
+
+```kotlin
+put("note", "CẢNH BÁO QUAN TRỌNG: Bảng điểm Ngũ Hành này là điểm thô (Raw Score) chưa nhân hệ số Lệnh Tháng (Nguyệt Lệnh) và chưa trừ điểm Tuần Không. AI TUYỆT ĐỐI KHÔNG được so sánh các con số này trực tiếp để kết luận vượng suy. Phải tự nâng trọng số của Lệnh Tháng (Chi Tháng) lên gấp 3 lần và giảm 70% lực lượng của Chi bị Tuần Không trước khi luận giải.")
+```
+
+[cite_start]**Kết luận:** Code của bạn tính toán tỷ lệ % rất tốt và không bị bug về mặt toán học[cite: 58]. Chỉ là nó đang đối xử công bằng với 4 trụ, điều vốn bị cấm kỵ trong tử bình thực chiến. Hãy áp dụng 1 trong 2 cách trên để dự án Bát Tự của bạn hoàn hảo nhé!

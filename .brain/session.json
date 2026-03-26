@@ -1,15 +1,32 @@
 {
-  "updated_at": "2026-03-23T23:00:00+07:00",
+  "updated_at": "2026-03-26T18:50:00+07:00",
   "working_on": {
-    "feature": "Advanced Bazi Features",
-    "task": "Final Review & Documentation",
+    "feature": "Accuracy Audit & Prompt Optimization",
+    "task": "Element Balance Audit & Bug Fix",
     "status": "completed",
-    "files": ["AdvancedFeaturesTest.kt", "PromptBuilder.kt", "BaZiLogic.kt"],
+    "files": ["BaZiConstants.kt", "BaZiLogic.kt", "prompt.txt"],
     "progress": "100%",
-    "notes": "All phases from 01 to 07 are completed and verified with the Ngoc 1992 reference case."
+    "notes": "Audited element scoring logic and fixed Tỵ hidden stems swap bug."
   },
-  "pending_tasks": [],
+  "pending_tasks": [
+    {
+      "task": "Implement Season Multipliers and Xun Kong deductions in element_balance calculation",
+      "priority": "medium"
+    }
+  ],
   "recent_changes": [
+    {
+      "timestamp": "2026-03-26T18:45:00+07:00",
+      "type": "fix",
+      "description": "Fixed Tỵ (巳) hidden stems: Swapped Canh Kim (Trung Khí 30%) and Mậu Thổ (Dư Khí 10%).",
+      "files": ["BaZiConstants.kt"]
+    },
+    {
+      "timestamp": "2026-03-26T18:35:00+07:00",
+      "type": "audit",
+      "description": "Audited element_balance mathematical scoring and academic accuracy.",
+      "files": ["BaZiLogic.kt", "prompt.txt"]
+    },
     {
       "timestamp": "2026-03-23T22:50:00+07:00",
       "type": "test",
@@ -24,6 +41,12 @@
     }
   ],
   "errors_encountered": [
+     {
+      "error": "Tàng Can Tỵ (巳) bị đảo ngược: Canh Kim (10%) và Mậu Thổ (30%)",
+      "solution": "Đổi Canh thành Trung Khí (30%) và Mậu thành Dư Khí (10%) theo kinh điển",
+      "timestamp": "2026-03-26T18:40:00+07:00",
+      "resolved": true
+    },
      {
       "error": "Gradle build failed due to invalid java.home (/usr/lib/jvm/java-17-openjdk-amd64)",
       "solution": "Updated gradle.properties to use /usr/lib/jvm/java-21-openjdk-amd64",

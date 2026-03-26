@@ -97,7 +97,7 @@ object PromptBuilder {
             "Tầng Căn Bản: Xác định Nhật Chủ (Day Master) vượng/suy (BẮT BUỘC xét dựa trên Vòng Trường Sinh tại Lệnh Tháng - chi Tháng)",
             "Tầng Biến Hóa: Đánh giá các tổ hợp Tương Hợp, Bán Tam Hợp, Củng Hợp làm thay đổi thế trận Ngũ Hành (lực lượng ngầm)",
             "Tầng Thời Gian: Sử dụng các mốc khởi Đại Vận chính xác (start_age, start_months, start_days) để đưa ra lời khuyên khớp thời điểm",
-            "Tầng Tuần Không: Xét chi bị Không Vong → giảm điểm lực lượng Ngũ Hành tương ứng",
+            "Tầng Tuần Không: Quan sát các chi bị Không Vong (đã được trừ vào điểm số Ngũ Hành 50%); xét ảnh hưởng của Không Vong tới các tầng tương tác khác",
             "Tầng Trụ Phụ: Thai Nguyên (gốc rễ) + Mệnh Cung (hậu vận) bổ trợ luận đoán",
             "Bước 4: Tìm Dụng Thần / Hỉ Thần / Kỵ Thần dựa trên 3 tầng trên",
             "Bước 5: Phân tích Thập Thần → Tính cách, năng lực",
@@ -159,7 +159,7 @@ object PromptBuilder {
                 put("Thổ", data.elementBalance["Thổ"] ?: 0)
                 put("season", data.season)
                 put("day_master_strength", data.dayMasterStrength)
-                put("note", "Điểm số Ngũ Hành đã tính toán bao gồm Tàng Can chính; chú ý sự thay đổi Lực lượng ngầm do Tam Hợp/Bán Tam Hợp tạo ra (xem INTERACTIONS).")
+                put("note", "Điểm số Ngũ Hành đã được máy tính tối ưu: ĐÃ BAO GỒM hệ số Lệnh Tháng (x2.0) và hình phạt Tuần Không (x0.5). Chú ý sự thay đổi Lực lượng ngầm do Tam Hợp/Bán Tam Hợp tạo ra (xem INTERACTIONS).")
             })
             
             // Shen Sha (Thần Sát)
@@ -176,7 +176,7 @@ object PromptBuilder {
                 JSONObject().apply {
                     put("year_void", JSONArray(xk.yearVoid))
                     put("day_void", JSONArray(xk.dayVoid))
-                    put("note", "Các Chi rơi vào Tuần Không sẽ bị giảm lực lượng đáng kể (khoảng 70-80%), ảnh hưởng tới sự tương tác với các trụ khác.")
+                    put("note", "Các Chi rơi vào Tuần Không sẽ bị giảm lực lượng (đã trừ 50% vào element_balance), ảnh hưởng tới khả năng tương tác và xung lực của Chi đó.")
                 }
             } ?: JSONObject())
 

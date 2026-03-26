@@ -60,7 +60,8 @@
 
 ## 📑 Thông tin bổ sung
 - Dự án sử dụng **Antigravity Workflow Framework (AWF)** để quản lý quy trình phát triển.
-- Tính điểm ngũ hành được tối ưu hóa theo tiêu chuẩn Tử Bình chuyên nghiệp (v2.3.0).
+- Tính điểm ngũ hành được tối ưu hóa theo tiêu chuẩn Tử Bình chuyên nghiệp (**Accuracy Audit v2.3.0**).
+- Đang triển khai **Phase 05: Room Database UI Sync** để lưu trữ lịch sử lá số.
 
 ---
 

@@ -12,6 +12,9 @@ Tất cả thay đổi quan trọng của dự án BatTu được ghi lại ở 
 - **Bug Fix:** Sửa lỗi đảo ngược thứ tự Tàng Can (Hidden Stems) của Chi Tỵ (巳) trong `BaZiConstants.kt`.
   - Đã chuyển **Canh Kim** về đúng vị trí **Trung Khí (30%)** và **Mậu Thổ** về **Dư Khí (10%)**.
 - **Testing:** Đã bổ sung unit test `ScoringLogicTest.kt` xác minh chính xác các kịch bản nhân hệ số gộp và đơn lẻ.
+- **Accuracy Audit:** Thực hiện Audit toàn diện Engine Bát Tự (TST, 12 Trường Sinh, Tàng Can). Xác nhận độ chính xác ở mức Professional/Academic.
+- **AI Integration:** Tối ưu `PromptBuilder.kt` - làm rõ mốc điểm đã tính toán sẵn (Pre-calculated) để AI không tính chồng chéo.
+- **Documentation:** Phát hành Bát Tự Logic Accuracy Audit Report (v2.3.0).
 
 ---
 

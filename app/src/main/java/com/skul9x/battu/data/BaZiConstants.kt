@@ -13,6 +13,10 @@ object BaZiConstants {
     val THIEN_CAN = listOf("Giáp", "Ất", "Bính", "Đinh", "Mậu", "Kỷ", "Canh", "Tân", "Nhâm", "Quý")
     val DIA_CHI = listOf("Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi")
 
+    // Element Balance Scoring Multipliers
+    const val MONTH_MULTIPLIER = 2.0
+    const val XUN_KONG_PENALTY = 0.5
+
     // ============================================================
     // 1. NẠP ÂM (60 GIÁP TÝ) - Lục Thập Hoa Giáp
     // ============================================================

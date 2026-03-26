@@ -57,6 +57,22 @@ class BaZiConstantsTest {
         assertEquals(1, stemsTy.size)
         assertEquals("Quý", stemsTy[0].stem)
         assertEquals(100, stemsTy[0].percentage)
+        
+        // Tỵ -> Bính: 60%, Canh: 30%, Mậu: 10%
+        val stemsTy2 = BaZiConstants.getHiddenStems("Tỵ")
+        assertEquals(3, stemsTy2.size)
+        
+        val binh = stemsTy2.find { it.stem == "Bính" }
+        assertEquals(60, binh?.percentage)
+        assertEquals(HiddenStemType.BAN_KHI, binh?.type)
+        
+        val canh = stemsTy2.find { it.stem == "Canh" }
+        assertEquals(30, canh?.percentage)
+        assertEquals(HiddenStemType.TRUNG_KHI, canh?.type)
+        
+        val mau2 = stemsTy2.find { it.stem == "Mậu" }
+        assertEquals(10, mau2?.percentage)
+        assertEquals(HiddenStemType.DU_KHI, mau2?.type)
     }
 
     @Test

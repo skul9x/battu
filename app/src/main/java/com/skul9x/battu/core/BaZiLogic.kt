@@ -94,16 +94,24 @@ class BaZiLogic(private val solarTermsJson: String) {
             hourBranchGod = BaZiConstants.calculateTenGod(dayMaster, BaZiConstants.getMainHiddenStem(hourPillar.branch))
         )
 
-        // 8. Element Balance
-        val elementBalance = calculateElementBalance(listOf(yearPillar, monthPillar, dayPillar, hourPillar))
-
-        // 9. Season & Strength
+        // 8. Season & Strength
         val birthSeason = BaZiConstants.getSeason(monthPillar.branch)
         val dmStrength = BaZiConstants.getDayMasterStrength(monthPillar.branch, dayMaster)
 
+        // 9. Xun Kong (Void Branches) calculation
+        val yearVoid = BaZiConstants.getXunKong(yearPillar.stem, yearPillar.branch)
+        val dayVoid = BaZiConstants.getXunKong(dayPillar.stem, dayPillar.branch)
+        val xunKong = XunKong(
+            yearVoid = listOf(yearVoid.first, yearVoid.second),
+            dayVoid = listOf(dayVoid.first, dayVoid.second)
+        )
+
+        // 10. Element Balance (Improved with Season & Void Multipliers)
+        val pillarsMap = mapOf("Năm" to yearPillar, "Tháng" to monthPillar, "Ngày" to dayPillar, "Giờ" to hourPillar)
+        val elementBalance = calculateElementBalance(pillarsMap, xunKong)
+
         val currentTermInfo = getCurrentAndNextTerm(tstYear, birthTimeUtc)
 
-        val pillarsMap = mapOf("Năm" to yearPillar, "Tháng" to monthPillar, "Ngày" to dayPillar, "Giờ" to hourPillar)
         val shenSha = calculateShenSha(yearPillar, dayPillar, monthPillar, pillarsMap)
         val interactions = calculateInteractions(pillarsMap)
         val luckPillars = calculateLuckPillars(yearPillar.stem, monthCanIdx, monthChiIdx, input.gender, birthTimeUtc, birthYear)
@@ -127,10 +135,7 @@ class BaZiLogic(private val solarTermsJson: String) {
             interactions = interactions,
             shenShaList = shenSha,
             luckPillars = luckPillars,
-            xunKong = XunKong(
-                yearVoid = listOf(BaZiConstants.getXunKong(yearPillar.stem, yearPillar.branch).first, BaZiConstants.getXunKong(yearPillar.stem, yearPillar.branch).second),
-                dayVoid = listOf(BaZiConstants.getXunKong(dayPillar.stem, dayPillar.branch).first, BaZiConstants.getXunKong(dayPillar.stem, dayPillar.branch).second)
-            ),
+            xunKong = xunKong,
             fetalOrigin = fetalOrigin,
             lifePalace = lifePalace,
             isNearSolarTerm = isNearSolarTerm(tstYear, birthTimeUtc)
@@ -290,31 +295,47 @@ class BaZiLogic(private val solarTermsJson: String) {
         return allTerms.any { Math.abs(it - birthTimeUtc) <= oneHourMillis }
     }
 
-    private fun calculateElementBalance(pillars: List<Pillar>): Map<String, Int> {
+    private fun calculateElementBalance(pillarsMap: Map<String, Pillar>, xunKong: XunKong): Map<String, Int> {
         val scores = mutableMapOf("Kim" to 0, "Mộc" to 0, "Thủy" to 0, "Hỏa" to 0, "Thổ" to 0)
-        for (p in pillars) {
-            // 1. Thiên Can lộ: 40 điểm
+        val voidBranches = (xunKong.yearVoid + xunKong.dayVoid).toSet()
+
+        pillarsMap.forEach { (name, p) ->
+            // Determine Multiplier based on Season and Void
+            var multiplier = 1.0
+            
+            // 1. Season Multiplier (Nguyệt Lệnh)
+            if (name == "Tháng") {
+                multiplier *= BaZiConstants.MONTH_MULTIPLIER
+            }
+            
+            // 2. Void Penalty (Tuần Không)
+            if (voidBranches.contains(p.branch)) {
+                multiplier *= BaZiConstants.XUN_KONG_PENALTY
+            }
+
+            // A. Thiên Can (Heavenly Stem): 40 points - NO Multiplier (as per design)
             val stemElement = BaZiConstants.getElementOfStem(p.stem)
             val stemName = BaZiConstants.getElementNameVi(stemElement)
             if (stemName.isNotEmpty()) {
                 scores[stemName] = (scores[stemName] ?: 0) + 40
             }
             
-            // 2. Địa Chi (Tàng Can): 60 điểm chia theo tỷ lệ
+            // B. Địa Chi (Hidden Stems): 60 points with Multiplier
             for (hs in p.hiddenStems) {
                 val hsElement = BaZiConstants.getElementOfStem(hs.stem)
                 val hsName = BaZiConstants.getElementNameVi(hsElement)
                 if (hsName.isNotEmpty()) {
-                    val contribution = (hs.percentage * 60) / 100
-                    scores[hsName] = (scores[hsName] ?: 0) + contribution
+                    val contribution = (hs.percentage * 60 * multiplier) / 100
+                    scores[hsName] = (scores[hsName] ?: 0) + contribution.toInt()
                 }
             }
             
-            // 3. Nạp Âm bonus: +10 điểm
+            // C. Nạp Âm bonus: 10 points with Multiplier
             p.napAm?.let { na ->
                 val naName = BaZiConstants.getElementNameVi(na.element)
                 if (naName.isNotEmpty()) {
-                    scores[naName] = (scores[naName] ?: 0) + 10
+                    val contribution = 10 * multiplier
+                    scores[naName] = (scores[naName] ?: 0) + contribution.toInt()
                 }
             }
         }

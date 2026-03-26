@@ -1,6 +1,6 @@
 # BatTu Project - Architecture Overview
 
-**Last Updated:** 2026-03-23
+**Last Updated:** 2026-03-26
 
 ## 📱 Project Overview
 
@@ -156,7 +156,7 @@ ResultScreen displays with MarkdownText
 **Key Functions:**
 - `calculateBaZi(userInput: UserInput): BaZiData`
 - `createPillar(can: String, chi: String): Pillar` (Uses BaZiConstants)
-- `calculateElementBalance(pillars: List<Pillar>): Map<String, Int>` (Refined with weights)
+- `calculateElementBalance(pillarsMap: Map<String, Pillar>, xunKong: XunKong): Map<String, Int>` (Advanced v2.3.0: Season Multipliers & Void Penalty)
 
 **Dependencies:**
 - `BaZiConstants` (Na Yin, Hidden Stems, Ten Gods accurate logic)
@@ -263,7 +263,8 @@ ResultScreen displays with MarkdownText
 - ✅ Phase 02: Core Bát Tự Logic
 - ✅ Phase 03: UI Input & Chart Display
 - ✅ Phase 04: AI Integration (Gemini)
-- ✅ **Phase 01-06 (Fix): Accuracy Overhaul (Shen Sha, Life Stages, Harmonies, Luck Pillars)**
+- ✅ Phase 01-06 (Fix): Accuracy Overhaul (Shen Sha, Life Stages, Harmonies, Luck Pillars)
+- ✅ **Audit & Scoring Upgrade (v2.3.0): Month Multiplier & Void Penalty**
 
 **In Progress:**
 - 🔄 Phase 05 (New): History & Polish (Room DB integration is core, Syncing UI)

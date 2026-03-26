@@ -6,8 +6,8 @@
   "project": {
     "name": "Bát Tự AI",
     "type": "Android (Jetpack Compose)",
-    "status": "Advanced Bazi Features - Completed (All Phases)",
-    "updated_at": "2026-03-23T23:00:00+07:00",
+    "status": "Advanced Bazi Features & Scoring - Completed",
+    "updated_at": "2026-03-26T19:10:00+07:00",
     "overall_progress": "100%"
   },
   "branding": {
@@ -39,7 +39,7 @@
     "Day Master Strength follows 12 Vòng Trường Sinh (Tuyệt, Tử, Mộ...)",
     "Distinction between Year-based and Day-based Shen Sha",
     "Extended Shen Sha: Văn Xương, Kiếp Sát, Thập Ác Đại Bại, Đào Hoa, Thiên Y, Hồng Loan, Thiên Hỉ",
-    "Weighted Element Balance with Nạp Âm bonus",
+    "Weighted Element Balance with Season Multipliers and Xun Kong deductions",
     "Branch Interactions (Luc Hop, Luc Xung, Tam Hop, Tam Hinh, Ban Tam Hop, Cung Hop, Phuc Ngam)",
     "Luck Pillar (Dai Van) calculation with term-based offset (3 days = 1 year)",
     "Tuần Không (Void Branches) calculation (Niên Không, Nhật Không)",

@@ -16,6 +16,7 @@ Dài liệu này ghi lại các quy tắc thuật lý được áp dụng trong 
 - **Tỷ trọng áp dụng:**
   - Tý, Mão, Dậu (Chuyên khí): 100% Bản khí.
   - Ngọ: Bản khí (Kỷ) và Trung khí (Đinh) - quy tắc đặc biệt.
+  - **Tỵ (巳) - Fix v2.3.0:** Bản khí (Bính), Trung khí (Canh), Dư khí (Mậu). (Xác nhận theo Trường Sinh của Kim tại Tỵ).
   - Các chi khác: Theo bảng tra trong `BaZiConstants.HIDDEN_STEMS_TABLE`.
 
 ## 3. Thập Thần (Ten Gods)
@@ -33,11 +34,22 @@ Dài liệu này ghi lại các quy tắc thuật lý được áp dụng trong 
   - Sinh Nhật Chủ (khác âm dương): **Chính Ấn**
 - **Áp dụng cho Địa Chi:** Thập thần của Địa Chi được tính dựa trên **Bản khí (Main Hidden Stem)** của Chi đó.
 
-## 4. Cân bằng Ngũ Hành (Element Balance)
-- Điểm số Ngũ hành được tính tổng từ:
-  - Thiên Can của 4 trụ: Mỗi can đóng góp 40 đơn vị.
-  - Tàng Can của 4 trụ: Tổng đóng góp của 1 chi là 60 đơn vị, chia theo tỷ lệ phần trăm của các Tàng Can bên trong.
-- **Công thức:** `Điểm = (Số Thiên Can gốc * 40) + Σ(Tỷ lệ Tàng Can * 60)`
+### 4. Cân bằng Ngũ Hành (Element Balance) v2.3.0
+Điểm số Ngũ hành được tính tổng từ Thiên Can, Địa Chi (Tàng Can) và Nạp Âm. Kể từ v2.3.0, hệ thống áp dụng các hệ số nhân để tăng độ chính xác học thuật:
+
+**Trọng số cơ bản:**
+- **Thiên Can:** 40 điểm/trụ.
+- **Địa Chi (Tàng Can):** 60 điểm/trụ (chia theo tỷ lệ % tàng ẩn).
+- **Nạp Âm:** 10 điểm/trụ.
+
+**Hệ số điều chỉnh (Multipliers):**
+- **Lệnh Tháng (Nguyệt Lệnh):** Nhân **2.0** cho phần Địa Chi và Nạp Âm của Trụ Tháng.
+- **Tuần Không (Xun Kong):** Nhân **0.5** (giảm 50%) cho phần Địa Chi và Nạp Âm của trụ bị dính Tuần Không (theo Ngày hoặc Năm).
+- **Quy tắc gộp:** Trụ Tháng dính Tuần Không có hệ số `2.0 * 0.5 = 1.0` (Trở về mức bình thường).
+- *Lưu ý:* Thiên Can (40đ) luôn giữ nguyên trọng số, không bị ảnh hưởng bởi các hệ số này.
+
+**Công thức tổng quát:** 
+`PillarScore = (Stem 40) + (Branch 60 * Multiplier) + (NapAm 10 * Multiplier)`
 
 ## 5. Đại Vận (Luck Pillars)
 - **Quy tắc tính tuổi khởi vận:** Sử dụng quy tắc **3 ngày = 1 năm, 6 giờ = 1 tháng, 12 phút = 1 ngày**.
